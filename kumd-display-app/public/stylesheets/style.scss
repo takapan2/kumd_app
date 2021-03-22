@@ -1,0 +1,98 @@
+*{
+    margin: 0px;
+}
+
+.btn:hover{
+    opacity: 0.5;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+body {
+    margin: 0px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: rgb(240, 240, 240);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .display-container{
+        width: 95vw;
+        margin-bottom: 2.5vw;
+        .display-items-container{
+            .display-item-container{
+                overflow: hidden;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border-radius: 2.5vw;
+                box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+                margin-bottom: 2.5vw;
+                .display-img{
+                    width: 100%;
+                    height: auto;
+                }
+                .display-content{
+                    width: 85%;
+                    // padding-bottom: 50px;
+                    .title{
+                        font-size: 40px;
+                        margin: 50px 0px 15px 0px;
+                    }
+                    .penname{
+                        font-size: 32px;
+                        color: rgba(0, 0, 0, 0.5);
+                        margin-bottom: 15px;
+                    }
+                    .caption{
+                        font-size: 36px;
+                        margin-bottom: 50px;
+                        line-height: 1.8em;
+                    }
+                    .eval-items{
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 50px;
+                        .fa-heart{
+                            font-size: 100px;
+                            color: rgb(215, 215, 215);
+                        }
+                        .fa-comment{
+                            font-size: 98px;
+                            color: rgb(215, 215, 215);
+                            display: block;
+                        }
+                    }
+                    .acd-check{
+                        display: none;
+                    }
+                    .comment-form{
+                        width: 100%;
+                        height: 0px;
+                        display: block;
+                        opacity: 0;
+                        transition: 0.5s;
+                        visibility: hidden;
+                        p{
+                            font-size: 32px;
+                        }
+                        .comment-area{
+                            width: 95%;
+                            height: 300px;
+                            font-size: 40px;
+                            padding: 2.5%;
+                            background-color: rgb(245, 245, 245);
+                        }
+                    }
+                    .acd-check:checked + .comment-form{
+                        height: auto;
+                        opacity: 1;
+                        visibility: visible;
+                        display: block;
+                        padding: 5px 0 50px 0;
+                    }
+                }
+            }
+        }
+    }
+}
