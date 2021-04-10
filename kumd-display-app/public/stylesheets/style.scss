@@ -32,6 +32,9 @@ body {
                     width: 100%;
                     height: auto;
                 }
+                .acd-check{
+                    display: none;
+                }
                 .display-content{
                     width: 85%;
                     // padding-bottom: 50px;
@@ -62,9 +65,12 @@ body {
                             color: rgb(215, 215, 215);
                             display: block;
                         }
-                    }
-                    .acd-check{
-                        display: none;
+                        .heart-check{
+                            display: none;
+                        }
+                        .heart-check:checked + .fa-heart{
+                            color: rgb(255, 132, 132);
+                        }
                     }
                     .comment-form{
                         width: 100%;
@@ -84,8 +90,17 @@ body {
                             background-color: rgb(245, 245, 245);
                         }
                     }
-                    .acd-check:checked + .comment-form{
-                        height: auto;
+                }
+                .acd-check:checked + .display-content{
+                    .eval-items{
+                        .fa-comment{
+                            font-size: 98px;
+                            color: rgb(128, 157, 255);
+                            display: block;
+                        }
+                    }
+                    .comment-form{
+                        height: 450px;
                         opacity: 1;
                         visibility: visible;
                         display: block;
