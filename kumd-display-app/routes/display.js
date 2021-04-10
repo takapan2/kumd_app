@@ -12,9 +12,9 @@ router.get('/', function(req, res, next) {
   for(var i in data){
     data[i].sort((a,b)=>{
       if(a.size > b.size){
-        return 1;
-      }else{
         return -1;
+      }else{
+        return 1;
       }
     });
   }

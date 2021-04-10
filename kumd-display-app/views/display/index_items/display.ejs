@@ -1,7 +1,14 @@
 <div class="display-container">
     <div class="display-items-container">
         <% for(var i in data){ %>
-            <%- include('display_item') %>
+            <div>
+                <div class="sticky">
+                    <h3><%= list.GRADE[i] %></h3>
+                </div>
+                <% for(var j in data[i]){ %>
+                    <%- include('display_item', { data: data[i][j] }) %>
+                <% } %>
+            </div>
         <% } %>
     </div>
 </div>
