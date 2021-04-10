@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
       }
     });
   }
-  console.log(data);
+  //console.log(data);
   res.render('display/index', { data: data, list:LIST });
 });
 
