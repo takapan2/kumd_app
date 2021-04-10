@@ -30,6 +30,24 @@ body .display-container {
   margin-bottom: 2.5vw;
 }
 
+body .display-container .display-items-container .sticky {
+  z-index: 5;
+  padding: 2.5%;
+  background-color: rgba(255, 255, 255, 0.8);
+  position: -webkit-sticky;
+  position: sticky;
+  font-size: 40px;
+  margin-bottom: 2.5vw;
+  border-radius: 2.5vw;
+  -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+  top: 0;
+}
+
+body .display-container .display-items-container .sticky h3 {
+  margin-left: 5%;
+}
+
 body .display-container .display-items-container .display-item-container {
   overflow: hidden;
   background-color: white;
@@ -49,9 +67,22 @@ body .display-container .display-items-container .display-item-container {
   margin-bottom: 2.5vw;
 }
 
-body .display-container .display-items-container .display-item-container .display-img {
+body .display-container .display-items-container .display-item-container .display-img-content {
+  width: 100%;
+  position: relative;
+}
+
+body .display-container .display-items-container .display-item-container .display-img-content .display-img {
   width: 100%;
   height: auto;
+}
+
+body .display-container .display-items-container .display-item-container .display-img-content .in-shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-box-shadow: 0 -20px 25px 0 rgba(0, 0, 0, 0.1) inset;
+          box-shadow: 0 -20px 25px 0 rgba(0, 0, 0, 0.1) inset;
 }
 
 body .display-container .display-items-container .display-item-container .acd-check {
@@ -128,6 +159,8 @@ body .display-container .display-items-container .display-item-container .displa
   font-size: 40px;
   padding: 2.5%;
   background-color: whitesmoke;
+  outline: none;
+  border-radius: 10px;
 }
 
 body .display-container .display-items-container .display-item-container .acd-check:checked + .display-content .eval-items .fa-comment {
