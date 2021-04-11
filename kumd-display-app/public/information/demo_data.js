@@ -1,0 +1,1 @@
+exports.demodata = { grade: "2", size: "2", title: "戦闘態勢", penname: "デンジ", image: "demo", caption: "緊張感のあるイラストを心がけました。", }

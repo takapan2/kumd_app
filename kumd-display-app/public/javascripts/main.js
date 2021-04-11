@@ -1,7 +1,7 @@
 $(function() {
     $(".scroll-btn").on("click",function(){
         var element = $(this).attr("scroll-option");
-        var position = $(element).offset().top;
+        var position = $(element).offset().top-200;
         $('html, body').animate({
             'scrollTop': position
         },750);

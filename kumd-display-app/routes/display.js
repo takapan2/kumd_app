@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const USERDATA = require('../public/information/user_info').userInformation;
 const LIST = require('../public/information/list').LIST;
+const DEMODATA = require('../public/information/demo_data').demodata;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -19,7 +20,7 @@ router.get('/', function(req, res, next) {
     });
   }
   //console.log(data);
-  res.render('display/index', { data: data, list:LIST });
+  res.render('display/index', { data: data, list:LIST, demoData:DEMODATA });
 });
 
 module.exports = router;

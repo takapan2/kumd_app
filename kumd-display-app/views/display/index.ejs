@@ -12,7 +12,7 @@
     </head>
     <body class="container">
         <%- include('./title/title') %>
-        <%- include('./caption/caption') %>
+        <%- include('./caption/caption', { demoData:demoData } ) %>
         <%- include('./header/header') %>
         <%- include('./index_items/display', { data: data, list:list } ) %>
         <script src='/javascripts/swiper-bundle.min.js'></script>
