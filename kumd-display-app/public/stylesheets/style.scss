@@ -133,8 +133,10 @@ body {
                                     display: flex;
                                     align-items: center;
                                     span{
-                                        margin-right: 5%;
+                                        margin-right: 30px;
                                         color: white;
+                                        width: 40px;
+                                        height: auto;
                                     }
                                 }
                             }
@@ -145,6 +147,7 @@ body {
                                     border-bottom: solid 5px black;
                                     background-color: white;
                                     span{
+                                        height: auto;
                                         color:black;
                                     }
                                 }
@@ -162,7 +165,7 @@ body {
                     z-index: 11;
                     visibility: hidden;
                     opacity: 0;
-                    transition: 0.5s;
+                    transition: 0.1s;
                 }
             }
         }
@@ -191,11 +194,11 @@ body {
                                 p{}
                             }
                         }
-                        
                     }
                 }
                 .ham-menu-back{
                     visibility: visible;
+                    transition: 0.1s;
                     opacity: 1;
                 }
             }

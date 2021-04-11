@@ -202,8 +202,10 @@ body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .othe
 }
 
 body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .other-btns .other-btn p span {
-  margin-right: 5%;
+  margin-right: 30px;
   color: white;
+  width: 40px;
+  height: auto;
 }
 
 body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .other-btns .other-btn:hover {
@@ -218,6 +220,7 @@ body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .othe
 }
 
 body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .other-btns .other-btn:hover p span {
+  height: auto;
   color: black;
 }
 
@@ -231,8 +234,8 @@ body header .header-cover .ham-menu .ham-menu-back {
   z-index: 11;
   visibility: hidden;
   opacity: 0;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
 }
 
 body header #ham-menu-on:checked + .header-cover .header-content section span:nth-of-type(1) {
@@ -261,6 +264,8 @@ body header #ham-menu-on:checked + .header-cover .ham-menu .ham-menu-contents .h
 
 body header #ham-menu-on:checked + .header-cover .ham-menu .ham-menu-back {
   visibility: visible;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
   opacity: 1;
 }
 
