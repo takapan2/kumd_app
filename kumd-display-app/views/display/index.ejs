@@ -5,8 +5,12 @@
         <title>2021年度春のパネル展示会</title>
         <link rel='stylesheet' href='/stylesheets/style.css' />
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <script type='text/javascript' src="/jquery/jquery.js"></script>
+        <!-- <script src="/javascripts/jquery-3.5.1.min.js"></script> -->
+        <script type='text/javascript' src='/javascripts/main.js'></script>
     </head>
     <body class="container">
+        <%- include('./title/title') %>
         <%- include('./header/header') %>
         <%- include('./index_items/display', { data: data, list:list } ) %>
     </body>

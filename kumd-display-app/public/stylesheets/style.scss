@@ -30,7 +30,7 @@ body {
             z-index: 10;
             width: 100vw;
             height: 200px;
-            background-color: rgba(100, 100, 100, 0.95);
+            background-color: rgba(50, 50, 50, 0.95);
             .header-content{
                 width: 100%;
                 height: 100%;
@@ -80,8 +80,17 @@ body {
                     top: 0;
                     right: 0;
                     background-color: black;
-                    transition: 0.5s;
-
+                    transition: 0.4s;
+                    .ham-menu-container{
+                        transition: 0.2s;
+                        opacity: 0;
+                        label{
+                            p{
+                                color: white;
+                                font-size: 50px;
+                            }
+                        }
+                    }
                 }
                 .ham-menu-back{
                     position: absolute;
@@ -114,6 +123,14 @@ body {
             .ham-menu{
                 .ham-menu-contents{
                     width: 80vw;
+                    .ham-menu-container{
+                        transition: 0.8s;
+                        opacity: 1;
+                        label{
+                            p{
+                            }
+                        }
+                    }
                 }
                 .ham-menu-back{
                     visibility: visible;

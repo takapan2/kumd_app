@@ -38,7 +38,7 @@ body header .header-cover {
   z-index: 10;
   width: 100vw;
   height: 200px;
-  background-color: rgba(100, 100, 100, 0.95);
+  background-color: rgba(50, 50, 50, 0.95);
 }
 
 body header .header-cover .header-content {
@@ -107,8 +107,19 @@ body header .header-cover .ham-menu .ham-menu-contents {
   top: 0;
   right: 0;
   background-color: black;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container {
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  opacity: 0;
+}
+
+body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container label p {
+  color: white;
+  font-size: 50px;
 }
 
 body header .header-cover .ham-menu .ham-menu-back {
@@ -141,6 +152,12 @@ body header #ham-menu-on:checked + .header-cover .header-content section span:nt
 
 body header #ham-menu-on:checked + .header-cover .ham-menu .ham-menu-contents {
   width: 80vw;
+}
+
+body header #ham-menu-on:checked + .header-cover .ham-menu .ham-menu-contents .ham-menu-container {
+  -webkit-transition: 0.8s;
+  transition: 0.8s;
+  opacity: 1;
 }
 
 body header #ham-menu-on:checked + .header-cover .ham-menu .ham-menu-back {
