@@ -2,6 +2,10 @@
     margin: 0px;
 }
 
+a{
+    text-decoration: none;
+}
+
 .btn:hover{
     opacity: 0.5;
     transition: 0.5s;
@@ -81,13 +85,69 @@ body {
                     right: 0;
                     background-color: black;
                     transition: 0.4s;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
                     .ham-menu-container{
+                        margin: 200px 0px;
+                        height: 90vh;
                         transition: 0.2s;
                         opacity: 0;
-                        label{
-                            p{
-                                color: white;
-                                font-size: 50px;
+                        width: 80%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        .index-btns{
+                            width: 70%;
+                            label{
+                                transition: all .5s;
+                                p{
+                                    padding-left: 5%;
+                                    color: white;
+                                    font-size: 50px;
+                                    height: 100px;
+                                    border-bottom: solid 2px white;
+                                    display: flex;
+                                    align-items: center;
+                                }
+                            }
+                            .scroll-btn:hover{
+                                transition: all .5s;
+                                p{
+                                    color:black;
+                                    border-bottom: solid 5px black;
+                                    background-color: white;
+                                }
+                            }
+                        }
+                        .other-btns{
+                            width: 70%;
+                            .other-btn{
+                                transition: all .5s;
+                                p{
+                                    padding-left: 5%;
+                                    color: white;
+                                    font-size: 50px;
+                                    height: 100px;
+                                    border-bottom: solid 2px white;
+                                    display: flex;
+                                    align-items: center;
+                                    span{
+                                        margin-right: 5%;
+                                        color: white;
+                                    }
+                                }
+                            }
+                            .other-btn:hover{
+                                transition: all .5s;
+                                p{
+                                    color:black;
+                                    border-bottom: solid 5px black;
+                                    background-color: white;
+                                    span{
+                                        color:black;
+                                    }
+                                }
                             }
                         }
                     }
@@ -126,10 +186,12 @@ body {
                     .ham-menu-container{
                         transition: 0.8s;
                         opacity: 1;
-                        label{
-                            p{
+                        .index-btns{
+                            label{
+                                p{}
                             }
                         }
+                        
                     }
                 }
                 .ham-menu-back{

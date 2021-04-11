@@ -2,6 +2,10 @@
   margin: 0px;
 }
 
+a {
+  text-decoration: none;
+}
+
 .btn:hover {
   opacity: 0.5;
   -webkit-transition: 0.5s;
@@ -109,17 +113,112 @@ body header .header-cover .ham-menu .ham-menu-contents {
   background-color: black;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container {
+  margin: 200px 0px;
+  height: 90vh;
   -webkit-transition: 0.2s;
   transition: 0.2s;
   opacity: 0;
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container label p {
+body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .index-btns {
+  width: 70%;
+}
+
+body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .index-btns label {
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .index-btns label p {
+  padding-left: 5%;
   color: white;
   font-size: 50px;
+  height: 100px;
+  border-bottom: solid 2px white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .index-btns .scroll-btn:hover {
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .index-btns .scroll-btn:hover p {
+  color: black;
+  border-bottom: solid 5px black;
+  background-color: white;
+}
+
+body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .other-btns {
+  width: 70%;
+}
+
+body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .other-btns .other-btn {
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .other-btns .other-btn p {
+  padding-left: 5%;
+  color: white;
+  font-size: 50px;
+  height: 100px;
+  border-bottom: solid 2px white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .other-btns .other-btn p span {
+  margin-right: 5%;
+  color: white;
+}
+
+body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .other-btns .other-btn:hover {
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .other-btns .other-btn:hover p {
+  color: black;
+  border-bottom: solid 5px black;
+  background-color: white;
+}
+
+body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .other-btns .other-btn:hover p span {
+  color: black;
 }
 
 body header .header-cover .ham-menu .ham-menu-back {
