@@ -326,7 +326,6 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper {
 
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide {
   width: 100%;
-  height: 100% !important;
   text-align: center;
   font-size: 18px;
   background: #fff;
@@ -479,7 +478,10 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-
 
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide1-content {
   width: 80%;
-  height: 100%;
+  height: 1560px;
+  border-radius: 2.5vw;
+  -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -497,16 +499,56 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-
 
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide1-content .greet {
   font-size: 40px;
+  padding: 0px 100px;
 }
 
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide1-content .induction-msg {
   font-size: 30px;
+  padding: 0px 100px;
+}
+
+body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide2-content {
+  width: 80%;
+  height: 1560px;
+  border-radius: 2.5vw;
+  -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide2-content .greet {
+  font-size: 40px;
+  padding: 0px 100px;
+}
+
+body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide2-content .induction-msg {
+  font-size: 30px;
+  padding: 0px 100px;
 }
 
 body .caption-content .caption-swiper .swiper-container .swiper-pagination {
   height: 20px;
   top: initial;
   bottom: 0;
+  display: none;
+}
+
+body .caption-content .caption-content-bottom {
+  width: 100%;
+  height: 100px;
+  background-color: white;
 }
 
 body .display-container {
