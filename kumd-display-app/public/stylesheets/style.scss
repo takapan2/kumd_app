@@ -142,6 +142,33 @@ body {
 
     //header部分
 
+    //title部分
+
+    .title{
+        width: 100vw;
+        margin-top: 200px;
+        position: relative;
+        color: white;
+        font-size: 40px;
+        text-shadow:1px 0 5px black;
+        .title-img{
+            width: 100%;
+            height: auto;
+        }
+        .year{
+            position: absolute;
+            top: 5%;
+            left: 10%;
+        }
+        .name{
+            position: absolute;
+            bottom: 5%;
+            right: 10%;
+        }
+    }
+
+    //title部分
+
     //display部分
     .display-container{
         width: 95vw;
