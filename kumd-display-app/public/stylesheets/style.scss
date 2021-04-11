@@ -144,7 +144,7 @@ body {
 
     //title部分
 
-    .title{
+    .top-title{
         width: 100vw;
         margin-top: 200px;
         position: relative;
@@ -168,6 +168,18 @@ body {
     }
 
     //title部分
+
+    //caption部分
+
+    .caption-content{
+        width: 100vw;
+        margin-bottom: 2.5vw;
+        background-color: white;
+        box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+        height: 1000px;
+    }
+
+    //caption部分
 
     //display部分
     .display-container{

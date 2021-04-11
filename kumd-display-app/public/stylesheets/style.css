@@ -165,7 +165,7 @@ body header #ham-menu-on:checked + .header-cover .ham-menu .ham-menu-back {
   opacity: 1;
 }
 
-body .title {
+body .top-title {
   width: 100vw;
   margin-top: 200px;
   position: relative;
@@ -174,21 +174,30 @@ body .title {
   text-shadow: 1px 0 5px black;
 }
 
-body .title .title-img {
+body .top-title .title-img {
   width: 100%;
   height: auto;
 }
 
-body .title .year {
+body .top-title .year {
   position: absolute;
   top: 5%;
   left: 10%;
 }
 
-body .title .name {
+body .top-title .name {
   position: absolute;
   bottom: 5%;
   right: 10%;
+}
+
+body .caption-content {
+  width: 100vw;
+  margin-bottom: 2.5vw;
+  background-color: white;
+  -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+  height: 1000px;
 }
 
 body .display-container {
