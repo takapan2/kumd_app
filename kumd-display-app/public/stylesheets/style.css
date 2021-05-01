@@ -34,15 +34,12 @@ body header #ham-menu-on {
 }
 
 body header .header-cover {
-  -webkit-box-shadow: 0 1.75vw 2.5vw 0 rgba(0, 0, 0, 0.3);
-          box-shadow: 0 1.75vw 2.5vw 0 rgba(0, 0, 0, 0.3);
   position: fixed;
   top: 0;
   left: 0;
   z-index: 10;
   width: 100vw;
-  height: 150px;
-  background-color: rgba(50, 50, 50, 0.95);
+  height: 80px;
 }
 
 body header .header-cover .header-content {
@@ -61,14 +58,28 @@ body header .header-cover .header-content {
 }
 
 body header .header-cover .header-content section {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: solid 3px black;
   z-index: 15;
-  margin-right: 50px;
+  margin-right: 5vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 body header .header-cover .header-content section label {
   position: relative;
-  width: 75px;
-  height: 66px;
+  width: 26px;
+  height: 23px;
   cursor: pointer;
   display: inline-block;
   -webkit-transition: all .5s;
@@ -81,9 +92,9 @@ body header .header-cover .header-content section label span {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 6px;
-  background-color: #fff;
-  border-radius: 6px;
+  height: 3px;
+  background-color: black;
+  border-radius: 2px;
   display: inline-block;
   -webkit-transition: all .5s;
   transition: all .5s;
@@ -96,7 +107,7 @@ body header .header-cover .header-content section label span:nth-of-type(1) {
 }
 
 body header .header-cover .header-content section label span:nth-of-type(2) {
-  top: 30px;
+  top: 10px;
 }
 
 body header .header-cover .header-content section label span:nth-of-type(3) {
@@ -127,8 +138,8 @@ body header .header-cover .ham-menu .ham-menu-contents {
 }
 
 body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container {
-  margin: 150px 0px;
-  height: 90vh;
+  margin: 80px 0px 120px 0;
+  height: 150vh;
   -webkit-transition: 0.2s;
   transition: 0.2s;
   opacity: 0;
@@ -146,7 +157,7 @@ body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container {
 }
 
 body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .index-btns {
-  width: 70%;
+  width: 75%;
 }
 
 body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .index-btns label {
@@ -157,9 +168,9 @@ body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .inde
 body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .index-btns label p {
   padding-left: 5%;
   color: white;
-  font-size: 50px;
-  height: 100px;
-  border-bottom: solid 2px white;
+  font-size: 18px;
+  height: 40px;
+  border-bottom: solid 1px white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -180,7 +191,7 @@ body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .inde
 }
 
 body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .other-btns {
-  width: 70%;
+  width: 75%;
 }
 
 body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .other-btns .other-btn {
@@ -191,9 +202,9 @@ body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .othe
 body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .other-btns .other-btn p {
   padding-left: 5%;
   color: white;
-  font-size: 50px;
-  height: 100px;
-  border-bottom: solid 2px white;
+  font-size: 18px;
+  height: 40px;
+  border-bottom: solid 1px white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -203,9 +214,9 @@ body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .othe
 }
 
 body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .other-btns .other-btn p span {
-  margin-right: 30px;
+  margin-right: 20px;
   color: white;
-  width: 40px;
+  width: 5px;
   height: auto;
 }
 
@@ -239,9 +250,17 @@ body header .header-cover .ham-menu .ham-menu-back {
   transition: 0.1s;
 }
 
+body header #ham-menu-on:checked + .header-cover .header-content section {
+  background-color: rgba(50, 50, 50, 0.95);
+}
+
+body header #ham-menu-on:checked + .header-cover .header-content section span {
+  background-color: white;
+}
+
 body header #ham-menu-on:checked + .header-cover .header-content section span:nth-of-type(1) {
-  -webkit-transform: translateY(30px) rotate(-45deg);
-          transform: translateY(30px) rotate(-45deg);
+  -webkit-transform: translateY(10px) rotate(-45deg);
+          transform: translateY(10px) rotate(-45deg);
 }
 
 body header #ham-menu-on:checked + .header-cover .header-content section span:nth-of-type(2) {
@@ -249,8 +268,8 @@ body header #ham-menu-on:checked + .header-cover .header-content section span:nt
 }
 
 body header #ham-menu-on:checked + .header-cover .header-content section span:nth-of-type(3) {
-  -webkit-transform: translateY(-30px) rotate(45deg);
-          transform: translateY(-30px) rotate(45deg);
+  -webkit-transform: translateY(-10px) rotate(45deg);
+          transform: translateY(-10px) rotate(45deg);
 }
 
 body header #ham-menu-on:checked + .header-cover .ham-menu .ham-menu-contents {
