@@ -322,12 +322,12 @@ body .caption-content {
   background-color: white;
   -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
-  height: 100%;
+  height: 100vh;
 }
 
 body .caption-content .about-illust-display {
-  padding: 100px 60px;
-  font-size: 50px;
+  padding: 40px 60px;
+  font-size: 24px;
 }
 
 body .caption-content .caption-swiper {
@@ -348,7 +348,7 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper {
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide {
   width: 100%;
   text-align: center;
-  font-size: 18px;
+  font-size: 10px;
   background: #fff;
   /* Center slide text vertically */
   display: -webkit-box;
@@ -499,7 +499,7 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-
 
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide1-content {
   width: 80%;
-  height: 1560px;
+  height: 80vh;
   border-radius: 2.5vw;
   -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
@@ -519,18 +519,18 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-
 }
 
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide1-content .greet {
-  font-size: 40px;
-  padding: 0px 100px;
+  font-size: 18px;
+  padding: 0px 30px;
 }
 
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide1-content .induction-msg {
-  font-size: 30px;
-  padding: 0px 100px;
+  font-size: 14px;
+  padding: 0px 30px;
 }
 
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide2-content {
   width: 80%;
-  height: 1560px;
+  height: 80vh;
   border-radius: 2.5vw;
   -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
@@ -550,13 +550,13 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-
 }
 
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide2-content .greet {
-  font-size: 40px;
-  padding: 0px 100px;
+  font-size: 18px;
+  padding: 0px 30px;
 }
 
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide2-content .induction-msg {
-  font-size: 30px;
-  padding: 0px 100px;
+  font-size: 14px;
+  padding: 0px 30px;
 }
 
 body .caption-content .caption-swiper .swiper-container .swiper-pagination {
