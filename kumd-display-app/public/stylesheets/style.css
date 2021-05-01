@@ -74,6 +74,8 @@ body header .header-cover .header-content section {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-shadow: 0 2.5px 5px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 2.5px 5px 0 rgba(0, 0, 0, 0.3);
 }
 
 body header .header-cover .header-content section label {
