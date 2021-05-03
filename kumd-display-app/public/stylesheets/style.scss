@@ -371,6 +371,7 @@ body {
                         justify-content: center;
                         align-items: center;
                         flex-direction: column;
+                        padding-top: 0 !important;
                         .display-item-container{ //ここからデモ
                             overflow: hidden;
                             background-color: white;

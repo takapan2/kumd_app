@@ -547,6 +547,7 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  padding-top: 0 !important;
 }
 
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .display-item-container {
