@@ -23,4 +23,10 @@ router.get('/', function(req, res, next) {
   res.render('display/index', { data: data, list:LIST, demoData:DEMODATA });
 });
 
+router.post('/submit',(req,res,next)=>{
+  console.log(req.body);
+  res.redirect('/display');
+});
+
+
 module.exports = router;

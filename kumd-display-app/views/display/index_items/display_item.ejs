@@ -9,13 +9,13 @@
         <p class="penname"><%= data.penname %></p>
         <p class="caption"><%= data.caption %></p>
         <div class="eval-items">
-            <input id="<%= 'heart-check' + data.image %>" class="heart-check" type="checkbox">
-            <label class="fa fa-heart btn" for="<%= 'heart-check' + data.image %>" ></label>
+            <input id="<%= 'heart-check' + data.image %>" class="heart-check" type="checkbox" name="<%= 'heart-' + data.image %>">
+            <label class="fa fa-heart btn" for="<%= 'heart-check' + data.image %>"></label>
             <label class="fa fa-comment btn" for="<%= 'acd-check' + data.image %>"></label>
         </div>
         <div class="comment-form">
-            <p>80字以内</p>
-            <textarea class="comment-area" type="text" maxlength="80" ></textarea>
+            <p>100字以内(任意)</p>
+            <textarea class="comment-area" type="text" maxlength="100" name="<%= 'comment-' + data.image %>"></textarea>
         </div>
     </div>
 </div>

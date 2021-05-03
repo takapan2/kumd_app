@@ -16,8 +16,11 @@
     <body class="container">
         <%- include('./title/title') %>
         <%- include('./caption/caption', { demoData:demoData } ) %>
-        <%- include('./header/header') %>
-        <%- include('./index_items/display', { data: data, list:list } ) %>
+        <form class="comment-and-heart-form" method="post" action="/display/submit">
+            <%- include('./header/header') %>
+            <%- include('./index_items/display', { data: data, list:list } ) %>
+            <%- include('./display_bottom/display_bottom.ejs') %>
+        </form>
         <script src='/javascripts/swiper-bundle.min.js'></script>
         <script src='/javascripts/main.js'></script>
     </body>

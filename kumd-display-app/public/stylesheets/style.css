@@ -199,6 +199,19 @@ body {
           align-items: center;
 }
 
+body .comment-and-heart-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 body header #ham-menu-on {
   display: none;
 }
@@ -1242,6 +1255,43 @@ body .display-container .display-items-container .display-item-container .acd-ch
   visibility: visible;
   display: block;
   padding: 5px 0 50px 0;
+}
+
+body .display-bottom {
+  width: 100%;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body .display-bottom .about-display-form {
+  width: 80%;
+}
+
+body .display-bottom .about-display-form p {
+  font-size: 18px;
+}
+
+body .display-bottom .about-display-form .comment-area {
+  width: 95%;
+  height: 200px;
+  font-size: 18px;
+  padding: 10px;
+  background-color: whitesmoke;
+  outline: none;
+  border-radius: 2px;
+}
+
+body .display-bottom .submit-bottom {
+  width: 100px;
 }
 
 @media screen and (min-width: 600px) {
