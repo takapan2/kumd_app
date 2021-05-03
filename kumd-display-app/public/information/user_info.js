@@ -72,7 +72,7 @@ exports.userInformation = [
     { grade: "1", size: "1", title: "ふるさと", penname: "貞一", image: "67", caption: "兎うさぎ追おいしかの山やま小鮒こぶな釣つりしかの川かわ夢ゆめは今いまもめぐりて忘わすれがたき故郷ふるさと", },
     { grade: "3", size: "1", title: "正夢", penname: "草野正", image: "68", caption: "似たような道をはみ出そう", },
     { grade: "5", size: "1", title: "ハッピーエンド", penname: "清水依与", image: "69", caption: "平気よ大丈夫だよ優しくなれたと思って願いに変わって最後は嘘になって", },
-    { grade: "2", size: "1", title: "シンデレラガール", image: "69", penname: "まる", caption: "PM11時間近の にぎわう街並みにまだサヨナラ言うには 全然早すぎるのに", },
+    { grade: "2", size: "1", title: "シンデレラガール", image: "70", penname: "まる", caption: "PM11時間近の にぎわう街並みにまだサヨナラ言うには 全然早すぎるのに", },
     { grade: "1", size: "1", title: "童謡・唱歌", penname: "不祥", image: "71", caption: "やりましょうやりましょうこれから鬼おにの征伐せいばつについて行いくならやりましょう", },
     { grade: "3", size: "1", title: "七つの子", penname: "長世", image: "72", caption: "からす なぜなくのからすは やまにかわいい ななつのこがあるからよ", },
     { grade: "4", size: "1", title: "春泥棒", penname: "n-buna", image: "73", caption: "高架橋を抜けたら雲の隙間に青が覗いた最近どうも暑いからただ風が吹くのを待ってた", },
