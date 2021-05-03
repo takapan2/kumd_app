@@ -518,7 +518,7 @@ body {
                                     }
                                 }
                                 .comment-form{
-                                    height: 230px;
+                                    height: 130px;
                                     opacity: 1;
                                     visibility: visible;
                                     display: block;
@@ -636,10 +636,13 @@ body {
                                     text-shadow:2px 2px 0 #FFF, -2px -2px 0 #FFF,-2px 2px 0 #FFF, 2px -2px 0 #FFF, 0px 2px 0 #FFF,  0 -2px 0 #FFF, -2px 0 0 #FFF, 2px 0 0 #FFF;
                                     position: absolute;
                                     opacity: 0;
-                                    transition: 0.5s;
+                                    //transition: 1s;
                                     top: 125px;
                                     width: 100%;
                                     margin-left: 5px;
+                                }
+                                .comment-area{
+                                    height: 100px !important;
                                 }
                             }
                             .acd-check:checked + .display-content{
@@ -653,7 +656,7 @@ body {
                                 }
                                 .open-massage{
                                     opacity: 1;
-                                    transition: 0.5s;
+                                    transition: 1.5s;
                                 }
                             }
                         }

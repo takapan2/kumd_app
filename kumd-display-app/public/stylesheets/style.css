@@ -751,7 +751,7 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-
 }
 
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .display-item-container .acd-check:checked + .display-content .comment-form {
-  height: 230px;
+  height: 130px;
   opacity: 1;
   visibility: visible;
   display: block;
@@ -905,11 +905,13 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-
   text-shadow: 2px 2px 0 #FFF, -2px -2px 0 #FFF,-2px 2px 0 #FFF, 2px -2px 0 #FFF, 0px 2px 0 #FFF,  0 -2px 0 #FFF, -2px 0 0 #FFF, 2px 0 0 #FFF;
   position: absolute;
   opacity: 0;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
   top: 125px;
   width: 100%;
   margin-left: 5px;
+}
+
+body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide4-content .display-content .comment-area {
+  height: 100px !important;
 }
 
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide4-content .acd-check:checked + .display-content .flip-hand-content {
@@ -926,8 +928,8 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-
 
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide4-content .acd-check:checked + .display-content .open-massage {
   opacity: 1;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  -webkit-transition: 1.5s;
+  transition: 1.5s;
 }
 
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide5-content {
