@@ -378,7 +378,7 @@ body {
                             display: flex;
                             flex-direction: column;
                             align-items: center;
-                            border-radius: 2.5vw;
+                            border-radius: 10px; //2.5vw
                             box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
                             margin-bottom: 2.5vw;
                             width: 80%;
@@ -530,7 +530,7 @@ body {
                         .slide1-content{
                             width: 80%;
                             height: 90%;
-                            border-radius: 2.5vw;
+                            border-radius: 10px; //2.5vw;
                             box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
                             display: flex;
                             flex-direction: column;
@@ -664,7 +664,7 @@ body {
                         .slide5-content{
                             width: 80%;
                             height: 90%;
-                            border-radius: 2.5vw;
+                            border-radius: 10px;//2.5vw;
                             box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
                             display: flex;
                             flex-direction: column;
@@ -785,7 +785,7 @@ body {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                border-radius: 2.5vw;
+                border-radius: 10px; //2.5vw;
                 box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
                 margin-bottom: 2.5vw;
                 .display-img-content{
@@ -901,4 +901,23 @@ body {
         }
     }
     //display部分
+}
+
+@media screen and (min-width: 600px){
+    body{
+        .caption-content{
+            .display-item-container{
+                width: 570px !important;
+            }
+        }
+        .display-container{
+            width: 570px;
+        }
+        .slide1-content{
+            width: 600px !important;
+        }
+        .slide5-content{
+            width: 600px !important;
+        }
+    }
 }

@@ -563,7 +563,7 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-radius: 2.5vw;
+  border-radius: 10px;
   -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
   margin-bottom: 2.5vw;
@@ -762,7 +762,7 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide1-content {
   width: 80%;
   height: 90%;
-  border-radius: 2.5vw;
+  border-radius: 10px;
   -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
   display: -webkit-box;
@@ -936,7 +936,7 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide5-content {
   width: 80%;
   height: 90%;
-  border-radius: 2.5vw;
+  border-radius: 10px;
   -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
   display: -webkit-box;
@@ -1095,7 +1095,7 @@ body .display-container .display-items-container .display-item-container {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-radius: 2.5vw;
+  border-radius: 10px;
   -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
   margin-bottom: 2.5vw;
@@ -1242,5 +1242,20 @@ body .display-container .display-items-container .display-item-container .acd-ch
   visibility: visible;
   display: block;
   padding: 5px 0 50px 0;
+}
+
+@media screen and (min-width: 600px) {
+  body .caption-content .display-item-container {
+    width: 570px !important;
+  }
+  body .display-container {
+    width: 570px;
+  }
+  body .slide1-content {
+    width: 600px !important;
+  }
+  body .slide5-content {
+    width: 600px !important;
+  }
 }
 /*# sourceMappingURL=style.css.map */
