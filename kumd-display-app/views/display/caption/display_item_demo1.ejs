@@ -1,0 +1,27 @@
+<div class="display-item-container slide2-content">
+    <div class="display-img-content">
+        <div class="in-shadow"></div>
+        <img class="display-img" src="<%= '/images/img' + data.image +'.jpg' %>" alt="<%= data.title %>">
+    </div>
+    <!-- <input id="<%= 'acd-check' + data.image %>" class="acd-check" type="checkbox"> -->
+    <div class="display-content">
+        <h3 class="title"><%= data.title %><span class="caption-msg msg1">タイトル</span></h3>
+        <p class="penname"><%= data.penname %><span class="caption-msg msg2">ペンネーム</span></p>
+        <p class="caption"><%= data.caption %><span class="caption-msg msg3">説明文</span></p>
+        <div class="eval-items">
+            <!-- <input id="<%= 'heart-check' + data.image %>" class="heart-check" type="checkbox"> -->
+            <label class="fa fa-heart btn" ></label>
+            <label class="fa fa-comment btn" ></label>
+        </div>
+        <div class="comment-form">
+            <p>80字以内</p>
+            <textarea class="comment-area" type="text" maxlength="80" ></textarea>
+        </div>
+        <div class="flip-hand-content">
+            <div class="flip-hand">
+                <span class="fa fa-hand-o-up"></span>
+            </div>
+            <p class="flip-msg">説明を読み終えた方はSwipe!</p>
+        </div>
+    </div>
+</div>

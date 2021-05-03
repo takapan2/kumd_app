@@ -18,3 +18,36 @@ $(function() {
         },
       });
 });
+
+//ヘッダー部分の挙動
+$(()=>{
+  const height = 200;
+
+  let offset =0;
+  let lastPosition = 0;
+  let ticking = false;
+
+  function onScroll(){
+    //console.log(lastPosition+' '+" "+offset);
+    if(Math.abs(lastPosition - offset) > height){
+      if(lastPosition > offset){
+        $('.header-content').addClass('head-animation');
+      }else{
+        $('.header-content').removeClass('head-animation');
+      }
+      offset = lastPosition;
+    }
+  }
+
+  window.addEventListener('scroll', ()=>{
+    lastPosition = window.scrollY;
+    if(!ticking){
+      window.requestAnimationFrame(()=>{
+        onScroll(lastPosition);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+});
+//ヘッダー部分の挙動

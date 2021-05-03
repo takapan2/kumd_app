@@ -8,11 +8,25 @@
                         <h2 class="greet" >ようこそ！<br>関西大学漫画同好会のイラスト展示会へ！！</h2>
                         <p class="induction-msg">初めてご来場の方はこちらの画面をスワイプし説明を読んでいただけると幸いです。</p>
                         <p class="induction-msg">(すみません。まだ説明部分は完成しておりません。)</p>
+                        <div class="flip-hand-content">
+                            <div class="flip-hand">
+                                <span class="fa fa-hand-o-up"></span>
+                            </div>
+                            <p class="flip-msg">初めてご来場の方はSwipe!</p>
+                        </div>
                     </div>
                 </div>
-                <div class="swiper-slide"><%- include('../index_items/display_item', { data: demoData }) %></div>
                 <div class="swiper-slide">
-                    <div class="slide2-content">
+                    <%- include('./display_item_demo1', { data: demoData }) %>
+                </div>
+                <div class="swiper-slide">
+                    <%- include('./display_item_demo2', { data: demoData }) %>
+                </div>
+                <div class="swiper-slide">
+                    <%- include('./display_item_demo3', { data: demoData }) %>
+                </div>
+                <div class="swiper-slide">
+                    <div class="slide5-content">
                         <h2 class="greet" >以上で説明は終わりです。</h2>
                         <p class="induction-msg">下にスライドし、イラスト展示会を楽しんでください。</p>
                     </div>
