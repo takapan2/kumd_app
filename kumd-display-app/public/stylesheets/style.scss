@@ -195,7 +195,7 @@ body {
                     overflow: scroll;
                     .ham-menu-container{
                         margin: 80px 0px 120px 0;
-                        height: 150vh;
+                        height: 100vh;
                         transition: 0.2s;
                         opacity: 0;
                         width: 80%;
@@ -384,7 +384,7 @@ body {
                             display: flex;
                             flex-direction: column;
                             align-items: center;
-                            border-radius: 10px; //2.5vw
+                            border-radius: 5px; //2.5vw
                             box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
                             margin-bottom: 2.5vw;
                             width: 80%;
@@ -513,7 +513,9 @@ body {
                                         padding: 10px;
                                         background-color: rgb(245, 245, 245);
                                         outline: none;
-                                        border-radius: 2px;
+                                        border-radius: 5px;
+                                        border-color: rgba(0, 0, 0, 0);
+                                        box-shadow:0px 0px 8px 2px #ccc inset;
                                     }
                                 }
                             }
@@ -536,7 +538,7 @@ body {
                         .slide1-content{
                             width: 80%;
                             height: 90%;
-                            border-radius: 10px; //2.5vw;
+                            border-radius: 5px; //2.5vw;
                             box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
                             display: flex;
                             flex-direction: column;
@@ -670,7 +672,7 @@ body {
                         .slide5-content{
                             width: 80%;
                             height: 90%;
-                            border-radius: 10px;//2.5vw;
+                            border-radius: 5px;//2.5vw;
                             box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
                             display: flex;
                             flex-direction: column;
@@ -775,7 +777,7 @@ body {
                 position: sticky;
                 font-size: 18px;
                 margin-bottom: 2.5vw;
-                border-radius: 10px;
+                border-radius: 5px;
                 box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
                 //top: 170px;  //ヘッダーに合わせるようにしたい。
                 top: 15px;
@@ -791,7 +793,7 @@ body {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                border-radius: 10px; //2.5vw;
+                border-radius: 5px; //2.5vw;
                 box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
                 margin-bottom: 2.5vw;
                 .display-img-content{
@@ -884,7 +886,9 @@ body {
                             padding: 10px;
                             background-color: rgb(245, 245, 245);
                             outline: none;
-                            border-radius: 2px;
+                            border-radius: 5px;
+                            border-color: rgba(0, 0, 0, 0);
+                            box-shadow:0px 0px 8px 2px #ccc inset;
                         }
                     }
                 }
@@ -918,6 +922,11 @@ body {
         flex-direction: column;
         .about-display-form{
             width: 80%;
+            h4{
+                font-size: 20px;
+                margin-top: 50px;
+                margin-bottom: 20px;
+            }
             p{
                 font-size: 18px;
             }
@@ -928,13 +937,301 @@ body {
                 padding: 10px;
                 background-color: rgb(245, 245, 245);
                 outline: none;
-                border-radius: 2px;
+                border-radius: 5px;
+                border-color: rgba(0, 0, 0, 0);
+                box-shadow:0px 0px 8px 2px #ccc inset;
             }
         }
         .submit-bottom{
             width: 100px;
         }
     }
+    //bottom部分
+
+    //login部分
+    #register-form{
+        display: none;
+    }
+    .login-container{
+        transition: 0.1s;
+        margin-top: 2.5vw;
+        width: 95vw;
+        background-color: white;
+        border-radius: 5px; //2.5vw;
+        box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .title{
+            font-size: 24px;
+            //width: 80%;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+        .login-attention{
+            width: 80%;
+            color: red;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .form{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 80%;
+            .sub-title{
+                margin-top: 10px;
+                width: 100%;
+
+            }
+            #mailAddress,#password{
+                width: calc(100% - 20px);
+                font-size: 16px;
+                padding: 10px;
+                background-color: rgb(245, 245, 245);
+                outline: none;
+                border-radius: 5px;
+                border-color: rgba(0, 0, 0, 0);
+                box-shadow:0px 0px 8px 2px #ccc inset;
+            }
+            .btn-container{
+                width: 100%;
+                margin-top: 30px;
+                button{
+                    width: 100%;
+                    padding: 10px 20px;
+                    background-color: rgb(0, 115, 255);
+                    font-size: 16px;
+                    border-radius: 5px;
+                    border: initial;
+                    color: white;
+                }
+            }
+        
+        }
+        .other-btn{
+            margin: 30px 0 60px 0;
+            width: 80%;
+            padding: 10px 0px;
+            background-color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid black;
+            color:black;
+            display: flex;
+            justify-content: center;
+
+        }
+    }
+    // .sign-in{
+    //     height: 500px;
+    //     opacity: 1;
+    //     visibility: initial;
+    // }
+    // .new{
+    //     height: 0px;
+    //     opacity: 0;
+    //     visibility: hidden;
+    // }
+    // #register-form:checked + .login-contents{
+    //     .sign-in{
+    //         height: 0px;
+    //         transition: 0.1s;
+    //         opacity: 0;
+    //         visibility: hidden;
+    //     }
+    //     .new{
+    //         height: 500px;
+    //         transition: 0.1s;
+    //         opacity: 1;
+    //         visibility: initial;
+    //     }
+    // }
+    //login部分
+
+    //account部分
+    .account-container{
+        .menu-contents{
+            background-color: white;
+            width: 95vw;
+            margin-top: 2.5vw;
+            margin-bottom: 2.5vw;
+            font-size: 18px;
+            border-radius: 5px; //2.5vw;
+            box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+            .items-container{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                .new-account-form{
+                    display: flex;
+                    justify-content: center;
+                    //align-items: center;
+                    flex-direction: column;
+                    margin-top: 50px;
+                    width: 80%;
+                    h3{
+                        font-size: 20px;
+                        margin-bottom: 20px;
+                    }
+                    input,textarea,select{
+                        outline: none;
+                        font-size: 18px;
+                    }
+                    .text-input{
+                        font-size: 18px;
+                        padding: 10px;
+                        background-color: rgb(245, 245, 245);
+                        border-radius: 5px;
+                        border-color: rgba(0, 0, 0, 0);
+                        box-shadow:0px 0px 8px 2px #ccc inset;
+                    }
+                    label{
+                        margin-top: 20px;
+                    }
+                    textarea{
+                        font-size: 18px;
+                        padding: 10px;
+                        background-color: rgb(245, 245, 245);
+                        border-radius: 5px;
+                        border-color: rgba(0, 0, 0, 0);
+                        box-shadow:0px 0px 8px 2px #ccc inset;
+                        height: 150px;
+                    }
+                    select{
+                        padding: 10px 10px;
+                        background-color: white;
+                        font-size: 16px;
+                        border-radius: 5px;
+                        border: 1px solid black;
+                        display: flex;
+                        justify-content: center;
+                    }
+                    #file{
+                        font-size: 16px;
+                    }
+                    button{
+                        margin: 30px 0 60px 0;
+                        width: 100%;
+                        padding: 10px 0px;
+                        background-color: rgb(0, 115, 255);
+                        font-size: 18px;
+                        border-radius: 5px;
+                        border: initial;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+    //account部分
+
+    //account_menu
+    .account-menu-header{
+        width: 100%;
+        height: 75px;
+        background-color: rgba(0, 0, 0, 0.8);
+        position: fixed;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .header-content{
+            width: 95%;
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            button{
+                margin: 20px 15px;
+                width: 150px;
+                padding: 10px 0px;
+                font-size: 18px;
+                border-radius: 5px;
+                border: initial;
+                background-color: rgb(0, 115, 255);
+                color: white;
+            }
+        }
+    }
+    .account-menu-container{
+        width: 95vw;
+        margin-top: calc(2.5vw + 75px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .account-menu-contents{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            .content-no{
+                width: 300px;
+                height: 0px;
+            }
+            .register-content{
+                width: 300px;
+                overflow: hidden;
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border-radius: 5px; //2.5vw
+                box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+                margin-bottom: 2.5vw;
+                .account-img-content{
+                    width: 100%;
+                    position: relative;
+                    overflow: hidden;
+                    height: 200px;
+                    .in-shadow{
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        box-shadow: 0 -20px 25px 0 rgba(0, 0, 0, 0.1) inset;
+                    }
+                    .account-img{
+                        width: 100%;
+                        height: auto;
+                    }
+                    .fa{
+                        color:rgb(215, 215, 215);
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        font-size: 70px;
+                    }
+                }
+                .account-contents{
+                    height: 100px;
+                    button{
+                        margin: 20px 15px;
+                        width: 100px;
+                        padding: 10px 0px;
+                        font-size: 18px;
+                        border-radius: 5px;
+                        border: initial;
+                        color: white;
+                    }
+                    #new-register{
+                        background-color: rgb(0, 115, 255);
+                    }
+                    .edit{
+                        background-color: white;
+                        border: solid black 1px;
+                        color: black;
+                    }
+                    .delete{
+                        background-color: rgb(255, 0, 25);
+                    }
+                }
+            }
+        }
+    }
+    //account_menu
 }
 
 @media screen and (min-width: 600px){

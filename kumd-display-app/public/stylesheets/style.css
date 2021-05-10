@@ -332,7 +332,7 @@ body header .header-cover .ham-menu .ham-menu-contents {
 
 body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container {
   margin: 80px 0px 120px 0;
-  height: 150vh;
+  height: 100vh;
   -webkit-transition: 0.2s;
   transition: 0.2s;
   opacity: 0;
@@ -576,7 +576,7 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-radius: 10px;
+  border-radius: 5px;
   -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
   margin-bottom: 2.5vw;
@@ -757,7 +757,10 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-
   padding: 10px;
   background-color: whitesmoke;
   outline: none;
-  border-radius: 2px;
+  border-radius: 5px;
+  border-color: rgba(0, 0, 0, 0);
+  -webkit-box-shadow: 0px 0px 8px 2px #ccc inset;
+          box-shadow: 0px 0px 8px 2px #ccc inset;
 }
 
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .display-item-container .acd-check:checked + .display-content .eval-items .fa-comment {
@@ -775,7 +778,7 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide1-content {
   width: 80%;
   height: 90%;
-  border-radius: 10px;
+  border-radius: 5px;
   -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
   display: -webkit-box;
@@ -949,7 +952,7 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .slide5-content {
   width: 80%;
   height: 90%;
-  border-radius: 10px;
+  border-radius: 5px;
   -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
   display: -webkit-box;
@@ -1079,7 +1082,7 @@ body .display-container .display-items-container .sticky {
   position: sticky;
   font-size: 18px;
   margin-bottom: 2.5vw;
-  border-radius: 10px;
+  border-radius: 5px;
   -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
   top: 15px;
@@ -1108,7 +1111,7 @@ body .display-container .display-items-container .display-item-container {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-radius: 10px;
+  border-radius: 5px;
   -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
   margin-bottom: 2.5vw;
@@ -1242,7 +1245,10 @@ body .display-container .display-items-container .display-item-container .displa
   padding: 10px;
   background-color: whitesmoke;
   outline: none;
-  border-radius: 2px;
+  border-radius: 5px;
+  border-color: rgba(0, 0, 0, 0);
+  -webkit-box-shadow: 0px 0px 8px 2px #ccc inset;
+          box-shadow: 0px 0px 8px 2px #ccc inset;
 }
 
 body .display-container .display-items-container .display-item-container .acd-check:checked + .display-content .eval-items .fa-comment {
@@ -1276,6 +1282,12 @@ body .display-bottom .about-display-form {
   width: 80%;
 }
 
+body .display-bottom .about-display-form h4 {
+  font-size: 20px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
 body .display-bottom .about-display-form p {
   font-size: 18px;
 }
@@ -1287,11 +1299,375 @@ body .display-bottom .about-display-form .comment-area {
   padding: 10px;
   background-color: whitesmoke;
   outline: none;
-  border-radius: 2px;
+  border-radius: 5px;
+  border-color: rgba(0, 0, 0, 0);
+  -webkit-box-shadow: 0px 0px 8px 2px #ccc inset;
+          box-shadow: 0px 0px 8px 2px #ccc inset;
 }
 
 body .display-bottom .submit-bottom {
   width: 100px;
+}
+
+body #register-form {
+  display: none;
+}
+
+body .login-container {
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+  margin-top: 2.5vw;
+  width: 95vw;
+  background-color: white;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body .login-container .title {
+  font-size: 24px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+body .login-container .login-attention {
+  width: 80%;
+  color: red;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+body .login-container .form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 80%;
+}
+
+body .login-container .form .sub-title {
+  margin-top: 10px;
+  width: 100%;
+}
+
+body .login-container .form #mailAddress, body .login-container .form #password {
+  width: calc(100% - 20px);
+  font-size: 16px;
+  padding: 10px;
+  background-color: whitesmoke;
+  outline: none;
+  border-radius: 5px;
+  border-color: rgba(0, 0, 0, 0);
+  -webkit-box-shadow: 0px 0px 8px 2px #ccc inset;
+          box-shadow: 0px 0px 8px 2px #ccc inset;
+}
+
+body .login-container .form .btn-container {
+  width: 100%;
+  margin-top: 30px;
+}
+
+body .login-container .form .btn-container button {
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #0073ff;
+  font-size: 16px;
+  border-radius: 5px;
+  border: initial;
+  color: white;
+}
+
+body .login-container .other-btn {
+  margin: 30px 0 60px 0;
+  width: 80%;
+  padding: 10px 0px;
+  background-color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid black;
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body .account-container .menu-contents {
+  background-color: white;
+  width: 95vw;
+  margin-top: 2.5vw;
+  margin-bottom: 2.5vw;
+  font-size: 18px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+}
+
+body .account-container .menu-contents .items-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+body .account-container .menu-contents .items-container .new-account-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 50px;
+  width: 80%;
+}
+
+body .account-container .menu-contents .items-container .new-account-form h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+body .account-container .menu-contents .items-container .new-account-form input, body .account-container .menu-contents .items-container .new-account-form textarea, body .account-container .menu-contents .items-container .new-account-form select {
+  outline: none;
+  font-size: 18px;
+}
+
+body .account-container .menu-contents .items-container .new-account-form .text-input {
+  font-size: 18px;
+  padding: 10px;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  border-color: rgba(0, 0, 0, 0);
+  -webkit-box-shadow: 0px 0px 8px 2px #ccc inset;
+          box-shadow: 0px 0px 8px 2px #ccc inset;
+}
+
+body .account-container .menu-contents .items-container .new-account-form label {
+  margin-top: 20px;
+}
+
+body .account-container .menu-contents .items-container .new-account-form textarea {
+  font-size: 18px;
+  padding: 10px;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  border-color: rgba(0, 0, 0, 0);
+  -webkit-box-shadow: 0px 0px 8px 2px #ccc inset;
+          box-shadow: 0px 0px 8px 2px #ccc inset;
+  height: 150px;
+}
+
+body .account-container .menu-contents .items-container .new-account-form select {
+  padding: 10px 10px;
+  background-color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body .account-container .menu-contents .items-container .new-account-form #file {
+  font-size: 16px;
+}
+
+body .account-container .menu-contents .items-container .new-account-form button {
+  margin: 30px 0 60px 0;
+  width: 100%;
+  padding: 10px 0px;
+  background-color: #0073ff;
+  font-size: 18px;
+  border-radius: 5px;
+  border: initial;
+  color: white;
+}
+
+body .account-menu-header {
+  width: 100%;
+  height: 75px;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  z-index: 10;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .account-menu-header .header-content {
+  width: 95%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .account-menu-header .header-content button {
+  margin: 20px 15px;
+  width: 150px;
+  padding: 10px 0px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: initial;
+  background-color: #0073ff;
+  color: white;
+}
+
+body .account-menu-container {
+  width: 95vw;
+  margin-top: calc(2.5vw + 75px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .account-menu-container .account-menu-contents {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+body .account-menu-container .account-menu-contents .content-no {
+  width: 300px;
+  height: 0px;
+}
+
+body .account-menu-container .account-menu-contents .register-content {
+  width: 300px;
+  overflow: hidden;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.5vw;
+}
+
+body .account-menu-container .account-menu-contents .register-content .account-img-content {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+}
+
+body .account-menu-container .account-menu-contents .register-content .account-img-content .in-shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-box-shadow: 0 -20px 25px 0 rgba(0, 0, 0, 0.1) inset;
+          box-shadow: 0 -20px 25px 0 rgba(0, 0, 0, 0.1) inset;
+}
+
+body .account-menu-container .account-menu-contents .register-content .account-img-content .account-img {
+  width: 100%;
+  height: auto;
+}
+
+body .account-menu-container .account-menu-contents .register-content .account-img-content .fa {
+  color: #d7d7d7;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 70px;
+}
+
+body .account-menu-container .account-menu-contents .register-content .account-contents {
+  height: 100px;
+}
+
+body .account-menu-container .account-menu-contents .register-content .account-contents button {
+  margin: 20px 15px;
+  width: 100px;
+  padding: 10px 0px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: initial;
+  color: white;
+}
+
+body .account-menu-container .account-menu-contents .register-content .account-contents #new-register {
+  background-color: #0073ff;
+}
+
+body .account-menu-container .account-menu-contents .register-content .account-contents .edit {
+  background-color: white;
+  border: solid black 1px;
+  color: black;
+}
+
+body .account-menu-container .account-menu-contents .register-content .account-contents .delete {
+  background-color: #ff0019;
 }
 
 @media screen and (min-width: 600px) {

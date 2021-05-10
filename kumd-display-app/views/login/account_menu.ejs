@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <title>2021年度春のパネル展示会</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/stylesheets/swiper-bundle.min.css">
+        <script src="/javascripts/jquery-3.5.1.min.js"></script>
+    </head>
+    <body class="container">
+        <div class="account-menu-header">
+            <div class="header-content">
+                <button id="logout" class="btn">ログアウト</button>
+            </div>
+        </div>
+        <div class="account-menu-container">
+            <div class="account-menu-contents" id="templete-content">
+                
+            </div>
+        </div>
+        <!-- テンプレート -->
+        <template id="account-menu-items-tem">
+            <div class="register-content">
+                <div class="account-img-content">
+                    <div class="in-shadow"></div>
+                    <img class="account-img" src="">
+                </div>
+                <div class="account-contents">
+                    <button class="edit btn" value="" >編集</button>
+                    <button class="delete btn" value="" >削除</button>
+                </div>
+            </div>
+        </template>
+        <template id="new-register-tem" >
+            <div class="register-content">
+                <div class="account-img-content">
+                    <div class="in-shadow"></div>
+                    <div class="fa fa-plus-circle"></div>
+                </div>
+                <div class="account-contents">
+                    <button class="btn" id="new-register">新規作成</button>
+                </div>
+            </div>
+            <div class="content-no"></div>
+        </template>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+        <script>
+            var firebaseConfig = {
+    apiKey: "AIzaSyA4chVLLT13u2-zlfDlt7p5GXD_98DgY2Q",
+    authDomain: "kumd-app.firebaseapp.com",
+    databaseURL: "https://kumd-app-default-rtdb.firebaseio.com",
+    projectId: "kumd-app",
+    storageBucket: "kumd-app.appspot.com",
+    messagingSenderId: "28972770999",
+    appId: "1:28972770999:web:59ad63f788f272e4868f32",
+    measurementId: "G-YPKJW425F5"
+};
+  // Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        console.log("There's a user");
+        readImg();
+    } else {
+        console.log("No user");
+        location.href='/login';
+    }
+});
+
+const fragment = document.createDocumentFragment();
+const registerButton = document.getElementById('new-register');
+
+// registerButton.addEventListener("click",()=>{
+//     console.log("click registerButton");
+
+//     const uid = firebase.auth().currentUser.uid;
+//     var imgNum;
+//     var usersData;
+//     const db = firebase.firestore();
+//     //既に画像が公開されているかをチェック
+//     const userRef = db.collection('users').doc(uid);
+//     userRef.get().then((doc)=>{
+//         if (doc.exists) {
+//             console.log("Document data:", doc.data());
+//             usersData = doc.data();
+//         } else {
+//             // doc.data() will be undefined in this case
+//             console.log("No such document!");
+//         }
+//         console.log('imgData',usersData);
+//         imgNum = usersData.imgNum+1;
+//         console.log("imgNum",imgNum)
+//         console.log("uid + imgNum",uid +"-"+ imgNum);
+//         usersData["img" + imgNum ] = uid +"-"+ imgNum;
+//         usersData["imgNum"] = imgNum;
+//         console.log("userData",usersData);
+//         //ユーザーの保存(firestore)
+//         db.collection("users").doc(uid).set(usersData)
+//             .then(() => {
+//                 console.log("Users Data successfully written!");
+//             })
+//             .catch((error) => {
+//                 console.error("Error writing Users Data: ", error);
+//         });
+//         //イラストの保存(firestore)
+//         db.collection("imgs").doc(uid +"-"+ imgNum ).set({
+//             id: uid +"-"+ imgNum,
+//             grade: gradeValue,
+//             size: sizeValue,
+//             penname: pennameValue,
+//             title: titleValue,
+//             caption: captionValue,
+//         })
+//         .then(() => {
+//             console.log("Imgs Data successfully written!");
+//         })
+//         .catch((error) => {
+//             console.error("Error writing Imgs Data: ", error);
+//         });
+//     })
+//     .catch((err)=>{
+//         console.log("Error getting Users Data:", err)
+//     })
+// });
+
+function readImg(){
+    var i=0;
+    const uid = firebase.auth().currentUser.uid;
+    var usersData;
+    const db = firebase.firestore();
+    const userRef = db.collection('users').doc(uid);
+    userRef.get().then((doc)=>{
+        if (doc.exists) {
+            usersData = doc.data();
+            delete usersData.imgNum;
+            console.log("usersData:", usersData);
+            madeItems(usersData);
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch((err)=>{
+        console.log("Error getting Users Data:", err)
+    })
+}
+
+function madeItems(data){
+    const templeteContent = document.getElementById('templete-content');
+    // const editButton = document.getElementByclass('edit');
+    // const deleteButton = document.getElementByclass('delete');
+    const itemsContent = document.querySelector('#account-menu-items-tem').content;
+    const registerContent = document.querySelector('#new-register-tem').content;
+    for(const property in data){
+        const clone = document.importNode(itemsContent, true);
+
+        const image = clone.querySelector('img');
+        const editBtn = clone.querySelector('.edit');
+        const deleteBtn = clone.querySelector('.delete');
+
+        const storage = firebase.storage();
+        var storageRef = storage.ref();
+        storageRef.child('imgs/'+data[property]+".jpg").getDownloadURL().then(function(url) {
+            // This can be downloaded directly:
+            var xhr = new XMLHttpRequest();
+            xhr.responseType = 'blob';
+            xhr.onload = function(event) {
+                var blob = xhr.response;
+            };
+            xhr.open('GET', url);
+            xhr.send();
+            // Or inserted into an <img> element:
+            image.src = url;
+        }).catch((error) => {
+            // Handle any errors
+            console.log("err >>>",error);
+        });
+        editBtn.value=data[property];
+        deleteBtn.value=data[property];
+        fragment.appendChild(clone);
+    }
+    templeteContent.appendChild(fragment);
+
+}
+
+        </script>
+    </body>
+</html>

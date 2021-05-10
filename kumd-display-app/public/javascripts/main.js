@@ -16,7 +16,7 @@ $(function() {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
         },
-      });
+    });
 });
 
 //ヘッダー部分の挙動

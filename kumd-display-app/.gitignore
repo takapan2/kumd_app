@@ -1,2 +1,4 @@
 node_modules/
 db-dev.sqlite3
+.env
+service-account-file.json

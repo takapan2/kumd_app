@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <title>2021年度春のパネル展示会</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/stylesheets/swiper-bundle.min.css">
+        <script src="/javascripts/jquery-3.5.1.min.js"></script>
+    </head>
+    <body class="container">
+        <!-- ここから -->
+        <div class="account-container">
+            <div class="menu-contents">
+                <div class="items-container">
+                    <!-- <form class="new-account-form" action="/login/account" method="POST" enctype="multipart/form-data"> -->
+                    <div class="new-account-form">
+                        <h3>作品情報</h3>
+                        <label for="file">イラスト(jpg)</label>
+                        <input type="file" id="file" name="file" value="upload" >
+                        <label for="grade-select">回生</label>
+                        <!-- //gradeは '1':'1回生', '2':'2回生', '3':'3回生', '4':'4回生', '5':'その他', '6':'合作'。 -->
+                        <select name="grade" id="grade-select">
+                            <option value="">選択してください</option>
+                            <option value="1">１回生</option>
+                            <option value="2">２回生</option>
+                            <option value="3">３回生</option>
+                            <option value="4">４回生</option>
+                            <option value="5">その他</option>
+                            <option value="6">合作</option>
+                        </select>
+                        <!-- //sizeは '1':'B4', '2':'B5', '3':'その他'。 -->
+                        <label for="size-select">サイズ</label>
+                        <select name="size" id="size-select">
+                            <option value="">選択してください</option>
+                            <option value="1">B4</option>
+                            <option value="2">B5</option>
+                            <option value="3">その他</option>
+                        </select>
+                        <label for="title">作品名</label>
+                        <input class="text-input" type="text" name="title" id="title">
+                        <label for="penname">ペンネーム</label>
+                        <input class="text-input" type="text" name="penname" id="penname">
+                        <label for="caption">説明文(150字以内)</label>
+                        <textarea id="caption" type="text" maxlength="150" name="caption"></textarea>
+                        <!-- <input type="submit" class="btn opne">保存して公開する</input> -->
+                        <button id="submit-btn" class="btn opne">保存して公開する</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- ここまで -->
+        <script src="https://cdn.jsdelivr.net/gh/fengyuanchen/compressorjs/dist/compressor.min.js"></script>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+        <script src='/javascripts/account.js'></script>
+    </body>
+</html>
