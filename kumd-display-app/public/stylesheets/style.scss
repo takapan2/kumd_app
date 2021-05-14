@@ -1130,105 +1130,173 @@ body {
     //account部分
 
     //account_menu
-    .account-menu-header{
-        width: 100%;
-        height: 75px;
-        background-color: rgba(0, 0, 0, 0.8);
-        position: fixed;
-        z-index: 10;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .header-content{
-            width: 95%;
+    .change-check{
+        display: none;
+    }
+    .account-menu-wrapper{
+        .account-menu-header{
+            width: 100vw;
+            height: 75px;
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
             display: flex;
-            flex-direction: row-reverse;
+            justify-content: center;
             align-items: center;
-            button{
-                margin: 20px 15px;
-                width: 150px;
-                padding: 10px 0px;
-                font-size: 18px;
-                border-radius: 5px;
-                border: initial;
-                background-color: rgb(0, 115, 255);
-                color: white;
+            .header-content{
+                width: 95%;
+                display: flex;
+                flex-direction: row-reverse;
+                align-items: center;
+                button{
+                    margin: 20px 15px;
+                    width: 120px;
+                    padding: 10px 0px;
+                    font-size: 18px;
+                    border-radius: 5px;
+                    border: initial;
+                    height: 50px;
+                }
+                #logout{
+                    background-color: rgb(0, 115, 255);
+                    color: white;
+                    opacity: 1;
+                    transition: 0.5s;
+                }
+                #change-comment{
+                    background-color: rgb(123, 123, 123);
+                    color: white;
+                    opacity: 1;
+                    transition: 0.1s;
+                }
+                #change-edit{
+                    background-color: white;
+                    color: rgb(0, 0, 0);
+                    opacity: 0;
+                    width: 0;
+                    margin: 0;
+                    transition: 0.1s;
+                }
+            }
+        }
+        .account-menu-container{
+            width: 95vw;
+            margin-top: calc(2.5vw + 75px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .account-menu-contents{
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                .content-no{
+                    width: 300px;
+                    height: 0px;
+                }
+                .register-content{
+                    width: 300px;
+                    overflow: hidden;
+                    background-color: white;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    border-radius: 5px; //2.5vw
+                    box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+                    margin-bottom: 2.5vw;
+                    .account-img-content{
+                        width: 100%;
+                        position: relative;
+                        overflow: hidden;
+                        height: 200px;
+                        .in-shadow{
+                            position: absolute;
+                            width: 100%;
+                            height: 100%;
+                            box-shadow: 0 -20px 25px 0 rgba(0, 0, 0, 0.1) inset;
+                        }
+                        .account-img{
+                            width: 100%;
+                            height: auto;
+                        }
+                        .fa{
+                            color:rgb(215, 215, 215);
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            font-size: 70px;
+                        }
+                    }
+                    .account-contents{
+                        height: 100px;
+                        button{
+                            margin: 20px 15px;
+                            width: 100px;
+                            padding: 10px 0px;
+                            font-size: 18px;
+                            border-radius: 5px;
+                            border: initial;
+                            color: white;
+                        }
+                        #new-register{
+                            background-color: rgb(0, 115, 255);
+                            width: 150px;
+                        }
+                        .edit{
+                            background-color: white;
+                            border: solid black 1px;
+                            color: black;
+                            opacity: 1;
+                            transition: 0.5s;
+                        }
+                        .delete{
+                            background-color: rgb(255, 0, 25);
+                            opacity: 1;
+                            transition: 0.5s;
+                        }
+                        .comment{
+                            background-color: rgb(123, 123, 123);
+                            border: solid white 1px;
+                            color: white;
+                            display: none;
+                            opacity: 0;
+                            width: 150px;
+                            transition: 0.5s;
+                        }
+                    }
+                }
             }
         }
     }
-    .account-menu-container{
-        width: 95vw;
-        margin-top: calc(2.5vw + 75px);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        .account-menu-contents{
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            .content-no{
-                width: 300px;
-                height: 0px;
-            }
-            .register-content{
-                width: 300px;
-                overflow: hidden;
-                background-color: white;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                border-radius: 5px; //2.5vw
-                box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
-                margin-bottom: 2.5vw;
-                .account-img-content{
-                    width: 100%;
-                    position: relative;
-                    overflow: hidden;
-                    height: 200px;
-                    .in-shadow{
-                        position: absolute;
-                        width: 100%;
-                        height: 100%;
-                        box-shadow: 0 -20px 25px 0 rgba(0, 0, 0, 0.1) inset;
-                    }
-                    .account-img{
-                        width: 100%;
-                        height: auto;
-                    }
-                    .fa{
-                        color:rgb(215, 215, 215);
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        font-size: 70px;
-                    }
-                }
-                .account-contents{
-                    height: 100px;
-                    button{
-                        margin: 20px 15px;
-                        width: 100px;
-                        padding: 10px 0px;
-                        font-size: 18px;
-                        border-radius: 5px;
-                        border: initial;
-                        color: white;
-                    }
-                    #new-register{
-                        background-color: rgb(0, 115, 255);
-                    }
-                    .edit{
-                        background-color: white;
-                        border: solid black 1px;
-                        color: black;
-                    }
-                    .delete{
-                        background-color: rgb(255, 0, 25);
-                    }
-                }
-            }
+    #change:checked + .account-menu-wrapper{
+        #change-comment{
+            // display: none;
+            width: 0;
+            height: 50px;
+            margin: 0;
+            opacity: 0;
+        }
+        #change-edit{
+            display: block;
+            width: 120px;
+            height: 50px;
+            margin: 20px 15px;
+            opacity: 1;
+        }
+        .edit{
+            display: none;
+            opacity: 0;
+        }
+        .delete{
+            display: none;
+            opacity: 0;
+        }
+        .comment{
+            display: block;
+            opacity: 1;
         }
     }
     //account_menu

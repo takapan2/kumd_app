@@ -1519,11 +1519,17 @@ body .account-container .menu-contents .items-container .new-account-form button
   color: white;
 }
 
-body .account-menu-header {
-  width: 100%;
+body .change-check {
+  display: none;
+}
+
+body .account-menu-wrapper .account-menu-header {
+  width: 100vw;
   height: 75px;
   background-color: rgba(0, 0, 0, 0.8);
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: 10;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1536,7 +1542,7 @@ body .account-menu-header {
           align-items: center;
 }
 
-body .account-menu-header .header-content {
+body .account-menu-wrapper .account-menu-header .header-content {
   width: 95%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1550,18 +1556,43 @@ body .account-menu-header .header-content {
           align-items: center;
 }
 
-body .account-menu-header .header-content button {
+body .account-menu-wrapper .account-menu-header .header-content button {
   margin: 20px 15px;
-  width: 150px;
+  width: 120px;
   padding: 10px 0px;
   font-size: 18px;
   border-radius: 5px;
   border: initial;
-  background-color: #0073ff;
-  color: white;
+  height: 50px;
 }
 
-body .account-menu-container {
+body .account-menu-wrapper .account-menu-header .header-content #logout {
+  background-color: #0073ff;
+  color: white;
+  opacity: 1;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+body .account-menu-wrapper .account-menu-header .header-content #change-comment {
+  background-color: #7b7b7b;
+  color: white;
+  opacity: 1;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
+body .account-menu-wrapper .account-menu-header .header-content #change-edit {
+  background-color: white;
+  color: black;
+  opacity: 0;
+  width: 0;
+  margin: 0;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
+body .account-menu-wrapper .account-menu-container {
   width: 95vw;
   margin-top: calc(2.5vw + 75px);
   display: -webkit-box;
@@ -1576,7 +1607,7 @@ body .account-menu-container {
           align-items: center;
 }
 
-body .account-menu-container .account-menu-contents {
+body .account-menu-wrapper .account-menu-container .account-menu-contents {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1587,12 +1618,12 @@ body .account-menu-container .account-menu-contents {
       justify-content: space-around;
 }
 
-body .account-menu-container .account-menu-contents .content-no {
+body .account-menu-wrapper .account-menu-container .account-menu-contents .content-no {
   width: 300px;
   height: 0px;
 }
 
-body .account-menu-container .account-menu-contents .register-content {
+body .account-menu-wrapper .account-menu-container .account-menu-contents .register-content {
   width: 300px;
   overflow: hidden;
   background-color: white;
@@ -1612,14 +1643,14 @@ body .account-menu-container .account-menu-contents .register-content {
   margin-bottom: 2.5vw;
 }
 
-body .account-menu-container .account-menu-contents .register-content .account-img-content {
+body .account-menu-wrapper .account-menu-container .account-menu-contents .register-content .account-img-content {
   width: 100%;
   position: relative;
   overflow: hidden;
   height: 200px;
 }
 
-body .account-menu-container .account-menu-contents .register-content .account-img-content .in-shadow {
+body .account-menu-wrapper .account-menu-container .account-menu-contents .register-content .account-img-content .in-shadow {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -1627,12 +1658,12 @@ body .account-menu-container .account-menu-contents .register-content .account-i
           box-shadow: 0 -20px 25px 0 rgba(0, 0, 0, 0.1) inset;
 }
 
-body .account-menu-container .account-menu-contents .register-content .account-img-content .account-img {
+body .account-menu-wrapper .account-menu-container .account-menu-contents .register-content .account-img-content .account-img {
   width: 100%;
   height: auto;
 }
 
-body .account-menu-container .account-menu-contents .register-content .account-img-content .fa {
+body .account-menu-wrapper .account-menu-container .account-menu-contents .register-content .account-img-content .fa {
   color: #d7d7d7;
   position: absolute;
   top: 50%;
@@ -1642,11 +1673,11 @@ body .account-menu-container .account-menu-contents .register-content .account-i
   font-size: 70px;
 }
 
-body .account-menu-container .account-menu-contents .register-content .account-contents {
+body .account-menu-wrapper .account-menu-container .account-menu-contents .register-content .account-contents {
   height: 100px;
 }
 
-body .account-menu-container .account-menu-contents .register-content .account-contents button {
+body .account-menu-wrapper .account-menu-container .account-menu-contents .register-content .account-contents button {
   margin: 20px 15px;
   width: 100px;
   padding: 10px 0px;
@@ -1656,18 +1687,66 @@ body .account-menu-container .account-menu-contents .register-content .account-c
   color: white;
 }
 
-body .account-menu-container .account-menu-contents .register-content .account-contents #new-register {
+body .account-menu-wrapper .account-menu-container .account-menu-contents .register-content .account-contents #new-register {
   background-color: #0073ff;
+  width: 150px;
 }
 
-body .account-menu-container .account-menu-contents .register-content .account-contents .edit {
+body .account-menu-wrapper .account-menu-container .account-menu-contents .register-content .account-contents .edit {
   background-color: white;
   border: solid black 1px;
   color: black;
+  opacity: 1;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
-body .account-menu-container .account-menu-contents .register-content .account-contents .delete {
+body .account-menu-wrapper .account-menu-container .account-menu-contents .register-content .account-contents .delete {
   background-color: #ff0019;
+  opacity: 1;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+body .account-menu-wrapper .account-menu-container .account-menu-contents .register-content .account-contents .comment {
+  background-color: #7b7b7b;
+  border: solid white 1px;
+  color: white;
+  display: none;
+  opacity: 0;
+  width: 150px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+body #change:checked + .account-menu-wrapper #change-comment {
+  width: 0;
+  height: 50px;
+  margin: 0;
+  opacity: 0;
+}
+
+body #change:checked + .account-menu-wrapper #change-edit {
+  display: block;
+  width: 120px;
+  height: 50px;
+  margin: 20px 15px;
+  opacity: 1;
+}
+
+body #change:checked + .account-menu-wrapper .edit {
+  display: none;
+  opacity: 0;
+}
+
+body #change:checked + .account-menu-wrapper .delete {
+  display: none;
+  opacity: 0;
+}
+
+body #change:checked + .account-menu-wrapper .comment {
+  display: block;
+  opacity: 1;
 }
 
 @media screen and (min-width: 600px) {
