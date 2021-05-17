@@ -1,6 +1,6 @@
 <div class="display-container">
     <div class="display-items-container">
-        <% for(var i in data){ %>
+        <!-- <% for(var i in data){ %>
             <div id="<%= 'scroll-' + i %>" >
                 <div class="sticky">
                     <h3><%= list.GRADE[i] %></h3>
@@ -9,6 +9,59 @@
                     <%- include('display_item', { data: data[i][j] }) %>
                 <% } %>
             </div>
-        <% } %>
+        <% } %> -->
+        <div id="scroll-1" >
+            <div class="sticky">
+                <h3>1回生</h3>
+            </div>
+        </div>
+        <div id="scroll-2" >
+            <div class="sticky">
+                <h3>２回生</h3>
+            </div>
+        </div>
+        <div id="scroll-3" >
+            <div class="sticky">
+                <h3>３回生</h3>
+            </div>
+        </div>
+        <div id="scroll-4" >
+            <div class="sticky">
+                <h3>４回生</h3>
+            </div>
+        </div>
+        <div id="scroll-5" >
+            <div class="sticky">
+                <h3>その他</h3>
+            </div>
+        </div>
+        <div id="scroll-6" >
+            <div class="sticky">
+                <h3>合作</h3>
+            </div>
+        </div>
     </div>
 </div>
+<template id="display-item-tem">
+    <div class="display-item-container">
+        <div class="display-img-content">
+            <div class="in-shadow"></div>
+            <img class="display-img" src="" >
+        </div>
+        <input id="" class="acd-check" type="checkbox">
+        <div class="display-content">
+            <h3 class="title"></h3>
+            <p class="penname"></p>
+            <p class="caption"></p>
+            <div class="eval-items">
+                <input id="" class="heart-check" type="checkbox" name="<%= 'heart-' + data.image %>">
+                <label class="fa fa-heart btn" for=""></label>
+                <label class="fa fa-comment btn" for=""></label>
+            </div>
+            <div class="comment-form">
+                <p>100字以内(任意)</p>
+                <textarea class="comment-area" type="text" maxlength="100" name=""></textarea>
+            </div>
+        </div>
+    </div>
+</template>

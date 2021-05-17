@@ -68,9 +68,12 @@
   // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+var uid;
+
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         console.log("There's a user");
+        uid = firebase.auth().currentUser.uid;
         readImg();
     } else {
         console.log("No user");
@@ -80,62 +83,9 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 const fragment = document.createDocumentFragment();
 
-// registerButton.addEventListener("click",()=>{
-//     console.log("click registerButton");
-
-//     const uid = firebase.auth().currentUser.uid;
-//     var imgNum;
-//     var usersData;
-//     const db = firebase.firestore();
-//     //既に画像が公開されているかをチェック
-//     const userRef = db.collection('users').doc(uid);
-//     userRef.get().then((doc)=>{
-//         if (doc.exists) {
-//             console.log("Document data:", doc.data());
-//             usersData = doc.data();
-//         } else {
-//             // doc.data() will be undefined in this case
-//             console.log("No such document!");
-//         }
-//         console.log('imgData',usersData);
-//         imgNum = usersData.imgNum+1;
-//         console.log("imgNum",imgNum)
-//         console.log("uid + imgNum",uid +"-"+ imgNum);
-//         usersData["img" + imgNum ] = uid +"-"+ imgNum;
-//         usersData["imgNum"] = imgNum;
-//         console.log("userData",usersData);
-//         //ユーザーの保存(firestore)
-//         db.collection("users").doc(uid).set(usersData)
-//             .then(() => {
-//                 console.log("Users Data successfully written!");
-//             })
-//             .catch((error) => {
-//                 console.error("Error writing Users Data: ", error);
-//         });
-//         //イラストの保存(firestore)
-//         db.collection("imgs").doc(uid +"-"+ imgNum ).set({
-//             id: uid +"-"+ imgNum,
-//             grade: gradeValue,
-//             size: sizeValue,
-//             penname: pennameValue,
-//             title: titleValue,
-//             caption: captionValue,
-//         })
-//         .then(() => {
-//             console.log("Imgs Data successfully written!");
-//         })
-//         .catch((error) => {
-//             console.error("Error writing Imgs Data: ", error);
-//         });
-//     })
-//     .catch((err)=>{
-//         console.log("Error getting Users Data:", err)
-//     })
-// });
-
 function readImg(){
     var i=0;
-    const uid = firebase.auth().currentUser.uid;
+    // const uid = firebase.auth().currentUser.uid;
     var usersData;
     const db = firebase.firestore();
     const userRef = db.collection('users').doc(uid);
@@ -143,6 +93,7 @@ function readImg(){
         if (doc.exists) {
             usersData = doc.data();
             delete usersData.imgNum;
+            usersData = getDecSort(usersData);
             console.log("usersData:", usersData);
             madeItems(usersData);
         } else {
@@ -167,24 +118,7 @@ function madeItems(data){
         const commentBtn = clone.querySelector('.comment');
 
         //ファイアーベースから画像を取得
-        // const storage = firebase.storage();
-        // var storageRef = storage.ref();
-        // storageRef.child('imgs/'+data[property]+".jpg").getDownloadURL().then(function(url) {
-        //     // This can be downloaded directly:
-        //     var xhr = new XMLHttpRequest();
-        //     xhr.responseType = 'blob';
-        //     xhr.onload = function(event) {
-        //         var blob = xhr.response;
-        //     };
-        //     xhr.open('GET', url);
-        //     xhr.send();
-        //     // Or inserted into an <img> element:
-        //     image.src = url;
-        // }).catch((error) => {
-        //     // Handle any errors
-        //     console.log("err >>>",error);
-        // });
-        //ファイアーベースから画像取得完了
+        //getUserImg(data[property],image);
 
         editBtn.value=data[property].split("-")[1];
         deleteBtn.value=data[property].split("-")[1];
@@ -206,12 +140,13 @@ function clickBtn(){
     editButton.on("click",function(){
         const editValue = $(this).attr("value");
         console.log('edit',editValue);
-        location.href=`/login/account/paint?value=${editValue}`;
+        location.href=`/login/account/edit?value=${editValue}`;
     });
 
     deleteButton.on("click",function(){
         const deleteValue = $(this).attr("value");
         console.log('delete',deleteValue);
+        deleteFunc(deleteValue,uid)
     });
 
     commentButton.on("click",function(){
@@ -220,10 +155,97 @@ function clickBtn(){
     });
 
     registerButton.addEventListener("click",()=>{
-        ocation.href=`/login/account/paint`;
+        location.href=`/login/account/new`;
     });
 }
 
         </script>
+<script>
+    //クエリパラメータを取得、オブジェクトとして返す。
+    function getQueryObject(){
+        var queryString = window.location.search;
+        var queryObject = new Object();
+        if(queryString){
+            queryString = queryString.substring(1);
+            var parameters = queryString.split('&');
+    
+            for (var i = 0; i < parameters.length; i++) {
+                var element = parameters[i].split('=');
+                var paramName = decodeURIComponent(element[0]);
+                var paramValue = decodeURIComponent(element[1]);
+                queryObject[paramName] = paramValue;
+            }
+        }
+        return queryObject;
+    }
+    
+    //画像の取得から反映まで行います。
+    function getUserImg(imgUid,element){
+        const storage = firebase.storage();
+        var storageRef = storage.ref();
+        console.log('imgUid',imgUid);
+        storageRef.child('imgs/'+imgUid+".jpg").getDownloadURL().then(function(url) {
+            //エレメントに画像を反映
+            element.src = url;
+        }).catch((error) => {
+            // Handle any errors
+            console.log("err >>>",error);
+        });
+    }
+    //オブジェクトのキーの順番に並び替える。
+    function getDecSort(object){
+        var pairs = Object.entries(object);
+        pairs.sort(function(p1, p2){
+            var p1Key = p1[0], p2Key = p2[0];
+            if(p1Key < p2Key){ return -1; }
+            if(p1Key > p2Key){ return 1; }
+            return 0;
+        });
+        return Object.fromEntries(pairs);
+    }
+
+    function deleteFunc(value,uid){
+        if(window.confirm('一度削除したイラスト情報は元に戻りません。削除してもよろしいでしょうか？')){
+            const db = firebase.firestore();
+            db.collection("imgs").doc(`${uid}-${value}`).delete().then(() => {
+                console.log("imgs Document successfully deleted!");
+                deleteUsersFunc(value,uid);
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
+        }
+    }
+
+    function deleteUsersFunc(value,uid){
+        const db = firebase.firestore();
+        var usersRef = db.collection('users').doc(uid);
+        // Remove the 'capital' field from the document
+        var removeImg = usersRef.update({
+            [`img${value}`]: firebase.firestore.FieldValue.delete()
+        });
+        deleteCrient(value,uid)
+    }
+    function deleteCrient(value,uid){
+        const db = firebase.firestore();
+        db.collection("crients").doc(`${uid}-${value}`).delete().then(() => {
+            console.log("crient Document successfully deleted!");
+            deleteImgFunc(value,uid);
+        }).catch((error) => {
+            console.error("Error removing crient document: ", error);
+        });
+    }
+
+    function deleteImgFunc(value,uid){
+        const storage = firebase.storage();
+        var storageRef = storage.ref();
+        storageRef.child('imgs/'+uid+"-"+value+".jpg").delete().then(function() {
+            // File deleted successfully
+            console.log("delete success!!");
+            location.href="/login/account/";
+            }).catch(function(error) {
+            // Uh-oh, an error occurred!
+        });
+    }
+            </script>
     </body>
 </html>

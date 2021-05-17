@@ -5,12 +5,8 @@
         <title>2021年度春のパネル展示会</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel='stylesheet' href='/stylesheets/style.css' />
-        <!-- <link rel="stylesheet" href="/stylesheets/font-awesome.min.css"> -->
-        <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="/stylesheets/swiper-bundle.min.css">
-        <!-- <script src="/jquery/jquery.js"></script> -->
-        <!-- <script src='/javascripts/main.js'></script> -->
         <script src="/javascripts/jquery-3.5.1.min.js"></script>
     </head>
     <body class="container">
@@ -23,5 +19,93 @@
         </form>
         <script src='/javascripts/swiper-bundle.min.js'></script>
         <script src='/javascripts/main.js'></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+        <script src="/javascripts/firebase_config.js"></script>
+        <script>
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        console.log("There's a user");
+        readImg();
+    } else {
+        console.log("No user");
+        location.href='/login';
+    }
+});
+
+const fragment = document.createDocumentFragment();
+
+function readImg(){
+    var i=0;
+    const uid = firebase.auth().currentUser.uid;
+    var usersData;
+    const db = firebase.firestore();
+    // const imgsRef = db.collection('imgs').orderBy("size", "desc").orderBy("grade", "desc");
+    const imgsRef = db.collection('imgs').orderBy("size").orderBy("grade");
+    imgsRef.get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            //console.log(doc.id, " => ", doc.data());
+            displayWrite(doc.data());
+        });
+    }).catch((err)=>{
+        console.log("Error getting Users Data:", err)
+    })
+}
+
+function displayWrite(data){
+    const itemsContent = document.querySelector('#display-item-tem').content;
+    const templeteContent = document.getElementById(`scroll-${data.grade}`);
+
+    const clone = document.importNode(itemsContent, true);
+
+    const image = clone.querySelector('img');
+    const acdCheck = clone.querySelector('.acd-check');
+
+    const title = clone.querySelector('.title');
+    const penname = clone.querySelector('.penname');
+    const caption = clone.querySelector('.caption');
+
+    const heartCheck = clone.querySelector('.heart-check');
+    const faHeart = clone.querySelector('.fa-heart');
+    const faComment = clone.querySelector('.fa-comment');
+    const commentArea = clone.querySelector('.comment-area');
+
+    //getUserImg(data.id,image);
+    acdCheck.id = `acd-check${data.id}`;
+
+    fragment.appendChild(clone);
+    templeteContent.appendChild(fragment);
+
+    title.innerHTML = data.title;
+    penname.innerHTML = data.penname;
+    caption.innerHTML = data.caption;
+
+    heartCheck.id = `heart-check${data.id}`;
+    heartCheck.name = `heart-${data.id}`;
+    // faHeart.for = `heart-check${data.id}`;
+    // faComment.for = `acd-check${data.id}`;
+    faHeart.setAttribute("for",`heart-check${data.id}`);
+    faComment.setAttribute("for",`acd-check${data.id}`);
+    commentArea.name = `comment-${data.id}`;
+}
+
+        </script>
+        <script>
+function getUserImg(imgUid,element){
+        const storage = firebase.storage();
+        var storageRef = storage.ref();
+        console.log('imgUid',imgUid);
+        storageRef.child('imgs/'+imgUid+".jpg").getDownloadURL().then(function(url) {
+            //エレメントに画像を反映
+            element.src = url;
+        }).catch((error) => {
+            // Handle any errors
+            console.log("err >>>",error);
+        });
+    }
+        </script>
     </body>
 </html>

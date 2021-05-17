@@ -1055,6 +1055,7 @@ body {
     .account-container{
         .menu-contents{
             background-color: white;
+            padding-bottom: 60px;
             width: 95vw;
             margin-top: 2.5vw;
             margin-bottom: 2.5vw;
@@ -1076,6 +1077,10 @@ body {
                     h3{
                         font-size: 20px;
                         margin-bottom: 20px;
+                    }
+                    img{
+                        width: 100%;
+                        height: auto;
                     }
                     input,textarea,select{
                         outline: none;
@@ -1100,6 +1105,7 @@ body {
                         border-color: rgba(0, 0, 0, 0);
                         box-shadow:0px 0px 8px 2px #ccc inset;
                         height: 150px;
+                        margin-bottom: 20px;
                     }
                     select{
                         padding: 10px 10px;
@@ -1114,14 +1120,24 @@ body {
                         font-size: 16px;
                     }
                     button{
-                        margin: 30px 0 60px 0;
+                        margin-top: 20px;
                         width: 100%;
                         padding: 10px 0px;
-                        background-color: rgb(0, 115, 255);
                         font-size: 18px;
                         border-radius: 5px;
                         border: initial;
+                    }
+                    #submit-btn{
                         color: white;
+                        background-color: rgb(0, 115, 255);
+                    }
+                    #return{
+                        border: solid black 1px;
+                        background-color: white;
+                    }
+                    #delete{
+                        color: white;
+                        background-color: rgb(255, 0, 25);
                     }
                 }
             }
@@ -1300,6 +1316,41 @@ body {
         }
     }
     //account_menu
+
+    //account_commnent
+    .accountComment{
+        width: 95vw;
+        margin-top: 2.5vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        margin-bottom: 2.5vw;
+        border-radius: 5px; //2.5vw;
+        box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+        padding-bottom: 50px;
+        h3{
+            font-weight: bold;
+            margin-bottom: 20px;
+            margin-top: 50px;
+            font-size: 20px;
+            width: 80%;
+        }
+        label{
+            font-size: 18px;
+            margin-top: 20px;
+            width: 80%;
+        }
+        img{
+            width: 80%;
+            height: auto;
+        }
+        table{
+            width: 85%;
+        }
+
+    }
+    //account_commnent
 }
 
 @media screen and (min-width: 600px){

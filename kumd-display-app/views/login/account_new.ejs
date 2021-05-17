@@ -18,7 +18,7 @@
                     <div class="new-account-form">
                         <h3>作品情報</h3>
                         <label for="file">イラスト(jpg)</label>
-                        <input type="file" id="file" name="file" value="upload" >
+                        <input type="file" id="file" name="file" value="upload" accept="image/jpeg" >
                         <label for="grade-select">回生</label>
                         <!-- //gradeは '1':'1回生', '2':'2回生', '3':'3回生', '4':'4回生', '5':'その他', '6':'合作'。 -->
                         <select name="grade" id="grade-select">
@@ -46,6 +46,7 @@
                         <textarea id="caption" type="text" maxlength="150" name="caption"></textarea>
                         <!-- <input type="submit" class="btn opne">保存して公開する</input> -->
                         <button id="submit-btn" class="btn opne">保存して公開する</button>
+                        <button class="btn return-btn" id="return">戻る</button>
                     </form>
                 </div>
             </div>
@@ -57,6 +58,7 @@
         <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
-        <script src='/javascripts/account.js'></script>
+        <script src='/javascripts/firebase_config.js'></script>
+        <script src='/javascripts/account_new.js'></script>
     </body>
 </html>

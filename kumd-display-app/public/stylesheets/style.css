@@ -1418,6 +1418,7 @@ body .login-container .other-btn {
 
 body .account-container .menu-contents {
   background-color: white;
+  padding-bottom: 60px;
   width: 95vw;
   margin-top: 2.5vw;
   margin-bottom: 2.5vw;
@@ -1460,6 +1461,11 @@ body .account-container .menu-contents .items-container .new-account-form h3 {
   margin-bottom: 20px;
 }
 
+body .account-container .menu-contents .items-container .new-account-form img {
+  width: 100%;
+  height: auto;
+}
+
 body .account-container .menu-contents .items-container .new-account-form input, body .account-container .menu-contents .items-container .new-account-form textarea, body .account-container .menu-contents .items-container .new-account-form select {
   outline: none;
   font-size: 18px;
@@ -1488,6 +1494,7 @@ body .account-container .menu-contents .items-container .new-account-form textar
   -webkit-box-shadow: 0px 0px 8px 2px #ccc inset;
           box-shadow: 0px 0px 8px 2px #ccc inset;
   height: 150px;
+  margin-bottom: 20px;
 }
 
 body .account-container .menu-contents .items-container .new-account-form select {
@@ -1509,14 +1516,27 @@ body .account-container .menu-contents .items-container .new-account-form #file 
 }
 
 body .account-container .menu-contents .items-container .new-account-form button {
-  margin: 30px 0 60px 0;
+  margin-top: 20px;
   width: 100%;
   padding: 10px 0px;
-  background-color: #0073ff;
   font-size: 18px;
   border-radius: 5px;
   border: initial;
+}
+
+body .account-container .menu-contents .items-container .new-account-form #submit-btn {
   color: white;
+  background-color: #0073ff;
+}
+
+body .account-container .menu-contents .items-container .new-account-form #return {
+  border: solid black 1px;
+  background-color: white;
+}
+
+body .account-container .menu-contents .items-container .new-account-form #delete {
+  color: white;
+  background-color: #ff0019;
 }
 
 body .change-check {
@@ -1747,6 +1767,50 @@ body #change:checked + .account-menu-wrapper .delete {
 body #change:checked + .account-menu-wrapper .comment {
   display: block;
   opacity: 1;
+}
+
+body .accountComment {
+  width: 95vw;
+  margin-top: 2.5vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: white;
+  margin-bottom: 2.5vw;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+  padding-bottom: 50px;
+}
+
+body .accountComment h3 {
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-top: 50px;
+  font-size: 20px;
+  width: 80%;
+}
+
+body .accountComment label {
+  font-size: 18px;
+  margin-top: 20px;
+  width: 80%;
+}
+
+body .accountComment img {
+  width: 80%;
+  height: auto;
+}
+
+body .accountComment table {
+  width: 85%;
 }
 
 @media screen and (min-width: 600px) {

@@ -1,16 +1,3 @@
-var firebaseConfig = {
-    apiKey: "AIzaSyA4chVLLT13u2-zlfDlt7p5GXD_98DgY2Q",
-    authDomain: "kumd-app.firebaseapp.com",
-    databaseURL: "https://kumd-app-default-rtdb.firebaseio.com",
-    projectId: "kumd-app",
-    storageBucket: "kumd-app.appspot.com",
-    messagingSenderId: "28972770999",
-    appId: "1:28972770999:web:59ad63f788f272e4868f32",
-    measurementId: "G-YPKJW425F5"
-};
-  // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         console.log("There's a user");
@@ -25,10 +12,9 @@ var file;
 var fileContent = document.getElementById('file');
 var fileButton = document.getElementById('submit-btn');
 
-const fileSize = 1000000; //画像のサイズ指定
-
 fileContent.addEventListener('change',function(e){
     file = e.target.files[0];
+    console.log(file.size);
 });
 
 fileButton.addEventListener("click",()=>{
@@ -43,7 +29,6 @@ fileButton.addEventListener("click",()=>{
     console.log("pennameValue",pennameValue);
     console.log("titleValue",titleValue);
     console.log("captionValue",captionValue);
-    const qualityNum = fileSize/file.size;
     const uid = firebase.auth().currentUser.uid;
     var imgNum;
     var usersData;
@@ -58,10 +43,7 @@ fileButton.addEventListener("click",()=>{
             // doc.data() will be undefined in this case
             console.log("No such document!");
         }
-        console.log('imgData',usersData);
         imgNum = usersData.imgNum+1;
-        console.log("imgNum",imgNum)
-        console.log("uid + imgNum",uid +"-"+ imgNum);
         usersData["img" + imgNum ] = uid +"-"+ imgNum;
         usersData["imgNum"] = imgNum;
         console.log("userData",usersData);
@@ -102,7 +84,7 @@ fileButton.addEventListener("click",()=>{
         //イラストの保存(storage)
         //イラスト一枚につき100kBほどに抑えたい。sizeとしては100000としたい。
         new Compressor(file,{
-            quality:qualityNum,
+            quality:judgeQuality(file.size),
             success(result) {
             console.log(result);
             var storageRef = firebase.storage().ref().child("imgs/"+ uid +"-"+ imgNum+".jpg");
@@ -117,3 +99,30 @@ fileButton.addEventListener("click",()=>{
         console.log("Error getting Users Data:", err)
     })
 });
+
+const returnButton = document.getElementById('return');
+returnButton.addEventListener("click",()=>{
+    if(window.confirm('変更内容は保存されませんが戻ってもよろしいでしょうか？')){
+        location.href = '/login/account';
+    }
+});
+
+function judgeQuality(fileSize){
+    console.log("judgeQuality");
+    if(fileSize<500000){
+        console.log(300000/fileSize);
+        return 100000/fileSize;
+    }else if(fileSize<1500000){
+        console.log(500000/fileSize);
+        return 150000/fileSize;
+    }else if(fileSize<3000000){
+        console.log(750000/fileSize);
+        return 250000/fileSize;
+    }else if(fileSize<10000000){
+        console.log(1000000/fileSize);
+        return 1000000/fileSize;
+    }else{
+        console.log(10000000/fileSize);
+        return 10000000/fileSize;
+    }
+}
