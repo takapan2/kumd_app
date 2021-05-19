@@ -19,6 +19,7 @@
                         <img src="" >
                         <font color = "red" >※イラストを変更したい場合は削除し、新規作成を行ってください。</font>
                         <label for="grade-select">回生</label>
+                        <p class="err-msg" id="grade-err"></p>
                         <!-- //gradeは '1':'1回生', '2':'2回生', '3':'3回生', '4':'4回生', '5':'その他', '6':'合作'。 -->
                         <select name="grade" id="grade-select">
                             <option value="">選択してください</option>
@@ -31,6 +32,7 @@
                         </select>
                         <!-- //sizeは '1':'B4', '2':'B5', '3':'その他'。 -->
                         <label for="size-select">サイズ</label>
+                        <p class="err-msg" id="size-err"></p>
                         <select name="size" id="size-select">
                             <option value="">選択してください</option>
                             <option value="1">B4</option>
@@ -38,10 +40,13 @@
                             <option value="3">その他</option>
                         </select>
                         <label for="title">作品名</label>
+                        <p class="err-msg" id="title-err"></p>
                         <input class="text-input" type="text" name="title" id="title">
                         <label for="penname">ペンネーム</label>
+                        <p class="err-msg" id="penname-err"></p>
                         <input class="text-input" type="text" name="penname" id="penname">
                         <label for="caption">説明文(150字以内)</label>
+                        <p class="err-msg" id="caption-err"></p>
                         <textarea id="caption" type="text" maxlength="150" name="caption"></textarea>
                         <button id="submit-btn" class="btn">変更内容を更新して公開する</button>
                         <button class="btn delete-btn" id="delete">削除</button>
@@ -67,6 +72,14 @@ const FIREBASE_DATA ={
         IMGS:'imgs',
         USERS:'users',
     }
+}
+
+const VALIDATION = {
+    GRADE:"回生を選択してください。",
+    SIZE:"サイズを選択してください。",
+    PENNAME:"ペンネームを入力してください。",
+    TITLE:"タイトルを入力してください。",
+    CAPTION:"説明文を入力してください。",
 }
         </script>
         <script>
@@ -95,13 +108,25 @@ firebase.auth().onAuthStateChanged(function(user) {
 const submitButton = document.getElementById('submit-btn');
 const deleteButton = document.getElementById('delete');
 
+const gradeErrMsg = document.querySelector('#grade-err');
+const sizeErrMsg = document.querySelector('#size-err');
+const pennameErrMsg = document.querySelector('#penname-err');
+const titleErrMsg = document.querySelector('#title-err');
+const captionErrMsg = document.querySelector('#caption-err');
+
 submitButton.addEventListener("click",()=>{
     console.log("click fileButton");
+    gradeErrMsg.innerText = "";
+    sizeErrMsg.innerText = "";
+    pennameErrMsg.innerText = "";
+    titleErrMsg.innerText = "";
+    captionErrMsg.innerText = "";
     const gradeValue = document.getElementById('grade-select').value;
     const sizeValue = document.getElementById('size-select').value;
     const pennameValue = document.getElementById('penname').value;
     const titleValue = document.getElementById('title').value;
     const captionValue = document.getElementById('caption').value;
+    validation(gradeValue, sizeValue, pennameValue, titleValue, captionValue);
     const imgObject = {
             grade: gradeValue,
             size: sizeValue,
@@ -243,6 +268,31 @@ function deleteFunc(value,uid){
             }).catch(function(error) {
             // Uh-oh, an error occurred!
         });
+    }
+
+    function validation(gradeValue, sizeValue, pennameValue, titleValue, captionValue){
+        var judge = 0;
+        if(gradeValue==""){
+            gradeErrMsg.innerText = VALIDATION.GRADE;
+            judge++;
+        }
+        if(sizeValue==""){
+            sizeErrMsg.innerText = VALIDATION.SIZE;
+            judge++;
+        }
+        if(pennameValue==""){
+            pennameErrMsg.innerText = VALIDATION.PENNAME;
+            judge++;
+        }
+        if(titleValue==""){
+            titleErrMsg.innerText = VALIDATION.TITLE;
+            judge++;
+        }
+        if(captionValue==""){
+            captionErrMsg.innerText = VALIDATION.CAPTION;
+            judge++;
+        }
+        if(judge!=0)throw Error("Validation!!");
     }
         </script>
     </body>

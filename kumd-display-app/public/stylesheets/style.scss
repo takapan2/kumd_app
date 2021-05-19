@@ -86,10 +86,16 @@
 
 *{
     margin: 0px;
+    word-wrap:break-word;
 }
 
 a{
     text-decoration: none;
+}
+
+.err-msg{
+    width: 100%;
+    color: red;
 }
 
 .btn:hover{
@@ -942,8 +948,20 @@ body {
                 box-shadow:0px 0px 8px 2px #ccc inset;
             }
         }
-        .submit-bottom{
-            width: 100px;
+        button{
+            margin: 20px 15px;
+            width: 50%;
+            padding: 10px 0px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: initial;
+            height: 50px;
+            color: white;
+            background-color: rgb(0, 115, 255);
+            span{
+                color: white;
+                margin-right: 10px;
+            }
         }
     }
     //bottom部分
@@ -963,6 +981,7 @@ body {
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        padding-bottom: 60px;
         .title{
             font-size: 24px;
             //width: 80%;
@@ -1009,10 +1028,12 @@ body {
                     color: white;
                 }
             }
-        
+        }
+        .err-msg{
+            width: 80%;
         }
         .other-btn{
-            margin: 30px 0 60px 0;
+            margin: 30px 0 0px 0;
             width: 80%;
             padding: 10px 0px;
             background-color: white;

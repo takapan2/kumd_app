@@ -17,9 +17,11 @@
                     <!-- <form class="new-account-form" action="/login/account" method="POST" enctype="multipart/form-data"> -->
                     <div class="new-account-form">
                         <h3>作品情報</h3>
-                        <label for="file">イラスト(jpg)</label>
+                        <label for="file">イラスト(jpg、5MB以下)</label>
+                        <p class="err-msg" id="file-err"></p>
                         <input type="file" id="file" name="file" value="upload" accept="image/jpeg" >
                         <label for="grade-select">回生</label>
+                        <p class="err-msg" id="grade-err"></p>
                         <!-- //gradeは '1':'1回生', '2':'2回生', '3':'3回生', '4':'4回生', '5':'その他', '6':'合作'。 -->
                         <select name="grade" id="grade-select">
                             <option value="">選択してください</option>
@@ -32,6 +34,7 @@
                         </select>
                         <!-- //sizeは '1':'B4', '2':'B5', '3':'その他'。 -->
                         <label for="size-select">サイズ</label>
+                        <p class="err-msg" id="size-err"></p>
                         <select name="size" id="size-select">
                             <option value="">選択してください</option>
                             <option value="1">B4</option>
@@ -39,10 +42,13 @@
                             <option value="3">その他</option>
                         </select>
                         <label for="title">作品名</label>
+                        <p class="err-msg" id="title-err"></p>
                         <input class="text-input" type="text" name="title" id="title">
                         <label for="penname">ペンネーム</label>
+                        <p class="err-msg" id="penname-err"></p>
                         <input class="text-input" type="text" name="penname" id="penname">
                         <label for="caption">説明文(150字以内)</label>
+                        <p class="err-msg" id="caption-err"></p>
                         <textarea id="caption" type="text" maxlength="150" name="caption"></textarea>
                         <!-- <input type="submit" class="btn opne">保存して公開する</input> -->
                         <button id="submit-btn" class="btn opne">保存して公開する</button>
@@ -59,6 +65,19 @@
         <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
         <script src='/javascripts/firebase_config.js'></script>
+        <script>
+            const VALIDATION = {
+    FILE:{
+        VAL:"ファイルを選択してください。",
+        SIZE:"5MB以下のファイルを選択してください。",
+    },
+    GRADE:"回生を選択してください。",
+    SIZE:"サイズを選択してください。",
+    PENNAME:"ペンネームを入力してください。",
+    TITLE:"タイトルを入力してください。",
+    CAPTION:"説明文を入力してください。",
+}
+        </script>
         <script src='/javascripts/account_new.js'></script>
     </body>
 </html>

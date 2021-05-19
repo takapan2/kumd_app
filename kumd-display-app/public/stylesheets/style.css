@@ -170,10 +170,16 @@
 
 * {
   margin: 0px;
+  word-wrap: break-word;
 }
 
 a {
   text-decoration: none;
+}
+
+.err-msg {
+  width: 100%;
+  color: red;
 }
 
 .btn:hover {
@@ -1305,8 +1311,21 @@ body .display-bottom .about-display-form .comment-area {
           box-shadow: 0px 0px 8px 2px #ccc inset;
 }
 
-body .display-bottom .submit-bottom {
-  width: 100px;
+body .display-bottom button {
+  margin: 20px 15px;
+  width: 50%;
+  padding: 10px 0px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: initial;
+  height: 50px;
+  color: white;
+  background-color: #0073ff;
+}
+
+body .display-bottom button span {
+  color: white;
+  margin-right: 10px;
 }
 
 body #register-form {
@@ -1335,6 +1354,7 @@ body .login-container {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  padding-bottom: 60px;
 }
 
 body .login-container .title {
@@ -1399,8 +1419,12 @@ body .login-container .form .btn-container button {
   color: white;
 }
 
+body .login-container .err-msg {
+  width: 80%;
+}
+
 body .login-container .other-btn {
-  margin: 30px 0 60px 0;
+  margin: 30px 0 0px 0;
   width: 80%;
   padding: 10px 0px;
   background-color: white;

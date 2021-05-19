@@ -54,44 +54,40 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
-var submitButton = document.getElementById('submit-btn');
-var deleteButton = document.getElementById('delete');
+// var submitButton = document.getElementById('submit-btn');
 
-submitButton.addEventListener("click",()=>{
-    console.log("click fileButton");
-    const gradeValue = document.getElementById('grade-select').value;
-    const sizeValue = document.getElementById('size-select').value;
-    const pennameValue = document.getElementById('penname').value;
-    const titleValue = document.getElementById('title').value;
-    const captionValue = document.getElementById('caption').value;
-    console.log("change_gradeValue",gradeValue);
-    console.log("change_sizeValue",sizeValue);
-    console.log("change_pennameValue",pennameValue);
-    console.log("change_titleValue",titleValue);
-    console.log("change_captionValue",captionValue);
-    const uid = firebase.auth().currentUser.uid;
-    const db = firebase.firestore();
-    const imgsRef = db.collection('imgs').doc(uid+"-"+queryValue);
-    //イラスト情報の保存(firestore)
-    imgsRef.update({
-            grade: gradeValue,
-            size: sizeValue,
-            penname: pennameValue,
-            title: titleValue,
-            caption: captionValue,
-        })
-        .then(() => {
-            console.log("Imgs Data successfully changed!");
-            location.href='/login/account';
-        })
-        .catch((error) => {
-            console.error("Error changing Imgs Data: ", error);
-        });
-});
+// submitButton.addEventListener("click",()=>{
+//     console.log("click fileButton");
+//     const gradeValue = document.getElementById('grade-select').value;
+//     const sizeValue = document.getElementById('size-select').value;
+//     const pennameValue = document.getElementById('penname').value;
+//     const titleValue = document.getElementById('title').value;
+//     const captionValue = document.getElementById('caption').value;
+//     console.log("change_gradeValue",gradeValue);
+//     console.log("change_sizeValue",sizeValue);
+//     console.log("change_pennameValue",pennameValue);
+//     console.log("change_titleValue",titleValue);
+//     console.log("change_captionValue",captionValue);
+//     const uid = firebase.auth().currentUser.uid;
+//     const db = firebase.firestore();
+//     const imgsRef = db.collection('imgs').doc(uid+"-"+queryValue);
+//     //イラスト情報の保存(firestore)
+//     imgsRef.update({
+//             grade: gradeValue,
+//             size: sizeValue,
+//             penname: pennameValue,
+//             title: titleValue,
+//             caption: captionValue,
+//         })
+//         .then(() => {
+//             console.log("Imgs Data successfully changed!");
+//             location.href='/login/account';
+//         })
+//         .catch((error) => {
+//             console.error("Error changing Imgs Data: ", error);
+//         });
+// });
 
-deleteButton.addEventListener("click",()=>{
-
-});
 
 function readInfo(imgsValue){
     const uid = firebase.auth().currentUser.uid;
@@ -105,6 +101,21 @@ function readInfo(imgsValue){
             console.log("imgsData:", imgsData);
             writeInfo(imgsData);
             //readImg(imgsValue);
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+            location.href='/login/account';
+        }
+    }).catch((err)=>{
+        console.log("Error getting Imgs Data:", err)
+    })
+    const crientsRef = db.collection('crients').doc(imgsUid);
+    crientsRef.get().then((doc)=>{
+        if (doc.exists) {
+            var crientsData = doc.data();
+            delete crientsData.vote;
+            delete crientsData.commentNum;
+            writeComment(crientsData);
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
@@ -141,6 +152,24 @@ function readImg(imgsValue){
     });
     //ファイアーベースから画像取得完了
 }
+
+function writeComment(){
+
+}
+        </script>
+        <script>
+function getDecSort(object){
+        var pairs = Object.entries(object);
+        pairs.sort(function(p1, p2){
+            var p1Key = parseInt(p1[0].replace(/[^0-9]/g, '')), p2Key = parseInt(p2[0].replace(/[^0-9]/g, ''));
+            console.log('p1Key',p1Key);
+            console.log('p2Key',p2Key);
+            if(p1Key < p2Key){ return -1; }
+            if(p1Key > p2Key){ return 1; }
+            return 0;
+        });
+        return Object.fromEntries(pairs);
+    }
         </script>
     </body>
 </html>

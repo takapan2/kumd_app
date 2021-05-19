@@ -1,251 +1,304 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <title>2021年度春のパネル展示会</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel='stylesheet' href='/stylesheets/style.css' />
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/stylesheets/swiper-bundle.min.css">
-        <script src="/javascripts/jquery-3.5.1.min.js"></script>
-    </head>
-    <body class="container">
-        <input id="change" class="change-check" type="checkbox">
-        <div class="account-menu-wrapper">
-            <div class="account-menu-header">
-                <div class="header-content">
-                    <button id="logout" class="btn">ログアウト</button>
-                    <button id="change-comment" class="btn"><label for="change">コメント</label></button>
-                    <button id="change-edit" class="btn"><label for="change">編集</label></button>
-                </div>
-            </div>
-            <div class="account-menu-container">
-                <div class="account-menu-contents" id="templete-content"></div>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>2021年度春のパネル展示会</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/stylesheets/swiper-bundle.min.css" />
+    <script src="/javascripts/jquery-3.5.1.min.js"></script>
+</head>
+
+<body class="container">
+    <input id="change" class="change-check" type="checkbox" />
+    <div class="account-menu-wrapper">
+        <div class="account-menu-header">
+            <div class="header-content">
+                <button id="logout" class="btn">ログアウト</button>
+                <button id="change-comment" class="btn">
+            <label for="change">コメント</label>
+          </button>
+                <button id="change-edit" class="btn">
+            <label for="change">編集</label>
+          </button>
             </div>
         </div>
-        <!-- テンプレート -->
-        <template id="account-menu-items-tem">
-            <div class="register-content">
-                <div class="account-img-content">
-                    <div class="in-shadow"></div>
-                    <img class="account-img" src="">
-                </div>
-                <div class="account-contents">
-                    <button class="edit btn" value="" >編集</button>
-                    <button class="delete btn" value="" >削除</button>
-                    <button class="comment btn" value="" >コメント</button>
-                </div>
-            </div>
-        </template>
-        <template id="new-register-tem" >
-            <div class="register-content">
-                <div class="account-img-content">
-                    <div class="in-shadow"></div>
-                    <div class="fa fa-plus-circle"></div>
-                </div>
-                <div class="account-contents">
-                    <button class="btn register-btn" id="new-register">新規作成</button>
-                </div>
-            </div>
-            <div class="content-no"></div>
-        </template>
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
-        <script>
-            var firebaseConfig = {
-    apiKey: "AIzaSyA4chVLLT13u2-zlfDlt7p5GXD_98DgY2Q",
-    authDomain: "kumd-app.firebaseapp.com",
-    databaseURL: "https://kumd-app-default-rtdb.firebaseio.com",
-    projectId: "kumd-app",
-    storageBucket: "kumd-app.appspot.com",
-    messagingSenderId: "28972770999",
-    appId: "1:28972770999:web:59ad63f788f272e4868f32",
-    measurementId: "G-YPKJW425F5"
-};
-  // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+        <div class="account-menu-container">
+            <div class="account-menu-contents" id="templete-content"></div>
+        </div>
+    </div>
+    <!-- テンプレート -->
+    <template id="account-menu-items-tem">
+      <div class="register-content">
+        <div class="account-img-content">
+          <div class="in-shadow"></div>
+          <img class="account-img" src="" />
+        </div>
+        <div class="account-contents">
+          <button class="edit btn" value="">編集</button>
+          <button class="delete btn" value="">削除</button>
+          <button class="comment btn" value="">コメント</button>
+        </div>
+      </div>
+    </template>
+    <template id="new-register-tem">
+      <div class="register-content">
+        <div class="account-img-content">
+          <div class="in-shadow"></div>
+          <div class="fa fa-plus-circle"></div>
+        </div>
+        <div class="account-contents">
+          <button class="btn register-btn" id="new-register">新規作成</button>
+        </div>
+      </div>
+      <div class="content-no"></div>
+    </template>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyA4chVLLT13u2-zlfDlt7p5GXD_98DgY2Q",
+            authDomain: "kumd-app.firebaseapp.com",
+            databaseURL: "https://kumd-app-default-rtdb.firebaseio.com",
+            projectId: "kumd-app",
+            storageBucket: "kumd-app.appspot.com",
+            messagingSenderId: "28972770999",
+            appId: "1:28972770999:web:59ad63f788f272e4868f32",
+            measurementId: "G-YPKJW425F5",
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
 
-var uid;
+        var uid;
 
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        console.log("There's a user");
-        uid = firebase.auth().currentUser.uid;
-        readImg();
-    } else {
-        console.log("No user");
-        location.href='/login';
-    }
-});
-
-const fragment = document.createDocumentFragment();
-
-function readImg(){
-    var i=0;
-    // const uid = firebase.auth().currentUser.uid;
-    var usersData;
-    const db = firebase.firestore();
-    const userRef = db.collection('users').doc(uid);
-    userRef.get().then((doc)=>{
-        if (doc.exists) {
-            usersData = doc.data();
-            delete usersData.imgNum;
-            usersData = getDecSort(usersData);
-            console.log("usersData:", usersData);
-            madeItems(usersData);
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-        }
-    }).catch((err)=>{
-        console.log("Error getting Users Data:", err)
-    })
-}
-
-function madeItems(data){
-    const templeteContent = document.getElementById('templete-content');
-    const itemsContent = document.querySelector('#account-menu-items-tem').content;
-    const registerContent = document.querySelector('#new-register-tem').content;
-    for(const property in data){
-        const clone = document.importNode(itemsContent, true);
-
-        const image = clone.querySelector('img');
-        const editBtn = clone.querySelector('.edit');
-        const deleteBtn = clone.querySelector('.delete');
-        const commentBtn = clone.querySelector('.comment');
-
-        //ファイアーベースから画像を取得
-        //getUserImg(data[property],image);
-
-        editBtn.value=data[property].split("-")[1];
-        deleteBtn.value=data[property].split("-")[1];
-        commentBtn.value=data[property].split("-")[1];
-        fragment.appendChild(clone);
-    }
-    const check = document.importNode(registerContent,true);
-    fragment.appendChild(check);
-    templeteContent.appendChild(fragment);
-    clickBtn();
-}
-
-function clickBtn(){
-    const registerButton = document.getElementById('new-register');
-    const editButton = $(".edit");
-    const deleteButton = $(".delete");
-    const commentButton = $(".comment");
-
-    editButton.on("click",function(){
-        const editValue = $(this).attr("value");
-        console.log('edit',editValue);
-        location.href=`/login/account/edit?value=${editValue}`;
-    });
-
-    deleteButton.on("click",function(){
-        const deleteValue = $(this).attr("value");
-        console.log('delete',deleteValue);
-        deleteFunc(deleteValue,uid)
-    });
-
-    commentButton.on("click",function(){
-        const commentValue = $(this).attr("value");
-        console.log('comment',commentValue);
-    });
-
-    registerButton.addEventListener("click",()=>{
-        location.href=`/login/account/new`;
-    });
-}
-
-        </script>
-<script>
-    //クエリパラメータを取得、オブジェクトとして返す。
-    function getQueryObject(){
-        var queryString = window.location.search;
-        var queryObject = new Object();
-        if(queryString){
-            queryString = queryString.substring(1);
-            var parameters = queryString.split('&');
-    
-            for (var i = 0; i < parameters.length; i++) {
-                var element = parameters[i].split('=');
-                var paramName = decodeURIComponent(element[0]);
-                var paramValue = decodeURIComponent(element[1]);
-                queryObject[paramName] = paramValue;
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                console.log("There's a user");
+                uid = firebase.auth().currentUser.uid;
+                readImg();
+            } else {
+                console.log("No user");
+                location.href = "/login";
             }
-        }
-        return queryObject;
-    }
-    
-    //画像の取得から反映まで行います。
-    function getUserImg(imgUid,element){
-        const storage = firebase.storage();
-        var storageRef = storage.ref();
-        console.log('imgUid',imgUid);
-        storageRef.child('imgs/'+imgUid+".jpg").getDownloadURL().then(function(url) {
-            //エレメントに画像を反映
-            element.src = url;
-        }).catch((error) => {
-            // Handle any errors
-            console.log("err >>>",error);
         });
-    }
-    //オブジェクトのキーの順番に並び替える。
-    function getDecSort(object){
-        var pairs = Object.entries(object);
-        pairs.sort(function(p1, p2){
-            var p1Key = p1[0], p2Key = p2[0];
-            if(p1Key < p2Key){ return -1; }
-            if(p1Key > p2Key){ return 1; }
-            return 0;
-        });
-        return Object.fromEntries(pairs);
-    }
 
-    function deleteFunc(value,uid){
-        if(window.confirm('一度削除したイラスト情報は元に戻りません。削除してもよろしいでしょうか？')){
+        const fragment = document.createDocumentFragment();
+
+        function readImg() {
+            var i = 0;
+            // const uid = firebase.auth().currentUser.uid;
+            var usersData;
             const db = firebase.firestore();
-            db.collection("imgs").doc(`${uid}-${value}`).delete().then(() => {
-                console.log("imgs Document successfully deleted!");
-                deleteUsersFunc(value,uid);
-            }).catch((error) => {
-                console.error("Error removing document: ", error);
+            const userRef = db.collection("users").doc(uid);
+            userRef
+                .get()
+                .then((doc) => {
+                    if (doc.exists) {
+                        usersData = doc.data();
+                        delete usersData.imgNum;
+                        usersData = getDecSort(usersData);
+                        console.log("usersData:", usersData);
+                        madeItems(usersData);
+                    } else {
+                        // doc.data() will be undefined in this case
+                        console.log("No such document!");
+                    }
+                })
+                .catch((err) => {
+                    console.log("Error getting Users Data:", err);
+                });
+        }
+
+        function madeItems(data) {
+            const templeteContent = document.getElementById("templete-content");
+            const itemsContent = document.querySelector("#account-menu-items-tem")
+                .content;
+            const registerContent = document.querySelector("#new-register-tem")
+                .content;
+            for (const property in data) {
+                const clone = document.importNode(itemsContent, true);
+
+                const image = clone.querySelector("img");
+                const editBtn = clone.querySelector(".edit");
+                const deleteBtn = clone.querySelector(".delete");
+                const commentBtn = clone.querySelector(".comment");
+
+                //ファイアーベースから画像を取得
+                //getUserImg(data[property],image);
+
+                editBtn.value = data[property].split("-")[1];
+                deleteBtn.value = data[property].split("-")[1];
+                commentBtn.value = data[property].split("-")[1];
+                fragment.appendChild(clone);
+            }
+            const check = document.importNode(registerContent, true);
+            fragment.appendChild(check);
+            templeteContent.appendChild(fragment);
+            clickBtn();
+        }
+
+        function clickBtn() {
+            const registerButton = document.getElementById("new-register");
+            const logoutButton = document.getElementById("logout");
+            const editButton = $(".edit");
+            const deleteButton = $(".delete");
+            const commentButton = $(".comment");
+
+            editButton.on("click", function() {
+                const editValue = $(this).attr("value");
+                console.log("edit", editValue);
+                location.href = `/login/account/edit?value=${editValue}`;
+            });
+
+            deleteButton.on("click", function() {
+                const deleteValue = $(this).attr("value");
+                console.log("delete", deleteValue);
+                deleteFunc(deleteValue, uid);
+            });
+
+            commentButton.on("click", function() {
+                const commentValue = $(this).attr("value");
+                console.log("comment", commentValue);
+            });
+
+            registerButton.addEventListener("click", () => {
+                location.href = `/login/account/new`;
+            });
+
+            logoutButton.addEventListener("click", () => {
+                console.log("logout!");
+                logout();
             });
         }
-    }
+        //logout
+function logout(){
+    firebase.auth().signOut().then(()=>{
+          console.log("ログアウトしました");
+          location.href = `/login`;
+        })
+        .catch( (error)=>{
+          console.log(`ログアウト時にエラーが発生しました (${error})`);
+        });
+}
+    </script>
+    <script>
+        //クエリパラメータを取得、オブジェクトとして返す。
+        function getQueryObject() {
+            var queryString = window.location.search;
+            var queryObject = new Object();
+            if (queryString) {
+                queryString = queryString.substring(1);
+                var parameters = queryString.split("&");
 
-    function deleteUsersFunc(value,uid){
-        const db = firebase.firestore();
-        var usersRef = db.collection('users').doc(uid);
-        // Remove the 'capital' field from the document
-        var removeImg = usersRef.update({
-            [`img${value}`]: firebase.firestore.FieldValue.delete()
-        });
-        deleteCrient(value,uid)
-    }
-    function deleteCrient(value,uid){
-        const db = firebase.firestore();
-        db.collection("crients").doc(`${uid}-${value}`).delete().then(() => {
-            console.log("crient Document successfully deleted!");
-            deleteImgFunc(value,uid);
-        }).catch((error) => {
-            console.error("Error removing crient document: ", error);
-        });
-    }
+                for (var i = 0; i < parameters.length; i++) {
+                    var element = parameters[i].split("=");
+                    var paramName = decodeURIComponent(element[0]);
+                    var paramValue = decodeURIComponent(element[1]);
+                    queryObject[paramName] = paramValue;
+                }
+            }
+            return queryObject;
+        }
 
-    function deleteImgFunc(value,uid){
-        const storage = firebase.storage();
-        var storageRef = storage.ref();
-        storageRef.child('imgs/'+uid+"-"+value+".jpg").delete().then(function() {
-            // File deleted successfully
-            console.log("delete success!!");
-            location.href="/login/account/";
-            }).catch(function(error) {
-            // Uh-oh, an error occurred!
-        });
-    }
-            </script>
-    </body>
+        //画像の取得から反映まで行います。
+        function getUserImg(imgUid, element) {
+            const storage = firebase.storage();
+            var storageRef = storage.ref();
+            console.log("imgUid", imgUid);
+            storageRef
+                .child("imgs/" + imgUid + ".jpg")
+                .getDownloadURL()
+                .then(function(url) {
+                    //エレメントに画像を反映
+                    element.src = url;
+                })
+                .catch((error) => {
+                    // Handle any errors
+                    console.log("err >>>", error);
+                });
+        }
+        //オブジェクトのキーの順番に並び替える。
+        function getDecSort(object) {
+            var pairs = Object.entries(object);
+            pairs.sort(function(p1, p2) {
+                var p1Key = parseInt(p1[0].replace(/[^0-9]/g, "")),
+                    p2Key = parseInt(p2[0].replace(/[^0-9]/g, ""));
+                if (p1Key < p2Key) {
+                    return -1;
+                }
+                if (p1Key > p2Key) {
+                    return 1;
+                }
+                return 0;
+            });
+            return Object.fromEntries(pairs);
+        }
+
+        function deleteFunc(value, uid) {
+            if (
+                window.confirm(
+                    "一度削除したイラスト情報は元に戻りません。削除してもよろしいでしょうか？"
+                )
+            ) {
+                const db = firebase.firestore();
+                db.collection("imgs")
+                    .doc(`${uid}-${value}`)
+                    .delete()
+                    .then(() => {
+                        console.log("imgs Document successfully deleted!");
+                        deleteUsersFunc(value, uid);
+                    })
+                    .catch((error) => {
+                        console.error("Error removing document: ", error);
+                    });
+            }
+        }
+
+        function deleteUsersFunc(value, uid) {
+            const db = firebase.firestore();
+            var usersRef = db.collection("users").doc(uid);
+            // Remove the 'capital' field from the document
+            var removeImg = usersRef.update({
+                [`img${value}`]: firebase.firestore.FieldValue.delete(),
+            });
+            deleteCrient(value, uid);
+        }
+
+        function deleteCrient(value, uid) {
+            const db = firebase.firestore();
+            db.collection("crients")
+                .doc(`${uid}-${value}`)
+                .delete()
+                .then(() => {
+                    console.log("crient Document successfully deleted!");
+                    deleteImgFunc(value, uid);
+                })
+                .catch((error) => {
+                    console.error("Error removing crient document: ", error);
+                });
+        }
+
+        function deleteImgFunc(value, uid) {
+            const storage = firebase.storage();
+            var storageRef = storage.ref();
+            storageRef
+                .child("imgs/" + uid + "-" + value + ".jpg")
+                .delete()
+                .then(function() {
+                    // File deleted successfully
+                    console.log("delete success!!");
+                    location.href = "/login/account/";
+                })
+                .catch(function(error) {
+                    // Uh-oh, an error occurred!
+                });
+        }
+    </script>
+</body>
+
 </html>

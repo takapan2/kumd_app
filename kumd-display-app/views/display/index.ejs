@@ -31,18 +31,25 @@ firebase.auth().onAuthStateChanged(function(user) {
         readImg();
     } else {
         console.log("No user");
-        location.href='/login';
+        //location.href='/login';
     }
 });
 
 const fragment = document.createDocumentFragment();
+const submitButton = document.querySelector('.crient-submit');
+
+submitButton.addEventListener("click",()=>{
+    const crientContents = document.querySelectorAll('.crient-content');
+    for(var i in crientContents){
+        getCrientContent(crientContents[i]);
+    }
+});
 
 function readImg(){
     var i=0;
     const uid = firebase.auth().currentUser.uid;
     var usersData;
     const db = firebase.firestore();
-    // const imgsRef = db.collection('imgs').orderBy("size", "desc").orderBy("grade", "desc");
     const imgsRef = db.collection('imgs').orderBy("size").orderBy("grade");
     imgsRef.get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -56,7 +63,8 @@ function readImg(){
 }
 
 function displayWrite(data){
-    const itemsContent = document.querySelector('#display-item-tem').content;
+    const itemsContent = document.querySelector('#display-item-tem').content
+    if(data.grade==""||!data.grade)data.grade=5; //何かしらの不具合でgradeの値が入っていない場合、その他に振り割る。
     const templeteContent = document.getElementById(`scroll-${data.grade}`);
 
     const clone = document.importNode(itemsContent, true);
@@ -69,9 +77,9 @@ function displayWrite(data){
     const caption = clone.querySelector('.caption');
 
     const heartCheck = clone.querySelector('.heart-check');
+    const content = clone.querySelector('.crient-content');
     const faHeart = clone.querySelector('.fa-heart');
     const faComment = clone.querySelector('.fa-comment');
-    const commentArea = clone.querySelector('.comment-area');
 
     //getUserImg(data.id,image);
     acdCheck.id = `acd-check${data.id}`;
@@ -84,12 +92,47 @@ function displayWrite(data){
     caption.innerHTML = data.caption;
 
     heartCheck.id = `heart-check${data.id}`;
-    heartCheck.name = `heart-${data.id}`;
-    // faHeart.for = `heart-check${data.id}`;
-    // faComment.for = `acd-check${data.id}`;
+    content.name = data.id;
     faHeart.setAttribute("for",`heart-check${data.id}`);
     faComment.setAttribute("for",`acd-check${data.id}`);
-    commentArea.name = `comment-${data.id}`;
+}
+
+function getCrientContent(crientContent){
+    const imgUid = crientContent.name;
+    const voteValue = crientContent.querySelector('.heart-check').checked
+    const textValue = crientContent.querySelector('textarea').value;
+    if(voteValue||textValue!=""){
+        reflectFunc(voteValue,textValue);
+    }
+}
+
+function reflectFunc(voteValue,textValue){
+    const db = firebase.firestore();
+    const imgsRef = db.collection('imgs').doc(uid+"-"+queryValue);
+    imgsRef.get().then((doc)=>{
+        if (doc.exists) {
+            var imgData = doc.data();
+            var pushData ={};
+            if(voteValue)pushData.vote = imgData.vote + 1;
+            if(textValue != ""){
+                pushData.commentNum = imgData.commentNum + 1;
+                pushData[`comment${pushData.commentNum}`] = {comment: textValue, date: new Date() };
+            }
+            imgsRef.update(pushData)
+            .then(() => {
+                console.log("crient Data successfully changed!");
+                location.href='/display';
+            })
+            .catch((error) => {
+                console.error("Error changing Imgs Data: ", error);
+            });
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    }).catch((err)=>{
+        console.log("Error getting Imgs Data:", err)
+    })
 }
 
         </script>

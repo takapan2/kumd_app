@@ -12,6 +12,13 @@ var file;
 var fileContent = document.getElementById('file');
 var fileButton = document.getElementById('submit-btn');
 
+const fileErrMsg = document.querySelector('#file-err');
+const gradeErrMsg = document.querySelector('#grade-err');
+const sizeErrMsg = document.querySelector('#size-err');
+const pennameErrMsg = document.querySelector('#penname-err');
+const titleErrMsg = document.querySelector('#title-err');
+const captionErrMsg = document.querySelector('#caption-err');
+
 fileContent.addEventListener('change',function(e){
     file = e.target.files[0];
     console.log(file.size);
@@ -19,11 +26,18 @@ fileContent.addEventListener('change',function(e){
 
 fileButton.addEventListener("click",()=>{
     console.log("click fileButton");
+    fileErrMsg.innerText = "";
+    gradeErrMsg.innerText = "";
+    sizeErrMsg.innerText = "";
+    pennameErrMsg.innerText = "";
+    titleErrMsg.innerText = "";
+    captionErrMsg.innerText = "";
     const gradeValue = document.getElementById('grade-select').value;
     const sizeValue = document.getElementById('size-select').value;
     const pennameValue = document.getElementById('penname').value;
     const titleValue = document.getElementById('title').value;
     const captionValue = document.getElementById('caption').value;
+    validation(file,gradeValue, sizeValue, pennameValue, titleValue, captionValue);
     console.log("gradeValue",gradeValue);
     console.log("sizeValue",sizeValue);
     console.log("pennameValue",pennameValue);
@@ -57,7 +71,6 @@ fileButton.addEventListener("click",()=>{
         });
         //イラストの保存(firestore)
         db.collection("imgs").doc(uid +"-"+ imgNum ).set({
-            id: uid +"-"+ imgNum,
             grade: gradeValue,
             size: sizeValue,
             penname: pennameValue,
@@ -72,8 +85,8 @@ fileButton.addEventListener("click",()=>{
         });
         //投票数やコメントの保管
         db.collection("crients").doc(uid +"-"+ imgNum ).set({
-            id: uid +"-"+ imgNum,
-            vote:0,
+            accountNum: 0,
+            vote: 0,
         })
         .then(() => {
             console.log("Crients Data successfully written!");
@@ -107,22 +120,71 @@ returnButton.addEventListener("click",()=>{
     }
 });
 
+// function judgeQuality(fileSize){
+//     console.log("judgeQuality");
+//     if(fileSize<500000){
+//         console.log(300000/fileSize);
+//         return 100000/fileSize;
+//     }else if(fileSize<1500000){
+//         console.log(500000/fileSize);
+//         return 150000/fileSize;
+//     }else if(fileSize<3000000){
+//         console.log(750000/fileSize);
+//         return 250000/fileSize;
+//     }else if(fileSize<10000000){
+//         console.log(1000000/fileSize);
+//         return 1000000/fileSize;
+//     }else{
+//         console.log(10000000/fileSize);
+//         return 10000000/fileSize;
+//     }
+// }
 function judgeQuality(fileSize){
-    console.log("judgeQuality");
-    if(fileSize<500000){
-        console.log(300000/fileSize);
-        return 100000/fileSize;
-    }else if(fileSize<1500000){
-        console.log(500000/fileSize);
-        return 150000/fileSize;
-    }else if(fileSize<3000000){
-        console.log(750000/fileSize);
-        return 250000/fileSize;
-    }else if(fileSize<10000000){
-        console.log(1000000/fileSize);
-        return 1000000/fileSize;
+    const M = 1024;
+    if(fileSize<M*0.5){
+        console.log(0.8);
+        return 0.8;
+    }else if(fileSize<M*M){
+        console.log(0.6);
+        return 0.6;
+    }else if(fileSize<2*M*M){
+        console.log(0.4);
+        return 0.4;
     }else{
-        console.log(10000000/fileSize);
-        return 10000000/fileSize;
+        console.log(0.2);
+        return 0.2;
     }
+}
+
+function validation(file,gradeValue, sizeValue, pennameValue, titleValue, captionValue){
+    var judge = 0;
+    if(!file){
+        fileErrMsg.innerText = VALIDATION.FILE.VAL;
+        judge++;
+    }
+    if(file>5*1024*1024){
+        fileErrMsg.innerText = VALIDATION.FILE.SIZE;
+        judge++;
+    }
+    if(gradeValue==""){
+        gradeErrMsg.innerText = VALIDATION.GRADE;
+        judge++;
+    }
+    if(sizeValue==""){
+        sizeErrMsg.innerText = VALIDATION.SIZE;
+        judge++;
+    }
+    if(pennameValue==""){
+        pennameErrMsg.innerText = VALIDATION.PENNAME;
+        judge++;
+    }
+    if(titleValue==""){
+        titleErrMsg.innerText = VALIDATION.TITLE;
+        judge++;
+    }
+    if(captionValue==""){
+        captionErrMsg.innerText = VALIDATION.CAPTION;
+        judge++;
+    }
+    if(judge!=0)throw Error("Validation!!");
 }
