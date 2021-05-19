@@ -97,6 +97,31 @@ a{
     width: 100%;
     color: red;
 }
+::placeholder {
+    color:rgb(167, 167, 167);
+}
+
+.text-error{
+    display:none;
+    position:absolute;
+    top:-60px;
+    font-size:12px;
+    background-color:rgba(255,0,0,0.7);
+    color:#fff;
+    padding:10px;
+    text-align:center;
+  }
+  .text-error::before{
+    content:"";
+    position:absolute;
+    bottom:-10px;
+    left:10px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 6px 0 6px;
+    border-color: rgba(255,0,0,0.7) transparent transparent transparent;
+  }
 
 .btn:hover{
     opacity: 0.5;
@@ -882,6 +907,7 @@ body {
                         opacity: 0;
                         transition: 0.5s;
                         visibility: hidden;
+                        position: relative;
                         p{
                             font-size: 18px;
                         }
@@ -1001,9 +1027,13 @@ body {
             flex-direction: column;
             width: 80%;
             .sub-title{
-                margin-top: 10px;
+                margin-top: 20px;
                 width: 100%;
 
+            }
+            .sep{
+                width: 100%;
+                color: gray;
             }
             #mailAddress,#password{
                 width: calc(100% - 20px);

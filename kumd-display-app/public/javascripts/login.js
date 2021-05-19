@@ -20,7 +20,7 @@ const ERROR_DATA ={
     NEW: {
         'auth/invalid-email':'メールアドレスの形式が正しくありません。',
         'auth/weak-password':'パスワードは半角英字と半角数字を含めた6-16文字以内でお願いします。',
-        'auth/email-already-in-use':'メールアドレスは既に使用されています。',
+        'auth/email-already-in-use':'そのメールアドレスは既に使用されています。',
         'other':'メールアドレスまたはパスワードを変更し、再度お試しください。',
     }
 }

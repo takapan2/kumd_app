@@ -31,7 +31,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         readImg();
     } else {
         console.log("No user");
-        //location.href='/login';
+        readImg();
     }
 });
 
@@ -57,6 +57,8 @@ function readImg(){
             //console.log(doc.id, " => ", doc.data());
             displayWrite(doc.data());
         });
+        textValidation('.paint-comment',100);
+        textValidation('.contact-comment',200);
     }).catch((err)=>{
         console.log("Error getting Users Data:", err)
     })
@@ -134,7 +136,6 @@ function reflectFunc(voteValue,textValue){
         console.log("Error getting Imgs Data:", err)
     })
 }
-
         </script>
         <script>
 function getUserImg(imgUid,element){
@@ -149,6 +150,21 @@ function getUserImg(imgUid,element){
             console.log("err >>>",error);
         });
     }
+
+    function textValidation(element,wordLength){
+$(document).on('keyup', element, function(e) {
+    if($(this).val().length > wordLength){
+        showErrMsg($(".text-error"));
+    }
+    });
+}
+
+    function showErrMsg(target) {
+  target.fadeIn();
+  setTimeout(function(){
+    target.fadeOut();
+  }, 2000);
+}
         </script>
     </body>
 </html>
