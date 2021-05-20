@@ -66,6 +66,9 @@
 var uid;
 var imgUid;
 var value;
+const db = firebase.firestore();
+const storage = firebase.storage();
+
 const FIREBASE_DATA ={
     COLLECTION:{
         CRIENTS:'crients',
@@ -82,31 +85,45 @@ const VALIDATION = {
     CAPTION:"説明文を入力してください。",
 }
         </script>
+         <script>
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    console.log("There's a user");
+                    thereUser();
+                } else {
+                    console.log("No user");
+                    noUser();
+                }
+            });
+        </script>
         <script>
+        async function thereUser(){
+            try {
+                const queryObject = await getQueryObject();
+                value = await getQueryValue( queryObject, 'value', '/login/account');
+                uid = await firebase.auth().currentUser.uid;
+                imgUid = `${uid}-${value}`;
 
-var queryValue;
-
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        console.log("There's a user");
-        const queryObject = getQueryObject();
-        if(queryObject.value){
-            uid = firebase.auth().currentUser.uid;
-            imgUid = `${uid}-${queryObject.value}`;
-            value = queryObject.value;
-            readInfo(imgUid);
-        }else{
-            console.log("No value");
-            location.href='/login/account';
+                const imgData = await getStoreData('imgs',imgUid);
+                await writeEditData(imgData);
+                await getUserImg(imgUid,imageElement);
+            } catch (err){
+                console.log(err);
+            }
         }
-    } else {
-        console.log("No user");
-        location.href='/login';
-    }
-});
+        async function noUser(){
+            location.href = "/login";
+        }
 
 const submitButton = document.getElementById('submit-btn');
 const deleteButton = document.getElementById('delete');
+
+const gradeElement = document.getElementById('grade-select');
+const sizeElement = document.getElementById('size-select');
+const pennameElement = document.getElementById('penname');
+const titleElement = document.getElementById('title');
+const captionElement = document.getElementById('caption');
+const imageElement = document.querySelector('img');
 
 const gradeErrMsg = document.querySelector('#grade-err');
 const sizeErrMsg = document.querySelector('#size-err');
@@ -116,11 +133,13 @@ const captionErrMsg = document.querySelector('#caption-err');
 
 submitButton.addEventListener("click",()=>{
     console.log("click fileButton");
+    //validationのメッセージを一度非表示にする。
     gradeErrMsg.innerText = "";
     sizeErrMsg.innerText = "";
     pennameErrMsg.innerText = "";
     titleErrMsg.innerText = "";
     captionErrMsg.innerText = "";
+    //各inputのvalueを取得。
     const gradeValue = document.getElementById('grade-select').value;
     const sizeValue = document.getElementById('size-select').value;
     const pennameValue = document.getElementById('penname').value;
@@ -128,147 +147,28 @@ submitButton.addEventListener("click",()=>{
     const captionValue = document.getElementById('caption').value;
     validation(gradeValue, sizeValue, pennameValue, titleValue, captionValue);
     const imgObject = {
-            grade: gradeValue,
-            size: sizeValue,
-            penname: pennameValue,
-            title: titleValue,
-            caption: captionValue,
+        grade: gradeValue,
+        size: sizeValue,
+        penname: pennameValue,
+        title: titleValue,
+        caption: captionValue,
     };
     console.log("imgObject",imgObject);
-    dataUpdate(imgObject,FIREBASE_DATA.COLLECTION.IMGS,imgUid);
+    updateFunc(imgObject,FIREBASE_DATA.COLLECTION.IMGS,imgUid,'/login/account');
 });
 
 deleteButton.addEventListener("click",()=>{
-    deleteFunc(value,uid);
+    deleteFunc(value,uid,"/login/account/");
 });
 
-function readInfo(imgUid){
-    var imgData;
-    const db = firebase.firestore();
-    const userRef = db.collection('imgs').doc(imgUid);
-    userRef.get().then((doc)=>{
-        if (doc.exists) {
-            imgData = doc.data();
-            console.log("imgData:", imgData);
-            writeInfo(imgData);
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-            location.href='/login/account';
-        }
-    }).catch((err)=>{
-        console.log("Error getting Imgs Data:", err)
-    })
-}
-
-function writeInfo(imgData){
-    const gradeElement = document.getElementById('grade-select');
-    const sizeElement = document.getElementById('size-select');
-    const pennameElement = document.getElementById('penname');
-    const titleElement = document.getElementById('title');
-    const captionElement = document.getElementById('caption');
-    const imageElement = document.querySelector('img');
-
+//account_edit固有　formに既存のデータを入力する。
+function writeEditData(imgData){
     gradeElement.value = imgData.grade;
     sizeElement.value = imgData.size;
     pennameElement.value = imgData.penname;
     titleElement.value = imgData.title;
     captionElement.value = imgData.caption;
-
-    //getUserImg(imgData.id,imageElement);
 }
-
-//firebaseのデータを書き換える際に使用する関数
-function dataUpdate(object,collection,document){
-    const db = firebase.firestore();
-    const imgsRef = db.collection(collection).doc(document);
-    imgsRef.update(object)
-        .then(() => {
-            console.log("Imgs Data successfully changed!");
-            location.href='/login/account';
-        })
-        .catch((error) => {
-            console.error("Error changing Imgs Data: ", error);
-    });
-}
-        </script>
-
-
-        <script>
-//クエリパラメータを取得、オブジェクトとして返す。
-function getQueryObject(){
-    var queryString = window.location.search;
-    var queryObject = new Object();
-    if(queryString){
-        queryString = queryString.substring(1);
-        var parameters = queryString.split('&');
-
-        for (var i = 0; i < parameters.length; i++) {
-            var element = parameters[i].split('=');
-            var paramName = decodeURIComponent(element[0]);
-            var paramValue = decodeURIComponent(element[1]);
-            queryObject[paramName] = paramValue;
-        }
-    }
-    return queryObject;
-}
-
-//画像の取得から反映まで行います。
-function getUserImg(imgUid,element){
-    const storage = firebase.storage();
-    var storageRef = storage.ref();
-    console.log('imgUid',imgUid);
-    storageRef.child('imgs/'+imgUid+".jpg").getDownloadURL().then(function(url) {
-        //エレメントに画像を反映
-        element.src = url;
-    }).catch((error) => {
-        // Handle any errors
-        console.log("err >>>",error);
-    });
-}
-
-function deleteFunc(value,uid){
-        if(window.confirm('一度削除したイラスト情報は元に戻りません。削除してもよろしいでしょうか？')){
-            const db = firebase.firestore();
-            db.collection("imgs").doc(`${uid}-${value}`).delete().then(() => {
-                console.log("imgs Document successfully deleted!");
-                deleteUsersFunc(value,uid);
-            }).catch((error) => {
-                console.error("Error removing document: ", error);
-            });
-        }
-    }
-
-    function deleteUsersFunc(value,uid){
-        const db = firebase.firestore();
-        var usersRef = db.collection('users').doc(uid);
-        // Remove the 'capital' field from the document
-        var removeImg = usersRef.update({
-            [`img${value}`]: firebase.firestore.FieldValue.delete()
-        });
-        deleteCrient(value,uid)
-    }
-    function deleteCrient(value,uid){
-        const db = firebase.firestore();
-        db.collection("crients").doc(`${uid}-${value}`).delete().then(() => {
-            console.log("crient Document successfully deleted!");
-            deleteImgFunc(value,uid);
-        }).catch((error) => {
-            console.error("Error removing crient document: ", error);
-        });
-    }
-
-    function deleteImgFunc(value,uid){
-        const storage = firebase.storage();
-        var storageRef = storage.ref();
-        storageRef.child('imgs/'+uid+"-"+value+".jpg").delete().then(function() {
-            // File deleted successfully
-            console.log("delete success!!");
-            location.href="/login/account/";
-            }).catch(function(error) {
-            // Uh-oh, an error occurred!
-        });
-    }
 
     function validation(gradeValue, sizeValue, pennameValue, titleValue, captionValue){
         var judge = 0;
@@ -294,6 +194,113 @@ function deleteFunc(value,uid){
         }
         if(judge!=0)throw Error("Validation!!");
     }
+        </script>
+
+        <script>//共通関数
+
+//クエリパラメータを取得、オブジェクトとして返す。
+function getQueryObject(){
+    var queryString = window.location.search;
+    var queryObject = new Object();
+    if(queryString){
+        queryString = queryString.substring(1);
+        var parameters = queryString.split('&');
+
+        for (var i = 0; i < parameters.length; i++) {
+            var element = parameters[i].split('=');
+            var paramName = decodeURIComponent(element[0]);
+            var paramValue = decodeURIComponent(element[1]);
+            queryObject[paramName] = paramValue;
+        }
+    }
+    return queryObject;
+}
+
+    //queryObjectから特定のvalueを取得する　loseURLとはvalueが存在しなかった場合の遷移先を指す。
+    function getQueryValue( queryObject, key, loseURL){
+        if(queryObject[key]){
+            return queryObject[key];
+        }else{
+            console.log(`No ${key}`);
+            location.href=loseURL;
+        }
+    }
+
+    //画像の取得から反映まで行います。
+function getUserImg(imgUid,element){
+    const storage = firebase.storage();
+    var storageRef = storage.ref();
+    console.log('imgUid',imgUid);
+    storageRef.child('imgs/'+imgUid+".jpg").getDownloadURL().then(function(url) {
+        //エレメントに画像を反映
+        element.src = url;
+    }).catch((error) => {
+        // Handle any errors
+        console.log("err >>>",error);
+    });
+}
+async function getStoreData(collection,doc){
+            const storeRef = db.collection(collection).doc(doc);
+            const storeData = await storeRef.get();
+            if(await storeData.exists){
+                return storeData.data();
+            }else{
+                throw new Error(`No such document! collection= ${collection}, doc= ${doc}`);
+            }
+        }
+
+//delete時
+async function deleteFunc(value, uid, goalURL) {
+            if (await window.confirm("一度削除したイラスト情報は元に戻りません。削除してもよろしいでしょうか？")) {
+                try{
+                    const imgUid = `${uid}-${value}`;
+                    await deleteStoreDocument('imgs',imgUid);
+                    await deleteStoreDocument('crients',imgUid);
+                    await deleteStoreField('users',uid,value);
+                    await deleteStorageFile(imgUid);
+                    console.log("delete function all complete!");
+                    location.href = goalURL;
+                }catch(err){
+                    console.log('deleteFunc Err',err);
+                }
+            }
+        }
+        //firestoreでdocumentを削除する
+        function deleteStoreDocument(collection,imgUid){
+            var storeRef = db.collection(collection).doc(imgUid);
+            return storeRef.delete();
+        }
+
+        //firestoreでfieldを削除する
+        function deleteStoreField(collection, uid, value) {
+            var storeRef = db.collection(collection).doc(uid);
+            return storeRef.update({
+                [`img${value}`]: firebase.firestore.FieldValue.delete(),
+            });
+        }
+
+        //firestorageでファイルを削除する。
+        function deleteStorageFile(imgUid){
+            var storageRef = storage.ref();
+            return storageRef.child(`imgs/${imgUid}.jpg`).delete();
+        }
+
+//データを書き換える際の関数。
+async function updateFunc(object, collection, imgUid, goalURL){
+    try{
+        const imgUid = await `${uid}-${value}`;
+        await dataUpdate(object,collection, imgUid)
+        location.href= goalURL;
+    }catch(err){
+        console.log('updateFunc Err',err);
+    }
+}
+
+//firestoreでupdate処理をする。
+function dataUpdate(object,collection,document){
+    const imgsRef = db.collection(collection).doc(document);
+    return imgsRef.update(object);
+}
         </script>
     </body>
 </html>
