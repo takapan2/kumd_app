@@ -228,7 +228,6 @@ function getQueryObject(){
 
     //画像の取得から反映まで行います。
 function getUserImg(imgUid,element){
-    const storage = firebase.storage();
     var storageRef = storage.ref();
     console.log('imgUid',imgUid);
     storageRef.child('imgs/'+imgUid+".jpg").getDownloadURL().then(function(url) {
