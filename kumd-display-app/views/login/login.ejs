@@ -10,6 +10,7 @@
         <script src="/javascripts/jquery-3.5.1.min.js"></script>
     </head>
     <body class="container">
+        <%- include('./../loading') %>
         <div class="login-contents">
             <div class="login-container">
                 <h3 class="title">アカウントにログイン</h3>
@@ -27,6 +28,7 @@
                 <p id="login-err-msg" class="err-msg"></p>
                 <button id="register" class="other-btn btn" >新規登録</button>
                 <p id="new-err-msg" class="err-msg"></p>
+                <a id="return" class="other-btn btn" href="/display" >パネル展示会に戻る</a>
             </div>
         </div>
         <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
@@ -34,6 +36,9 @@
         <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
-        <script src='/javascripts/login.js'></script>
+        <script src="/javascripts/firebase_config.js"></script>
+        <script src="/javascripts/firebase_auth.js"></script>
+        <script src="/javascripts/login.js"></script>
+        <script src="/javascripts/common_func.js"></script>
     </body>
 </html>

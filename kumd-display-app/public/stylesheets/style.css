@@ -168,6 +168,34 @@
   }
 }
 
+@-webkit-keyframes down-load {
+  0% {
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+  }
+  100% {
+    width: 6px;
+    height: 6px;
+    opacity: .2;
+    margin-left: 7px;
+  }
+}
+
+@keyframes down-load {
+  0% {
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+  }
+  100% {
+    width: 6px;
+    height: 6px;
+    opacity: .2;
+    margin-left: 7px;
+  }
+}
+
 * {
   margin: 0px;
   word-wrap: break-word;
@@ -175,6 +203,144 @@
 
 a {
   text-decoration: none;
+}
+
+#loading {
+  position: fixed;
+  top: 0px;
+  z-index: 100;
+  height: 100vh;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #fff;
+}
+
+#loading p {
+  margin-top: 20px;
+}
+
+#loading .load-object {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+#loading .load-object .ball {
+  width: 50%;
+  height: 20px;
+  position: absolute;
+  top: calc(50% - 10px);
+  -webkit-transform-origin: 100% 50%;
+          transform-origin: 100% 50%;
+  left: 0;
+}
+
+#loading .load-object .ball::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #3780ff;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+#loading .load-object .ball-1::before {
+  -webkit-animation: down-load 1s linear 0s infinite;
+          animation: down-load 1s linear 0s infinite;
+}
+
+#loading .load-object .ball-2 {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+#loading .load-object .ball-2::before {
+  -webkit-animation: down-load 1s linear -0.125s infinite;
+          animation: down-load 1s linear -0.125s infinite;
+}
+
+#loading .load-object .ball-3 {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+#loading .load-object .ball-3::before {
+  -webkit-animation: down-load 1s linear -0.25s infinite;
+          animation: down-load 1s linear -0.25s infinite;
+}
+
+#loading .load-object .ball-4 {
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+#loading .load-object .ball-4::before {
+  -webkit-animation: down-load 1s linear -0.375s infinite;
+          animation: down-load 1s linear -0.375s infinite;
+}
+
+#loading .load-object .ball-5 {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+#loading .load-object .ball-5::before {
+  -webkit-animation: down-load 1s linear -0.5s infinite;
+          animation: down-load 1s linear -0.5s infinite;
+}
+
+#loading .load-object .ball-6 {
+  -webkit-transform: rotate(225deg);
+          transform: rotate(225deg);
+}
+
+#loading .load-object .ball-6::before {
+  -webkit-animation: down-load 1s linear -0.625s infinite;
+          animation: down-load 1s linear -0.625s infinite;
+}
+
+#loading .load-object .ball-7 {
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
+
+#loading .load-object .ball-7::before {
+  -webkit-animation: down-load 1s linear -0.75s infinite;
+          animation: down-load 1s linear -0.75s infinite;
+}
+
+#loading .load-object .ball-8 {
+  -webkit-transform: rotate(315deg);
+          transform: rotate(315deg);
+}
+
+#loading .load-object .ball-8::before {
+  -webkit-animation: down-load 1s linear -0.875s infinite;
+          animation: down-load 1s linear -0.875s infinite;
+}
+
+.loading-fadeaout {
+  -webkit-transition: 1s;
+  transition: 1s;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .err-msg {
@@ -1485,6 +1651,12 @@ body .login-container .other-btn {
           justify-content: center;
 }
 
+body .login-container #return {
+  border: initial;
+  background-color: #7b7b7b;
+  color: white;
+}
+
 body .account-container .menu-contents {
   background-color: white;
   padding-bottom: 60px;
@@ -1564,6 +1736,12 @@ body .account-container .menu-contents .items-container .new-account-form textar
           box-shadow: 0px 0px 8px 2px #ccc inset;
   height: 150px;
   margin-bottom: 20px;
+  width: calc(100% - 20px);
+}
+
+body .account-container .menu-contents .items-container .new-account-form .caption-wrapper {
+  position: relative;
+  width: 100%;
 }
 
 body .account-container .menu-contents .items-container .new-account-form select {
@@ -1880,6 +2058,91 @@ body .accountComment img {
 
 body .accountComment table {
   width: 85%;
+}
+
+body .accountComment #return {
+  margin: 30px 0 0px 0;
+  width: 60%;
+  padding: 10px 0px;
+  background-color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid black;
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body .thanks {
+  background-color: white;
+  padding: 60px 0;
+  width: 95vw;
+  margin-top: 2.5vw;
+  margin-bottom: 2.5vw;
+  font-size: 18px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .thanks .thanks-container {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body .thanks .thanks-container h3 {
+  margin-bottom: 40px;
+  font-size: 24px;
+}
+
+body .thanks .thanks-container .btn-msg {
+  font-size: 14px;
+  margin-top: 100px;
+}
+
+body .thanks .thanks-container p {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+body .thanks .thanks-container #return {
+  width: 250px;
+  padding: 10px 0px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: #7b7b7b;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 @media screen and (min-width: 600px) {

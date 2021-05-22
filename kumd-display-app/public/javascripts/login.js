@@ -1,44 +1,20 @@
-var firebaseConfig = {
-    apiKey: "AIzaSyA4chVLLT13u2-zlfDlt7p5GXD_98DgY2Q",
-    authDomain: "kumd-app.firebaseapp.com",
-    databaseURL: "https://kumd-app-default-rtdb.firebaseio.com",
-    projectId: "kumd-app",
-    storageBucket: "kumd-app.appspot.com",
-    messagingSenderId: "28972770999",
-    appId: "1:28972770999:web:59ad63f788f272e4868f32",
-    measurementId: "G-YPKJW425F5"
+async function thereUser(){
+    $("body,html").animate({scrollTop: 0}, 1);//トップに移動
+    loading.classList.add('loading-fadeaout');
 };
-firebase.initializeApp(firebaseConfig);
-
-const ERROR_DATA ={
-    PASS_REGEX: /^(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,16}$/i,
-    LOGIN:{
-        'auth/wrong-password':'メールもしくはパスワードに誤りがあります。',
-        'auth/invalid-email':'メールもしくはパスワードに誤りがあります。',
-        'other':'メールもしくはパスワードに誤りがあります。',
-    },
-    NEW: {
-        'auth/invalid-email':'メールアドレスの形式が正しくありません。',
-        'auth/weak-password':'パスワードは半角英字と半角数字を含めた6-16文字以内でお願いします。',
-        'auth/email-already-in-use':'そのメールアドレスは既に使用されています。',
-        'other':'メールアドレスまたはパスワードを変更し、再度お試しください。',
-    }
-}
-
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        console.log("There's a user");
-    } else {
-        console.log("No user");
-    }
-});
+async function noUser(){
+    $("body,html").animate({scrollTop: 0}, 1);//トップに移動
+    loading.classList.add('loading-fadeaout');
+};
 
 const loginButton = document.getElementById('login');
 const registerBytton = document.getElementById('register');
+const returnBytton = document.getElementById('return');
 const loginErrMsg = document.querySelector('#login-err-msg');
 const newErrMsg = document.querySelector('#new-err-msg');
 
 loginButton.addEventListener("click",()=>{
+    loading.classList.remove('loading-fadeaout');
     console.log("click loginButton");
     newErrMsg.innerText = "";
     loginErrMsg.innerText = "";
@@ -57,6 +33,8 @@ loginButton.addEventListener("click",()=>{
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
+            $("body,html").animate({scrollTop: 0}, 1);//トップに移動
+            loading.classList.add('loading-fadeaout');
             judgeLoginError(errorCode);
             console.log("error_code >>>",errorCode );
             console.log('err',errorMessage);
@@ -67,6 +45,7 @@ loginButton.addEventListener("click",()=>{
 });
 
 registerBytton.addEventListener("click",()=>{
+    loading.classList.remove('loading-fadeaout');
     console.log("click registerBytton");
     newErrMsg.innerText = "";
     loginErrMsg.innerText = "";
@@ -97,16 +76,24 @@ registerBytton.addEventListener("click",()=>{
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
+            $("body,html").animate({scrollTop: 0}, 1);//トップに移動
+            loading.classList.add('loading-fadeaout');
             judgeNewError(errorCode);
             console.log("error_code >>>",errorCode );
             console.log('err',errorMessage);
         });
     } catch (err) {
+        $("body,html").animate({scrollTop: 0}, 1);//トップに移動
+        loading.classList.add('loading-fadeaout');
         judgeNewError(err);
         console.log('err',err);
         console.log(`Error: ${JSON.stringify(err)}`)
     }
 });
+
+// loginButton.addEventListener("click",()=>{
+    
+// });
 
 function judgeLoginError(err){
     var err_message="";

@@ -1,15 +1,5 @@
 <div class="display-container">
     <div class="display-items-container">
-        <!-- <% for(var i in data){ %>
-            <div id="<%= 'scroll-' + i %>" >
-                <div class="sticky">
-                    <h3><%= list.GRADE[i] %></h3>
-                </div>
-                <% for(var j in data[i]){ %>
-                    <%- include('display_item', { data: data[i][j] }) %>
-                <% } %>
-            </div>
-        <% } %> -->
         <div id="scroll-1" >
             <div class="sticky">
                 <h3>1回生</h3>
@@ -60,7 +50,7 @@
             </div>
             <div class="comment-form">
                 <p>100字以内(任意)</p>
-                <p class="text-error"><span>5文字以内で記入してください。</span><p></p>
+                <p class="text-error"><span>100文字以内で記入してください。</span></p>
                 <textarea class="comment-area paint-comment" type="text" maxlength="100"></textarea>
             </div>
         </div>
