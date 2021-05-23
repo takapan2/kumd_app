@@ -27,7 +27,7 @@ loginButton.addEventListener("click",()=>{
         .then((userCredential) => {
             if(userCredential!=null){
                 console.log('success!');
-                location.href='/login/account';
+                checkHostLogin(userCredential.user.uid);
             }
         })
         .catch((error) => {

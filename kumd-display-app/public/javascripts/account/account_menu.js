@@ -1,5 +1,6 @@
 async function thereUser(){
     try {
+        await displayAccess();
         uid = await firebase.auth().currentUser.uid;
         const userData = await getStoreData('users',uid);
         const userValData = await validateUsersData(userData);
@@ -77,15 +78,5 @@ function clickBtn() {
         if (window.confirm("ログアウトしてもよろしいでしょうか？")) {
             logout();
         }
-    });
-}
-
-//logout(login固有の関数)
-function logout(){
-    firebase.auth().signOut().then(()=>{
-        console.log("ログアウトしました");
-        location.href = `/login`;
-    }).catch( (error)=>{
-        console.log(`ログアウト時にエラーが発生しました (${error})`);
     });
 }

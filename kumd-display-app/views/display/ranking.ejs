@@ -11,35 +11,32 @@
     </head>
     <body class="container">
         <%- include('./../loading') %>
-        <div class="accountComment  content-width">
-            <h3>コメント確認</h3>
-            <label id="title"></label>
-            <img src="" alt="">
-            <label for="">届いたコメント</label>
-            <table class="table" id="comment-content">
-                <tr>
-                    <th>時刻</th>
-                    <td>コメント</td>
-                </tr>
-            </table>
-            <template id="comment-tem">
-                <tr>
-                    <th></th>
-                    <td></td>
-                </tr>
-            </template>
-            <a class="btn return-btn" id="return" href="/login/account">戻る</a>
+        <div class="ranking content-width">
+            <div class="ranking-header">
+                <h3>ランキング</h3>
+                <a class="btn return-btn" id="return" href="/display" >戻る</a>
+            </div>
+            <div id="ranking-container">
+                <template id="ranking-tem">
+                    <div class="vote-container">
+                        <p class="rank"></p>
+                        <p class="vote"></p>
+                    </div>
+                    <img src="">
+                    <p class="title"></p>
+                    <p class="penname"></p>
+                </template>
+            </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/gh/fengyuanchen/compressorjs/dist/compressor.min.js"></script>
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
-        <script src="/javascripts/firebase_config.js"></script>
-        <script src="/javascripts/firebase_auth.js"></script>
-        <script src="/javascripts/account/account_comment.js"></script>
+        <script src='/javascripts/firebase_config.js'></script>
+        <script src='/javascripts/firebase_auth.js'></script>
+        <script src='/javascripts/ranking.js'></script>
         <script src="/javascripts/common_func.js"></script>
-        <script>
-        </script>
     </body>
 </html>

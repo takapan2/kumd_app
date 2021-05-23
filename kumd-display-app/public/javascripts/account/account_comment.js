@@ -1,5 +1,6 @@
 async function thereUser(){
     try {
+        await displayAccess();
         const queryObject = await getQueryObject();
         value = await getQueryValue( queryObject, 'value', '/login/account');
         uid = await firebase.auth().currentUser.uid;

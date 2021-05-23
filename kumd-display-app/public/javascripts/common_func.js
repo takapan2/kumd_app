@@ -53,6 +53,17 @@ function deleteStorageFile(imgUid){
     return storageRef.child(`imgs/${imgUid}.jpg`).delete();
 }
 
+//画像のデータを全て取得する関数
+function getAllImgsData(){
+    const imgsRef = db.collection('imgs').orderBy("size").orderBy("grade");
+    return imgsRef.get();
+}
+
+function getRankingData(){
+    const rankingRef = db.collection('crients').orderBy("vote", "desc").limit(10);
+    return rankingRef.get();
+}
+
 //firebase storage関連の関数--------------------------------------------------------------
 
 //複合関数--------------------------------------------------------------------------------
@@ -88,20 +99,6 @@ async function deleteFunc(value, uid, goalURL) {
         }
     }
 }
-
-//ファイル圧縮しを保存しするところまで行う。
-// function fileCompressAndSave(file,child){
-//     return new Compressor(file,{
-//         quality:judgeQuality(file.size),
-//         success(result) {
-//             console.log(result);
-//             saveStorageData(result,child);
-//         },
-//         error(err){
-//             console.log('Compressor ERR',err);
-//         }
-//     });
-// }
 
 async function fileCompressAndSave(file,child){
     return await new Compressor(file,{
@@ -224,5 +221,93 @@ const wait = (sec) => {
     });
 };
 
+//logout用の関数
+function logout(){
+    firebase.auth().signOut().then(()=>{
+        console.log("ログアウトしました");
+        location.href = `/login`;
+    }).catch( (error)=>{
+        console.log(`ログアウト時にエラーが発生しました (${error})`);
+    });
+}
+
 //その他の関数-------------------------------------------------------------------------------
 
+//hostの関数-------------------------------------------------------------------------------
+
+//ログイン時にuserIdがhostがどうか判別する。hostの場合hostURLに遷移。
+async function checkHostLogin(uid){
+    try{
+        const hostData = await getStoreData('host','Host');
+        if(hostData.id == uid ){
+            location.href = hostData.url;
+        }else{
+            location.href='/login/account';
+        }
+    }catch(err){
+        console.log('err',err);
+    }
+}
+
+//hostかどうか判別する。hostでない場合はログイン画面まで遷移する。
+async function checkHost(uid){
+    try{
+        const hostData = await getStoreData('host','Host');
+        if(hostData.id != uid ){
+            location.href='/login';
+        }else{
+            return hostData;
+        }
+    }catch(err){
+        console.log('err',err);
+    }
+}
+
+//host時における画像の取得と反映
+function getAndReflectHostImg(imgUid, element) {
+    const storageRef = storage.ref();
+    storageRef.child("host/" + imgUid + ".jpg").getDownloadURL()
+    .then(function(url) {
+        //エレメントに画像を反映
+        element.src = url;
+    }).catch((err) => {
+        // Handle any errors
+        console.log("getAndReflectUserImgErr", err);
+    });
+}
+
+async function fileHostCompressAndSave(file,child){
+    valChild = `host/${child}.jpg`;
+    return await new Compressor(file,{
+        quality:judgeQuality(file.size),
+        success(result) {
+            saveStorageData(result,valChild);
+        },
+        error(err){
+            console.log('Compressor ERR',err);
+        }
+    });
+}
+
+//host-check,サイトのアクセス制限の関数
+async function displayAccess(){
+    try{
+        const hostData = await getStoreData('host','Host');
+        const displaySwitch = hostData.switch.display;
+        if(displaySwitch)location.href = '/display/sorry';
+    }catch(err){
+        console.log('err',err);
+    }
+}
+
+async function rankingAccess(){
+    try{
+        const hostData = await getStoreData('host','Host');
+        const rankingSwitch = hostData.switch.ranking;
+        if(rankingSwitch)location.href = '/display/sorry';
+    }catch(err){
+        console.log('err',err);
+    }
+}
+
+//hostの関数-------------------------------------------------------------------------------

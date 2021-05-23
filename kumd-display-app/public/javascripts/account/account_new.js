@@ -1,13 +1,8 @@
 async function thereUser(){
     try {
-        const queryObject = await getQueryObject();
-        value = await getQueryValue( queryObject, 'value', '/login/account');
+        await displayAccess();
         uid = await firebase.auth().currentUser.uid;
-        imgUid = `${uid}-${value}`;
-
-        const imgData = await getStoreData('imgs',imgUid);
-        await writeEditData(imgData);
-        await getAndReflectUserImg(imgUid,imageElement);
+        textValidation('#caption',150);
         $("body,html").animate({scrollTop: 0}, 1);//トップに移動
         loading.classList.add('loading-fadeaout');
     } catch (err){
@@ -18,28 +13,30 @@ async function noUser(){
     location.href = "/login";
 }
 
+
+const fileContent = document.getElementById('file');
 const submitButton = document.getElementById('submit-btn');
-const deleteButton = document.getElementById('delete');
 const returnButton = document.getElementById('return');
 
-const gradeElement = document.getElementById('grade-select');
-const sizeElement = document.getElementById('size-select');
-const pennameElement = document.getElementById('penname');
-const titleElement = document.getElementById('title');
-const captionElement = document.getElementById('caption');
-const imageElement = document.querySelector('img');
-
+const fileErrMsg = document.querySelector('#file-err');
 const gradeErrMsg = document.querySelector('#grade-err');
 const sizeErrMsg = document.querySelector('#size-err');
 const pennameErrMsg = document.querySelector('#penname-err');
 const titleErrMsg = document.querySelector('#title-err');
 const captionErrMsg = document.querySelector('#caption-err');
 
+//ファイルが変更された際の処理
+fileContent.addEventListener('change',function(e){
+    file = e.target.files[0];
+    console.log(file.size);
+});
+
 submitButton.addEventListener("click",()=>{
-    if(window.confirm("変更を反映し、展示会サイト上で公開してよろしいでしょうか？")){
+    if(window.confirm('イラスト情報を登録し、展示会サイトに公開してもよろしいでしょうか？')){
         loading.classList.remove('loading-fadeaout');
-        console.log("click fileButton");
+        console.log("click submitButton");
         //validationのメッセージを一度非表示にする。
+        fileErrMsg.innerText = "";
         gradeErrMsg.innerText = "";
         sizeErrMsg.innerText = "";
         pennameErrMsg.innerText = "";
@@ -51,21 +48,17 @@ submitButton.addEventListener("click",()=>{
         const pennameValue = document.getElementById('penname').value;
         const titleValue = document.getElementById('title').value;
         const captionValue = document.getElementById('caption').value;
-        validation(gradeValue, sizeValue, pennameValue, titleValue, captionValue);
-        const imgObject = {
+        validation( file, gradeValue, sizeValue, pennameValue, titleValue, captionValue);
+        var imgsObject = {
             grade: gradeValue,
             size: sizeValue,
             penname: pennameValue,
             title: titleValue,
             caption: captionValue,
-        };
-        console.log("imgObject",imgObject);
-        updateFunc(imgObject,FIREBASE_DATA.COLLECTION.IMGS,imgUid,'/login/account');
+        }
+        console.log("submitObject", imgsObject);
+        submitBtnFunc(uid, imgsObject, file);
     }
-});
-
-deleteButton.addEventListener("click",()=>{
-    deleteFunc(value,uid,"/login/account/");
 });
 
 returnButton.addEventListener("click",()=>{
@@ -74,17 +67,42 @@ returnButton.addEventListener("click",()=>{
     }
 });
 
-//account_edit固有　formに既存のデータを入力する。
-function writeEditData(imgData){
-    gradeElement.value = imgData.grade;
-    sizeElement.value = imgData.size;
-    pennameElement.value = imgData.penname;
-    titleElement.value = imgData.title;
-    captionElement.value = imgData.caption;
+async function submitBtnFunc(uid, imgsObject, file ){
+    try{
+        const userData = await getStoreData('users',uid);
+        imgNum = userData.imgNum + 1;
+        imgUid = `${uid}-${imgNum}`;
+        imgChild = `imgs/${imgUid}.jpg`;
+        const UserObject = {
+            imgNum: imgNum,
+            [`img${imgNum}`]:imgUid,
+        };
+        const crientsObject = {
+            id: imgUid,
+            commentNum: 0,
+            vote: 0,
+        };
+        imgsObject.id = imgUid;
+        await fileCompressAndSave(file,imgChild);
+        await dataUpdate(UserObject,'users',uid);
+        await setStoreData(imgsObject, "imgs", imgUid);
+        await setStoreData(crientsObject, "crients", imgUid);
+        console.log("save finish!!");
+        location.href = "/login/account";
+    }catch(err){
+        console.log("submitBtnFunc err",err);
+    }
 }
 
-function validation(gradeValue, sizeValue, pennameValue, titleValue, captionValue){
+function validation(file,gradeValue, sizeValue, pennameValue, titleValue, captionValue){
     var judge = 0;
+    if(!file){
+        fileErrMsg.innerText = VALIDATION.FILE.VAL;
+        judge++;
+    }else if(file.size>5*1024*1024){
+        fileErrMsg.innerText = VALIDATION.FILE.SIZE;
+        judge++;
+    }
     if(gradeValue==""){
         gradeErrMsg.innerText = VALIDATION.GRADE;
         judge++;

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <title>2021年度春のパネル展示会</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="/javascripts/jquery-3.5.1.min.js"></script>
+    </head>
+    <body class="container">
+        <%- include('./../loading') %>
+        <div class="host">
+            <div class="host-other">
+                <h3>作品情報変更</h3>
+                <h4>今のタイトルイラスト</h4>
+                <img src="" >
+                <h4>イラスト(jpg、5MB以下)</h4>
+                <p class="err-msg" id="file-err"></p>
+                <input type="file" id="file" name="file" value="upload" accept="image/jpeg" >
+                <button id="file-submit-btn" class="btn submit">イラストの反映</button>
+                <h4 for="title">サイトタイトル</h4>
+                <p class="err-msg" id="title-err"></p>
+                <input class="text-input" type="text" name="title" id="title">
+                <button id="site-title-submit-btn" class="btn submit">サイトタイトルの反映</button>
+                <h4>サイトアクセス制限</h4>
+                <div class="check-content">
+                    <input class="check" id="display-check" type="checkbox">
+                    <label for="display-check">展示会サイト</label>
+                </div>
+                <div class="check-content">
+                    <input class="check" id="ranking-check" type="checkbox">
+                    <label for="ranking-check">ランキングページ</label>
+                </div>
+                <button id="site-access-submit-btn" class="btn submit">サイトアクセスの反映</button>
+                <a class="btn return-btn" id="return" href="/login/host" >戻る</a>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/gh/fengyuanchen/compressorjs/dist/compressor.min.js"></script>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+        <script src='/javascripts/firebase_config.js'></script>
+        <script src='/javascripts/firebase_auth.js'></script>
+        <script src='/javascripts/host/host_other.js'></script>
+        <script src="/javascripts/common_func.js"></script>
+    </body>
+</html>

@@ -1,5 +1,19 @@
 async function thereUser(){
     try{
+        await displayAccess();
+        await getAndReflectHostImg('title', document.querySelector(`.title-img`));
+        const hostData = await getStoreData('host','Host');
+        const demoData = hostData.demo;
+        for(var j=1;j<=3;j++){
+            const imageElement = document.querySelector(`.demo-img${j}`);
+            const titleElement = document.querySelector(`.title${j}`);
+            const pennameElement = document.querySelector(`.penname${j}`);
+            const captionElement = document.querySelector(`.caption${j}`);
+            await getAndReflectHostImg('demo',imageElement);
+            titleElement.innerHTML = await demoData.title;
+            pennameElement.innerHTML = await demoData.penname;
+            captionElement.innerHTML = await demoData.caption;
+        }
         const allImgsData = await getAllImgsData();
         await displayWrite(allImgsData);
         textValidation('.paint-comment',100);
@@ -13,23 +27,12 @@ async function thereUser(){
     }
 }
 async function noUser(){
-    try{
-        const allImgsData = await getAllImgsData();
-        await displayWrite(allImgsData);
-        textValidation('.paint-comment',100);
-        textValidation('.contact-comment',200);
-        await wait(2);
-        $("body,html").animate({scrollTop: 0}, 1);//トップに移動
-        loading.classList.add('loading-fadeaout');
-        console.log("読み込み完了！");
-    }catch(err){
-        console.log(err);
-    }
+    thereUser();
 }
 
-const submitButton = document.querySelector('.crient-submit');
+const submitButton = $('.crient-submit');
 
-submitButton.addEventListener("click",function(){
+submitButton.on("click",function(){
     if(window.confirm("提出は一回までとなっております。提出してもよろしいでしょうか")){
         loading.classList.remove('loading-fadeaout');
         crientSubmitFunc();
@@ -39,18 +42,13 @@ submitButton.addEventListener("click",function(){
 async function crientSubmitFunc(){
     try{
         const crientContents = document.querySelectorAll('.crient-content');
-        await getCrientContent(crientContents);
+        const contactValue = document.querySelector('.contact-comment').value;
+        await getCrientContent(crientContents,contactValue);
         console.log("提出完了！");
         location.href = '/display/submit';
     }catch(err){
         console.log('err',err);
     }
-}
-
-//画像のデータを全て取得する関数
-function getAllImgsData(){
-    const imgsRef = db.collection('imgs').orderBy("size").orderBy("grade");
-    return imgsRef.get();
 }
 
 async function displayWrite(ImgsData){
@@ -78,7 +76,7 @@ function itemWrite(data){
     const faHeart = clone.querySelector('.fa-heart');
     const faComment = clone.querySelector('.fa-comment');
 
-    //getAndReflectUserImg(data.id,image);
+    getAndReflectUserImg(data.id,image);
     acdCheck.id = `acd-check${data.id}`;
 
     fragment.appendChild(clone);
@@ -94,7 +92,13 @@ function itemWrite(data){
     faComment.setAttribute("for",`acd-check${data.id}`);
 }
 
-async function getCrientContent(crientContents){
+async function getCrientContent(crientContents,contactValue){
+    if(contactValue!=""){
+        console.log(contactValue);
+        var contactData = await getStoreData('contact','Contact');
+        await contactData.contact.push(contactValue);
+        await setStoreData(contactData,'contact','Contact');
+    }
     for(var i=0; i<crientContents.length; i++){
         const crientContent = crientContents[i];
         const voteValue = crientContent.querySelector('.heart-check').checked

@@ -1,15 +1,19 @@
 <div class="display-item-container slide2-content">
     <div class="display-img-content">
         <div class="in-shadow"></div>
-        <img class="display-img" src="<%= '/images/img' + data.image +'.jpg' %>" alt="<%= data.title %>">
+        <img class="demo-img1 display-img" src="">
     </div>
-    <!-- <input id="<%= 'acd-check' + data.image %>" class="acd-check" type="checkbox"> -->
     <div class="display-content">
-        <h3 class="title"><%= data.title %><span class="caption-msg msg1">タイトル</span></h3>
-        <p class="penname"><%= data.penname %><span class="caption-msg msg2">ペンネーム</span></p>
-        <p class="caption"><%= data.caption %><span class="caption-msg msg3">説明文</span></p>
+        <div class="relative">
+            <h3 class="title1 title"></h3><span class="caption-msg msg1">タイトル</span>
+        </div>
+        <div class="relative">
+            <p class="penname1 penname"></p><span class="caption-msg msg2">ペンネーム</span>
+        </div>
+        <div class="relative">
+            <p class="caption1 caption"></p><span class="caption-msg msg3">説明文</span>
+        </div>
         <div class="eval-items">
-            <!-- <input id="<%= 'heart-check' + data.image %>" class="heart-check" type="checkbox"> -->
             <label class="fa fa-heart btn" ></label>
             <label class="fa fa-comment btn" ></label>
         </div>
