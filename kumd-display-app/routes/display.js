@@ -4,7 +4,7 @@ const DEMODATA = require('../public/information/demo_data').demodata;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('display/index', { demoData:DEMODATA });
+  res.render('display/index');
 });
 
 router.get('/submit',function(req,res,next){

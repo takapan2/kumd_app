@@ -1,1 +1,0 @@
-exports.demodata = { grade: "2", size: "2", title: "戦闘態勢", penname: "デンジ", image: "demo", caption: "武装を展開し戦闘モードになった女の子を描きました。こだわりは殺気を感じさせるような緊張感を作り出したところです。", }

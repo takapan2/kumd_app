@@ -3,3 +3,4 @@ db-dev.sqlite3
 .env
 service-account-file.json
 .DS_Store
+user_info.js
