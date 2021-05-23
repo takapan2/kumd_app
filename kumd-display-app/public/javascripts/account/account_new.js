@@ -88,6 +88,7 @@ async function submitBtnFunc(uid, imgsObject, file ){
         await setStoreData(imgsObject, "imgs", imgUid);
         await setStoreData(crientsObject, "crients", imgUid);
         console.log("save finish!!");
+        await wait(2);
         location.href = "/login/account";
     }catch(err){
         console.log("submitBtnFunc err",err);

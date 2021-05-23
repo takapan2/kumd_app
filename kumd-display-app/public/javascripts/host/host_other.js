@@ -45,7 +45,7 @@ fileSubmitButton.addEventListener("click",()=>{
         (async()=>{
             try {
                 await fileHostCompressAndSave(file,'title');
-                await wait(2);
+                await wait(4);
                 console.log("save finish!!");
                 location.href = "/login/host";
             } catch (err) {

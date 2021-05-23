@@ -72,6 +72,7 @@ async function submitBtnFunc(uid, demo, file ){
         await fileHostCompressAndSave(file,'demo');
         await dataUpdate({demo},'host','Host');
         console.log("save finish!!");
+        await wait(2);
         location.href = "/login/host";
     }catch(err){
         console.log("submitBtnFunc err",err);
