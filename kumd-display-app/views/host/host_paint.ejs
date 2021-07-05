@@ -28,12 +28,7 @@
                             <td class="title"></td>
                             <td class="vote"></td>
                             <td>
-                                <select class="vote-value">
-                                    <option value="">選択</option>
-                                    <% for(i=-50; i<=50; i++){ %>
-                                    <option value="<%= i %>"><%= i %></option>
-                                    <% } %>
-                                </select>
+                                <input class="vote-value" type="number" min="-50" max="50" value="0">
                             </td>
                         </tr>
                     </template>

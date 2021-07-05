@@ -68,8 +68,8 @@ async function getVoteContent(crientContents){
     for(var i=0; i<crientContents.length; i++){
         const voteContent = crientContents[i];
         const voteValue = voteContent.querySelector('.vote-value').value;
-        console.log(voteValue);
-        if(!Number.isInteger(voteValue)||voteValue!="0"){
+        console.log("voteValue",voteValue);
+        if(voteValue!=="0"){
             const imgUid = voteContent.name;
             const crientsData = await getStoreData('crients',imgUid);
             var pushData ={};
