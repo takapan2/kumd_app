@@ -55,7 +55,7 @@ function clickBtn(){
 }
 
 function timeoutFunction(thisElement, heartCheckId, heartChecked, timers){
-    // addVote(heartCheckId, heartChecked)
+    addVote(heartCheckId, heartChecked)
     console.log('表を変化済み', thisElement)
     thisElement.removeClass('goodJudge');
     delete timers[heartCheckId];
@@ -63,14 +63,14 @@ function timeoutFunction(thisElement, heartCheckId, heartChecked, timers){
 
 async function addVote(imgUid, checked){
     const crientsData = await getStoreData('crients',imgUid);
-    console.log(crientsData.vote)
     var pushData ={};
     if(checked){
         console.log('add!')
+        pushData.vote = crientsData.vote + 1;
     }else{
         console.log('decrease!')
+        pushData.vote = crientsData.vote - 1;
     }
-    pushData.vote = checked ? crientsData.vote + 1 : crientsData.vote - 1;
     await dataUpdate(pushData,'crients',imgUid);
 }
 
@@ -119,7 +119,7 @@ function itemWrite(data){
     const faHeart = clone.querySelector('.fa-heart');
     const faComment = clone.querySelector('.fa-comment');
 
-    getAndReflectUserImg(data.id,image);
+    // getAndReflectUserImg(data.id,image);
     acdCheck.id = `acd-check${data.id}`;
 
     fragment.appendChild(clone);
