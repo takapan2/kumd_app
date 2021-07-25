@@ -22,6 +22,7 @@ async function thereUser(){
         $("body,html").animate({scrollTop: 0}, 1);//トップに移動
         loading.classList.add('loading-fadeaout');
         console.log("読み込み完了！");
+        clickBtn();
     }catch(err){
         console.log(err);
     }
@@ -31,6 +32,48 @@ async function noUser(){
 }
 
 const submitButton = $('.crient-submit');
+
+function clickBtn(){
+    const goodButton = $(".heart-check");
+
+    let timers = {};
+    goodButton.on("click", function() {
+        const heartCheckId = $(this).attr("id").replace('heart-check', "");
+        const heartChecked = $(this)[0].checked;
+
+        if($(this)[0].className !== 'heart-check goodJudge'){
+            $(this).addClass('goodJudge');
+            timer = window.setTimeout(timeoutFunction, 7000, $(this), heartCheckId, heartChecked, timers);
+            timers[heartCheckId] = timer;
+            console.log('timer', timer)
+        }else{
+            $(this).removeClass('goodJudge');
+            window.clearTimeout(timers[heartCheckId]);
+            console.log('処理の取り消し',timers[heartCheckId]);
+        }
+    });
+}
+
+function timeoutFunction(thisElement, heartCheckId, heartChecked, timers){
+    // addVote(heartCheckId, heartChecked)
+    console.log('表を変化済み', thisElement)
+    thisElement.removeClass('goodJudge');
+    delete timers[heartCheckId];
+}
+
+async function addVote(imgUid, checked){
+    const crientsData = await getStoreData('crients',imgUid);
+    console.log(crientsData.vote)
+    var pushData ={};
+    if(checked){
+        console.log('add!')
+    }else{
+        console.log('decrease!')
+    }
+    pushData.vote = checked ? crientsData.vote + 1 : crientsData.vote - 1;
+    await dataUpdate(pushData,'crients',imgUid);
+}
+
 
 submitButton.on("click",function(){
     if(window.confirm("提出は一回までとなっております。提出してもよろしいでしょうか")){
