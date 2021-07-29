@@ -67,9 +67,12 @@ async function addVote(imgUid, checked){
     if(checked){
         console.log('add!')
         pushData.vote = crientsData.vote + 1;
+        const date = 24*60*60;
+        document.cookie = `heart-check${imgUid}=checked; max-age=${date}`
     }else{
         console.log('decrease!')
         pushData.vote = crientsData.vote - 1;
+        document.cookie = `heart-check${imgUid}=checked; max-age=0`
     }
     await dataUpdate(pushData,'crients',imgUid);
 }
