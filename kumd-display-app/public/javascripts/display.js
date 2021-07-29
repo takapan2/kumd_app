@@ -15,7 +15,9 @@ async function thereUser(){
             captionElement.innerHTML = await demoData.caption;
         }
         const allImgsData = await getAllImgsData();
-        await displayWrite(allImgsData);
+        var allCookies = document.cookie;
+        var cookieKey = allCookies.split('; ').map(x => x.split('=')[0])
+        await displayWrite(allImgsData, cookieKey);
         textValidation('.paint-comment',100);
         textValidation('.contact-comment',200);
         await wait(2);
@@ -97,13 +99,13 @@ async function crientSubmitFunc(){
     }
 }
 
-async function displayWrite(ImgsData){
+async function displayWrite(ImgsData, Keys){
     return await ImgsData.forEach((doc) => {
-        itemWrite(doc.data());
+        itemWrite(doc.data(), Keys);
     });
 }
 
-function itemWrite(data){
+function itemWrite(data, Keys){
     const itemsContent = document.querySelector('#display-item-tem').content
     if(data.grade==""||!data.grade)data.grade=5; //何かしらの不具合でgradeの値が入っていない場合、その他に振り割る。
     const templeteContent = document.getElementById(`scroll-${data.grade}`);
@@ -136,6 +138,7 @@ function itemWrite(data){
     content.name = data.id;
     faHeart.setAttribute("for",`heart-check${data.id}`);
     faComment.setAttribute("for",`acd-check${data.id}`);
+    if(Keys.includes(`heart-check${data.id}`)) heartCheck.checked = true
 }
 
 async function getCrientContent(crientContents,contactValue){
