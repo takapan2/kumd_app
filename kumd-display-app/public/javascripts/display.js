@@ -64,6 +64,7 @@ function clickBtn(){
             $(this).css('height','0px');
             $(this).css('padding','0px');
             $(this).css('pointer-events','none');
+            $(`#textValue_${submitId}`).attr('readonly',true);
         }
     });
 }
