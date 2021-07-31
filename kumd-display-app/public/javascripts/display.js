@@ -56,14 +56,14 @@ function clickBtn(){
 
     submitButton.on("click", function() {
         if(window.confirm("提出は一回までとなっております。提出してもよろしいでしょうか")){
-            $(this).removeClass('crient-submit');
-            $(this).addClass('crient-submited');
-            $(this).removeClass('btn');
             const submitId = $(this).attr("id").split('_')[1];
             const commentValue = document.querySelector(`#textValue_${submitId}`).value;
             console.log('commentValue',commentValue)
             if(commentValue != '' || commentValue)submitComment(submitId, commentValue);
             // ボタンのセレクタとバリューを変更するような処理
+            $(this).css('height','0px');
+            $(this).css('padding','0px');
+            $(this).css('pointer-events','none');
         }
     });
 }
