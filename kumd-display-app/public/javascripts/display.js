@@ -33,10 +33,9 @@ async function noUser(){
     thereUser();
 }
 
-const submitButton = $('.crient-submit');
-
 function clickBtn(){
     const goodButton = $(".heart-check");
+    const submitButton = $('.crient-submit');
 
     let timers = {};
     goodButton.on("click", function() {
@@ -54,6 +53,41 @@ function clickBtn(){
             console.log('処理の取り消し',timers[heartCheckId]);
         }
     });
+
+    submitButton.on("click", function() {
+        if(window.confirm("提出は一回までとなっております。提出してもよろしいでしょうか")){
+            $(this).removeClass('crient-submit');
+            $(this).addClass('crient-submited');
+            $(this).removeClass('btn');
+            const submitId = $(this).attr("id").split('_')[1];
+            const commentValue = document.querySelector(`#textValue_${submitId}`).value;
+            console.log('commentValue',commentValue)
+            if(commentValue != '' || commentValue)submitComment(submitId, commentValue);
+            // ボタンのセレクタとバリューを変更するような処理
+        }
+    });
+}
+
+async function submitComment(submitId, commentValue){
+    try{
+        if(submitId == 'bottom'){
+            console.log(commentValue);
+            var contactData = await getStoreData('contact','Contact');
+            await contactData.contact.push(commentValue);
+            await setStoreData(contactData,'contact','Contact');
+        }else{
+            const crientsData = await getStoreData('crients',submitId);
+            var pushData ={};
+            var now = new Date();
+            var date = `${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${now.getMinutes()}`;
+            pushData.commentNum = crientsData.commentNum + 1;
+            pushData[`comment${pushData.commentNum}`] = {comment: commentValue, date: date };
+            console.log('submit pushData',pushData);
+            await dataUpdate(pushData,'crients',submitId);
+        }
+    }catch(err){
+        console.log('err',err);
+    }
 }
 
 function timeoutFunction(thisElement, heartCheckId, heartChecked, timers){
@@ -77,26 +111,6 @@ async function addVote(imgUid, checked){
         document.cookie = `heart-check${imgUid}=checked; max-age=0`
     }
     await dataUpdate(pushData,'crients',imgUid);
-}
-
-
-submitButton.on("click",function(){
-    if(window.confirm("提出は一回までとなっております。提出してもよろしいでしょうか")){
-        loading.classList.remove('loading-fadeaout');
-        crientSubmitFunc();
-    }
-});
-
-async function crientSubmitFunc(){
-    try{
-        const crientContents = document.querySelectorAll('.crient-content');
-        const contactValue = document.querySelector('.contact-comment').value;
-        await getCrientContent(crientContents,contactValue);
-        console.log("提出完了！");
-        location.href = '/display/submit';
-    }catch(err){
-        console.log('err',err);
-    }
 }
 
 async function displayWrite(ImgsData, Keys){
@@ -123,6 +137,8 @@ function itemWrite(data, Keys){
     const content = clone.querySelector('.crient-content');
     const faHeart = clone.querySelector('.fa-heart');
     const faComment = clone.querySelector('.fa-comment');
+    const textArea = clone.querySelector('textarea');
+    const submitBtn = clone.querySelector('.crient-submit');
 
     // getAndReflectUserImg(data.id,image);
     acdCheck.id = `acd-check${data.id}`;
@@ -135,36 +151,10 @@ function itemWrite(data, Keys){
     caption.innerHTML = data.caption;
 
     heartCheck.id = `heart-check${data.id}`;
+    textArea.id = `textValue_${data.id}`;
+    submitBtn.id = `submit_${data.id}`
     content.name = data.id;
     faHeart.setAttribute("for",`heart-check${data.id}`);
     faComment.setAttribute("for",`acd-check${data.id}`);
     if(Keys.includes(`heart-check${data.id}`)) heartCheck.checked = true
-}
-
-async function getCrientContent(crientContents,contactValue){
-    if(contactValue!=""){
-        console.log(contactValue);
-        var contactData = await getStoreData('contact','Contact');
-        await contactData.contact.push(contactValue);
-        await setStoreData(contactData,'contact','Contact');
-    }
-    for(var i=0; i<crientContents.length; i++){
-        const crientContent = crientContents[i];
-        const voteValue = crientContent.querySelector('.heart-check').checked
-        const textValue = crientContent.querySelector('textarea').value;
-        if(voteValue||textValue!=""){
-            const imgUid = crientContent.name;
-            const crientsData = await getStoreData('crients',imgUid);
-            var pushData ={};
-            if(await voteValue)pushData.vote = crientsData.vote + 1;
-            if(await textValue != ""){
-                var now = new Date();
-                var date = `${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${now.getMinutes()}`;
-                pushData.commentNum = crientsData.commentNum + 1;
-                pushData[`comment${pushData.commentNum}`] = {comment: textValue, date: date };
-            }
-            console.log('submit pushData',pushData);
-            await dataUpdate(pushData,'crients',imgUid);
-        }
-    }
 }

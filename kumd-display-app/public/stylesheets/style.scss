@@ -100,6 +100,26 @@ a{
     text-decoration: none;
 }
 
+//提出ボタン
+
+.crient-submited{
+    margin-top: 20px;
+    width: 200px;
+    padding: 10px 0px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: initial;
+    height: 50px;
+    color: white;
+    background-color: rgb(215, 215, 215) !important;
+    span{
+        color: white;
+        margin-right: 10px;
+    }
+}
+
+//提出ボタン
+
 //ロード画面
 #loading {
     position: fixed;
@@ -1037,7 +1057,7 @@ body {
                             border: initial;
                             height: 50px;
                             color: white;
-                            background-color: rgb(215, 215, 215);
+                            background-color: rgb(0, 115, 255);
                             span{
                                 color: white;
                                 margin-right: 10px;

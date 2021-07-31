@@ -205,6 +205,23 @@ a {
   text-decoration: none;
 }
 
+.crient-submited {
+  margin-top: 20px;
+  width: 200px;
+  padding: 10px 0px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: initial;
+  height: 50px;
+  color: white;
+  background-color: #d7d7d7;
+}
+
+.crient-submited span {
+  color: white;
+  margin-right: 10px;
+}
+
 #loading {
   position: fixed;
   top: 0px;
@@ -1486,7 +1503,7 @@ body .display-container .display-items-container .display-item-container .displa
   border: initial;
   height: 50px;
   color: white;
-  background-color: #d7d7d7;
+  background-color: #0073ff;
 }
 
 body .display-container .display-items-container .display-item-container .display-content .comment-form button span {
