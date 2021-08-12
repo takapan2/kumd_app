@@ -36,6 +36,8 @@ async function noUser(){
 function clickBtn(){
     const goodButton = $(".heart-check");
     const submitButton = $('.crient-submit');
+    const image = $(".display-img-content");
+    const image_pop_up = $(".expansion-img-wapper")
 
     let timers = {};
     goodButton.on("click", function() {
@@ -66,6 +68,28 @@ function clickBtn(){
             $(this).css('pointer-events','none');
             $(`#textValue_${submitId}`).attr('readonly',true);
         }
+    });
+
+    image.on("click", function() {
+        if(screen.availWidth > 1024 ){
+            const imgId = $(this).attr("id").replace('img_', "");
+            const imgExpantion = $(`#img_expantion_${imgId}`);
+            const imgExpantionImage = $(`#img_expantion_${imgId} > img`);
+            imgExpantion.css('display', 'flex');
+            const imgRatio = imgExpantionImage.naturalWidth < imgExpantionImage.naturalHeight
+            const displayRatio = screen.availWidth < screen.availHeight
+            if(　imgRatio && !displayRatio　|| !imgRatio && !displayRatio ) {
+                imgExpantionImage.css('height',`${screen.availHeight*0.9}px`).css('width', 'auto');
+                console.log('一つ目だよ'+imgRatio+','+displayRatio)
+            }else if( !imgRatio && displayRatio || imgRatio && displayRatio) {
+                imgExpantionImage.css('width',`${screen.availWidth*0.9}px`).css('height', 'auto');
+                console.log('二つ目だよ'+imgRatio+','+displayRatio)
+            }
+        }
+    });
+
+    image_pop_up.on("click", function(){
+        image_pop_up.css('display', 'none');
     });
 }
 
@@ -127,7 +151,10 @@ function itemWrite(data, Keys){
 
     const clone = document.importNode(itemsContent, true);
 
-    const image = clone.querySelector('img');
+    const image = clone.querySelector('.display-img');
+    const image_content = clone.querySelector('.display-img-content');
+    const image_expansion = clone.querySelector('.expansion-img');
+    const image_expansion_wrapper = clone.querySelector('.expansion-img-wapper');
     const acdCheck = clone.querySelector('.acd-check');
 
     const title = clone.querySelector('.title');
@@ -141,7 +168,8 @@ function itemWrite(data, Keys){
     const textArea = clone.querySelector('textarea');
     const submitBtn = clone.querySelector('.crient-submit');
 
-    // getAndReflectUserImg(data.id,image);
+    getAndReflectUserImg(data.id, image);
+    getAndReflectUserImg(data.id, image_expansion);
     acdCheck.id = `acd-check${data.id}`;
 
     fragment.appendChild(clone);
@@ -151,6 +179,9 @@ function itemWrite(data, Keys){
     penname.innerHTML = data.penname;
     caption.innerHTML = data.caption;
 
+    image_content.id = `img_${data.id}`;
+    // image_expansion.id = `img_expantion_${data.id}`;
+    image_expansion_wrapper.id = `img_expantion_${data.id}`;
     heartCheck.id = `heart-check${data.id}`;
     textArea.id = `textValue_${data.id}`;
     submitBtn.id = `submit_${data.id}`
