@@ -74,15 +74,19 @@ function clickBtn(){
         if(screen.availWidth > 1024 ){
             const imgId = $(this).attr("id").replace('img_', "");
             const imgExpantion = $(`#img_expantion_${imgId}`);
-            const imgExpantionImage = $(`#img_expantion_${imgId} > img`);
+            const imgExpantionImage_2 = $(`#img_expantion_${imgId} > img`);
+            const imgExpantionImage = document.querySelector(`#img_expantion_${imgId} > img`);
             imgExpantion.css('display', 'flex');
-            const imgRatio = imgExpantionImage.naturalWidth < imgExpantionImage.naturalHeight
-            const displayRatio = screen.availWidth < screen.availHeight
-            if(　imgRatio && !displayRatio　|| !imgRatio && !displayRatio ) {
-                imgExpantionImage.css('height',`${screen.availHeight*0.9}px`).css('width', 'auto');
+            const imgRatio = imgExpantionImage.naturalWidth / imgExpantionImage.naturalHeight
+            console.log(imgExpantionImage.crientWidth)
+            console.log(imgExpantionImage)
+            const displayRatio = screen.availWidth / screen.availHeight
+            console.log(imgRatio+' '+displayRatio)
+            if( imgRatio < displayRatio ) {
+                imgExpantionImage_2.css('height',`${screen.availHeight*0.9}px`).css('width', 'auto');
                 console.log('一つ目だよ'+imgRatio+','+displayRatio)
-            }else if( !imgRatio && displayRatio || imgRatio && displayRatio) {
-                imgExpantionImage.css('width',`${screen.availWidth*0.9}px`).css('height', 'auto');
+            }else {
+                imgExpantionImage_2.css('width',`${screen.availWidth*0.9}px`).css('height', 'auto');
                 console.log('二つ目だよ'+imgRatio+','+displayRatio)
             }
         }
