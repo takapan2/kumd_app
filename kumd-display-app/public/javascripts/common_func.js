@@ -60,7 +60,7 @@ function getAllImgsData(){
 }
 
 function getRankingData(){
-    const rankingRef = db.collection('crients').orderBy("vote", "desc").limit(10);
+    const rankingRef = db.collection('crients').orderBy("vote", "desc").limit(20);
     return rankingRef.get();
 }
 

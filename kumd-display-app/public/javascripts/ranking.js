@@ -16,7 +16,8 @@ async function noUser(){
     thereUser();
 }
 
-var i=0;
+var i=1;
+var before_data;
 async function displayWrite(ImgsData){
     return await ImgsData.forEach((doc) => {
         itemWrite(doc.data());
@@ -25,28 +26,32 @@ async function displayWrite(ImgsData){
 
 async function itemWrite(data){
     try{
-        const itemsContent = document.querySelector('#ranking-tem').content;
-        const templeteContent = document.getElementById(`ranking-container`);
-
-        const clone = document.importNode(itemsContent, true);
-        const image = clone.querySelector('img');
-
-        const title = clone.querySelector('.title');
-        const vote = clone.querySelector('.vote');
-        const rank = clone.querySelector('.rank');
-        const penname = clone.querySelector('.penname');
-
-        getAndReflectUserImg(data.id,image);
-
-        fragment.appendChild(clone);
-        templeteContent.appendChild(fragment);
-
         const imgData = await getStoreData('imgs',data.id);
+        if(before_data && before_data!=data.vote)i++
+        before_data = data.vote
 
-        title.innerText = imgData.title;
-        vote.innerText = `${data.vote}票`;
-        rank.innerText = `第${++i}位`;
-        penname.innerText = imgData.penname;
+        if(i<11){
+            const itemsContent = document.querySelector('#ranking-tem').content;
+            const templeteContent = document.getElementById(`ranking-container`);
+
+            const clone = document.importNode(itemsContent, true);
+            const image = clone.querySelector('img');
+
+            const title = clone.querySelector('.title');
+            const vote = clone.querySelector('.vote');
+            const rank = clone.querySelector('.rank');
+            const penname = clone.querySelector('.penname');
+
+            getAndReflectUserImg(data.id,image);
+
+            fragment.appendChild(clone);
+            templeteContent.appendChild(fragment);
+
+            title.innerText = imgData.title;
+            vote.innerText = `${data.vote}票`;
+            rank.innerText = `第${i}位`;
+            penname.innerText = imgData.penname;
+        }
     }catch(err){
         console.log('err',err);
     }
