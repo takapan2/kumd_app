@@ -78,15 +78,13 @@ function clickBtn(){
             const imgExpantionImage = document.querySelector(`#img_expantion_${imgId} > img`);
             imgExpantion.css('display', 'flex');
             const imgRatio = imgExpantionImage.naturalWidth / imgExpantionImage.naturalHeight
-            console.log(imgExpantionImage.crientWidth)
-            console.log(imgExpantionImage)
-            const displayRatio = screen.availWidth / screen.availHeight
+            const displayRatio = document.documentElement.clientWidth / (screen.availHeight)
             console.log(imgRatio+' '+displayRatio)
             if( imgRatio < displayRatio ) {
-                imgExpantionImage_2.css('height',`${screen.availHeight*0.9}px`).css('width', 'auto');
+                imgExpantionImage_2.css('height',`90vh`).css('width', 'auto');
                 console.log('一つ目だよ'+imgRatio+','+displayRatio)
             }else {
-                imgExpantionImage_2.css('width',`${screen.availWidth*0.9}px`).css('height', 'auto');
+                imgExpantionImage_2.css('width',`90vw`).css('height', 'auto');
                 console.log('二つ目だよ'+imgRatio+','+displayRatio)
             }
         }
