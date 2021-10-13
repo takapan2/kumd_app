@@ -6,7 +6,6 @@ async function thereUser(){
         const userValData = await validateUsersData(userData);
         await madePaintItems(userValData);
         await clickBtn();
-        //await wait(2);//追加で2秒程待つ。
         $("body,html").animate({scrollTop: 0}, 1);//トップに移動
         loading.classList.add('loading-fadeaout');
     } catch (err){
@@ -18,7 +17,7 @@ async function noUser(){
 }
 
 //テンプレートからイラストごとに要素を生成。(login固有の関数)
-function madePaintItems(data) {
+async function madePaintItems(data) {
     const templeteContent = document.getElementById("templete-content");
     const itemsContent = document.querySelector("#account-menu-items-tem").content;
     const registerContent = document.querySelector("#new-register-tem").content;
@@ -31,7 +30,8 @@ function madePaintItems(data) {
         const commentBtn = clone.querySelector(".comment");
 
         //ファイアーベースから画像を取得また要素に反映。
-        getAndReflectUserImg(data[property],image);
+        const url = await getImg(data[property]);
+        await ReflectUserImg(url, image, '');
 
         const getNum = data[property].split("-")[1];
         editBtn.value = getNum;
@@ -60,7 +60,7 @@ function clickBtn() {
     deleteButton.on("click", function() {
         const deleteValue = $(this).attr("value");
         console.log("delete", deleteValue);
-        deleteFunc(deleteValue, uid, "/login/account/");
+        deleteFunc( uid, imgUid, "/login/account/");
     });
 
     commentButton.on("click", function() {

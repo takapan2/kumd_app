@@ -48,6 +48,7 @@ submitButton.addEventListener("click",()=>{
         const pennameValue = document.getElementById('penname').value;
         const titleValue = document.getElementById('title').value;
         const captionValue = document.getElementById('caption').value;
+        const JoinRankingValue = document.getElementById('join_ranking').checked;
         validation( file, gradeValue, sizeValue, pennameValue, titleValue, captionValue);
         var imgsObject = {
             grade: gradeValue,
@@ -55,6 +56,10 @@ submitButton.addEventListener("click",()=>{
             penname: pennameValue,
             title: titleValue,
             caption: captionValue,
+            join_ranking: JoinRankingValue,
+            commentNum: 0,
+            comment: [],
+            vote: 0,
         }
         console.log("submitObject", imgsObject);
         submitBtnFunc(uid, imgsObject, file);
@@ -77,16 +82,13 @@ async function submitBtnFunc(uid, imgsObject, file ){
             imgNum: imgNum,
             [`img${imgNum}`]:imgUid,
         };
-        const crientsObject = {
-            id: imgUid,
-            commentNum: 0,
-            vote: 0,
-        };
         imgsObject.id = imgUid;
+        const imgObject = {
+            [ imgUid ] : imgsObject
+        };
         await fileCompressAndSave(file,imgChild);
         await dataUpdate(UserObject,'users',uid);
-        await setStoreData(imgsObject, "imgs", imgUid);
-        await setStoreData(crientsObject, "crients", imgUid);
+        await dataUpdate(imgObject,'images','imgs');
         console.log("save finish!!");
         await wait(2); //5MB近いファイルだと何故か反映されないことがあるため。
         location.href = "/login/account";

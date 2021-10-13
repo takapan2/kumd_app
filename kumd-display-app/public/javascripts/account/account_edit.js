@@ -1,3 +1,5 @@
+var imgData
+
 async function thereUser(){
     try {
         await displayAccess();
@@ -6,9 +8,10 @@ async function thereUser(){
         uid = await firebase.auth().currentUser.uid;
         imgUid = `${uid}-${value}`;
 
-        const imgData = await getStoreData('imgs',imgUid);
-        await writeEditData(imgData);
-        await getAndReflectUserImg(imgUid,imageElement);
+        imgData = await getStoreData('images','imgs');
+        await writeEditData(imgData[imgUid]);
+        const url = await getImg(imgUid);
+        await ReflectUserImg(url, imageElement, 'on');
         $("body,html").animate({scrollTop: 0}, 1);//トップに移動
         loading.classList.add('loading-fadeaout');
     } catch (err){
@@ -29,6 +32,7 @@ const pennameElement = document.getElementById('penname');
 const titleElement = document.getElementById('title');
 const captionElement = document.getElementById('caption');
 const imageElement = document.querySelector('img');
+const JoinRankingElement = document.getElementById('join_ranking');
 
 const gradeErrMsg = document.querySelector('#grade-err');
 const sizeErrMsg = document.querySelector('#size-err');
@@ -52,21 +56,29 @@ submitButton.addEventListener("click",()=>{
         const pennameValue = document.getElementById('penname').value;
         const titleValue = document.getElementById('title').value;
         const captionValue = document.getElementById('caption').value;
+        const JoinRankingValue = document.getElementById('join_ranking').checked;
         validation(gradeValue, sizeValue, pennameValue, titleValue, captionValue);
         const imgObject = {
-            grade: gradeValue,
-            size: sizeValue,
-            penname: pennameValue,
-            title: titleValue,
-            caption: captionValue,
+            [imgUid]:{
+                id: imgUid,
+                grade: gradeValue,
+                size: sizeValue,
+                penname: pennameValue,
+                title: titleValue,
+                caption: captionValue,
+                join_ranking: JoinRankingValue,
+                commentNum: imgData[imgUid].commentNum ? imgData[imgUid].commentNum : 0,
+                comment: imgData[imgUid].comment ? imgData[imgUid].comment : [],
+                vote: imgData[imgUid].vote ? imgData[imgUid].vote : 0,
+            }
         };
-        console.log("imgObject",imgObject);
-        updateFunc(imgObject,FIREBASE_DATA.COLLECTION.IMGS,imgUid,'/login/account');
+        console.log("imgObject",{[imgUid]:{imgObject}});
+        updateFunc(imgObject,'images','imgs','/login/account');
     }
 });
 
 deleteButton.addEventListener("click",()=>{
-    deleteFunc(value,uid,"/login/account/");
+    deleteFunc( uid, imgUid, "/login/account/");
 });
 
 returnButton.addEventListener("click",()=>{
@@ -82,6 +94,7 @@ function writeEditData(imgData){
     pennameElement.value = imgData.penname;
     titleElement.value = imgData.title;
     captionElement.value = imgData.caption;
+    JoinRankingElement.checked = imgData.join_ranking;
 }
 
 function validation(gradeValue, sizeValue, pennameValue, titleValue, captionValue){

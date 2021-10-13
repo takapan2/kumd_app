@@ -1,10 +1,11 @@
+var imgData;
 async function thereUser(){
     try{
         await rankingAccess();
         await displayAccess();
-        const rankingData = await getRankingData();
-        console.log(rankingData)
-        await displayWrite(rankingData);
+        imgData = await getStoreData('images','imgs');
+        imgData = await SortRankingData(imgData);
+        await displayWrite(imgData);
         await wait(3);
         $("body,html").animate({scrollTop: 100000}, 1);//トップに移動
         loading.classList.add('loading-fadeaout');
@@ -16,17 +17,21 @@ async function noUser(){
     thereUser();
 }
 
+function SortRankingData(imgData){
+    return Object.keys(imgData).map(key =>{ return imgData[key];})
+    .sort((a, b)=>a.vote > b.size)
+}
+
 var i=1;
 var before_data;
 async function displayWrite(ImgsData){
-    return await ImgsData.forEach((doc) => {
-        itemWrite(doc.data());
+    return await ImgsData.forEach((data) => {
+        if(data.join_ranking)itemWrite(data);
     });
 }
 
 async function itemWrite(data){
     try{
-        const imgData = await getStoreData('imgs',data.id);
         if(before_data && before_data!=data.vote)i++
         before_data = data.vote
 
@@ -42,15 +47,16 @@ async function itemWrite(data){
             const rank = clone.querySelector('.rank');
             const penname = clone.querySelector('.penname');
 
-            getAndReflectUserImg(data.id,image);
+            const url = await getImg(data.id);
+            await ReflectUserImg(url, image, 'on');
 
             fragment.appendChild(clone);
             templeteContent.appendChild(fragment);
 
-            title.innerText = imgData.title;
+            title.innerText = data.title;
             vote.innerText = `${data.vote}票`;
             rank.innerText = `第${i}位`;
-            penname.innerText = imgData.penname;
+            penname.innerText = data.penname;
         }
     }catch(err){
         console.log('err',err);

@@ -100,6 +100,20 @@ a{
     text-decoration: none;
 }
 
+.side{
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.vertical{
+    margin-top: 30px;
+    margin-bottom: 10px;
+    width: auto;
+    height: 80vw;
+}
+
 //提出ボタン
 
 .crient-submited{
@@ -117,7 +131,6 @@ a{
         margin-right: 10px;
     }
 }
-
 //提出ボタン
 
 //ロード画面
@@ -278,7 +291,7 @@ body {
             width: 100vw;
             height: 80px;
             .header-content{
-                margin-top: 60px;
+                margin-top: 45px;
                 width: 100%;
                 height: 100%;
                 display: flex;
@@ -288,19 +301,19 @@ body {
                 section{
                     width: 50px;
                     height: 50px;
-                    border-radius: 50px;
-                    background-color: rgba(255, 255, 255, 0.95);
-                    border: solid 3px rgb(0, 0, 0);
+                    // border-radius: 50px;
+                    background-color:rgb(0, 0, 0); // background-color: rgba(255, 255, 255, 0.95);
+                    // border: solid 3px rgb(0, 0, 0);
                     z-index: 15;
-                    margin-right: 5vw;
+                    // margin-right: 5vw;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
                     label{
                         position: relative;
-                        width: 26px;
-                        height: 23px;
+                        width: 20.8px; // 26px;
+                        height: 18.4px; // 23px
                         cursor: pointer;
                         display: inline-block;
                         transition: all .5s;
@@ -310,7 +323,7 @@ body {
                             left: 0;
                             width: 100%;
                             height: 3px;
-                            background-color: black;
+                            background-color: white; //black;
                             border-radius: 2px;
                             display: inline-block;
                             transition: all .5s;
@@ -320,7 +333,7 @@ body {
                             top: 0;
                         }
                         span:nth-of-type(2) {
-                            top: 10px;
+                            top: 8px; // 10px;
                         }
                         span:nth-of-type(3) {
                             bottom: 0;
@@ -434,13 +447,13 @@ body {
                         background-color:white;
                     }
                     span:nth-of-type(1) {
-                        transform: translateY(10px) rotate(-45deg);
+                        transform: translateY(7.5px) rotate(-45deg); // transform: translateY(10px) rotate(-45deg);
                     }
                     span:nth-of-type(2) {
                         opacity: 0;
                     }
                     span:nth-of-type(3) {
-                        transform: translateY(-10px) rotate(45deg);
+                        transform: translateY(-7.5px) rotate(45deg); // transform: translateY(-10px) rotate(45deg);
                     }
                 }
             }
@@ -922,22 +935,23 @@ body {
     //display部分
     .display-container{
         width: 95vw;
+        // width: 100vw;
         margin-bottom: 2.5vw;
         .display-items-container{
             .sticky{
                 z-index: 5;
-                height: 50px;
+                height: 40px;
                 background-color: rgba(255, 255, 255, 0.8);
                 position: sticky;
-                font-size: 18px;
                 margin-bottom: 2.5vw;
                 border-radius: 5px;
                 box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
                 //top: 170px;  //ヘッダーに合わせるようにしたい。
-                top: 15px;
+                top: 7.5px;
                 display: flex;
                 align-items: center;
                 h3{
+                    font-size: 15px !important;
                     margin-left: 5%;
                 }
             }
@@ -967,18 +981,22 @@ body {
                 box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
                 margin-bottom: 2.5vw;
                 .display-img-content{
-                    width: 100%;
+                    width: 85%;
+                    // height: 90.25vw;
                     position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     .display-img{
-                        width: 100%;
-                        height: auto;
+                        border: solid  rgba(0, 0, 0, 0.1) 1px;
+                        border-radius: 5px;
                     }
-                    .in-shadow{
-                        position: absolute;
-                        width: 100%;
-                        height: 100%;
-                        box-shadow: 0 -20px 25px 0 rgba(0, 0, 0, 0.1) inset;
-                    }
+                    // .in-shadow{
+                    //     position: absolute;
+                    //     width: 100%;
+                    //     height: 100%;
+                    //     box-shadow: 0 -20px 25px 0 rgba(0, 0, 0, 0.1) inset;
+                    // }
                 }
                 .acd-check{
                     display: none;
@@ -987,18 +1005,18 @@ body {
                     width: 85%;
                     // padding-bottom: 50px;
                     .title{
-                        font-size: 20px;
-                        margin: 15px 0px 9px 0px;
+                        font-size: 16px;
+                        margin: 15px 0px 5px 0px;
                     }
                     .penname{
-                        font-size: 18px;
+                        font-size: 15px;
                         color: rgba(0, 0, 0, 0.5);
-                        margin-bottom: 15px;
+                        margin-bottom: 5px;
                     }
                     .caption{
-                        font-size: 18px;
-                        margin-bottom: 25px;
-                        line-height: 1.8em;
+                        font-size: 15px;
+                        margin-bottom: 10px;
+                        // line-height: 1.6em;
                     }
                     .eval-items{
                         display: flex;
@@ -1036,7 +1054,9 @@ body {
                             display: none;
                         }
                         .heart-check:checked + .fa-heart{
-                            color: rgb(255, 132, 132);
+                            // color: rgb(255, 132, 132);
+                            color: rgb(255, 255, 255);
+                            background-color: black;
                         }
                     }
                     .comment-form{
