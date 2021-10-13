@@ -1,8 +1,10 @@
+var imgData
 async function thereUser(){
     uid = await firebase.auth().currentUser.uid;
     const hostData = await checkHost(uid);
-    const allImgsData = await getAllImgsData();
-    await displayWrite(allImgsData);
+    imgData = await getStoreData('images','imgs');
+    const sortImgData = await sortImgs(imgData)
+    await displayWrite(sortImgData);
     $("body,html").animate({scrollTop: 0}, 1);//トップに移動
     loading.classList.add('loading-fadeaout');
 }
@@ -20,8 +22,8 @@ submitButton.addEventListener("click",function(){
 });
 
 async function displayWrite(ImgsData){
-    return await ImgsData.forEach((doc) => {
-        itemWrite(doc.data());
+    return await ImgsData.forEach((data) => {
+        itemWrite(data);
     });
 }
 
@@ -38,17 +40,14 @@ function itemWrite(data){
         const vote = clone.querySelector('.vote');
         const voteContainer = clone.querySelector('.vote-container');
 
-        getAndReflectUserImg(data.id,image);
+        const url = await getImg(data.id);
+        await ReflectUserImg(url, image, 'on');
 
         fragment.appendChild(clone);
         templeteContent.appendChild(fragment);
 
-        const crientData = await getStoreData('crients',data.id);
-
-        console.log(crientData);
-
         title.innerText = data.title;
-        vote.innerText = crientData.vote;
+        vote.innerText = data.vote;
         voteContainer.name = data.id;
     })();
 }
@@ -65,17 +64,11 @@ async function crientSubmitFunc(){
 }
 
 async function getVoteContent(crientContents){
-    for(var i=0; i<crientContents.length; i++){
-        const voteContent = crientContents[i];
-        const voteValue = voteContent.querySelector('.vote-value').value;
-        console.log("voteValue",voteValue);
-        if(voteValue!=="0"){
-            const imgUid = voteContent.name;
-            const crientsData = await getStoreData('crients',imgUid);
-            var pushData ={};
-            pushData.vote = crientsData.vote + parseInt(voteValue);
-            console.log('submit pushData',pushData);
-            await dataUpdate(pushData,'crients',imgUid);
-        }
-    }
+    imgData = await getStoreData('images','imgs');
+    crientContents.forEach((crientcontent)=>{
+        const voteValue = crientcontent.querySelector('.vote-value').value;
+        const imgUid = crientcontent.name;
+        imgData[imgUid].vote = imgData[imgUid].vote + parseInt(voteValue);
+    })
+    await dataUpdate(imgData,'images','imgs');
 }

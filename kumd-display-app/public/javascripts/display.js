@@ -1,3 +1,4 @@
+var imgData
 async function thereUser(){
     try{
         await displayAccess();
@@ -14,10 +15,12 @@ async function thereUser(){
             pennameElement.innerHTML = await demoData.penname;
             captionElement.innerHTML = await demoData.caption;
         }
-        const allImgsData = await getAllImgsData();
+        imgData = await getStoreData('images','imgs');
+        const sortImgData = await sortImgs(imgData)
         var allCookies = document.cookie;
         var cookieKey = allCookies.split('; ').map(x => x.split('=')[0])
-        await displayWrite(allImgsData, cookieKey);
+        console.log(sortImgData)
+        await displayWrite(sortImgData, cookieKey);
         textValidation('.paint-comment',100);
         textValidation('.contact-comment',200);
         await wait(2);
@@ -71,22 +74,18 @@ function clickBtn(){
     });
 
     image.on("click", function() {
-        if(screen.availWidth > 1024 ){
-            const imgId = $(this).attr("id").replace('img_', "");
-            const imgExpantion = $(`#img_expantion_${imgId}`);
-            const imgExpantionImage_2 = $(`#img_expantion_${imgId} > img`);
-            const imgExpantionImage = document.querySelector(`#img_expantion_${imgId} > img`);
-            imgExpantion.css('display', 'flex');
-            const imgRatio = imgExpantionImage.naturalWidth / imgExpantionImage.naturalHeight
-            const displayRatio = document.documentElement.clientWidth / (screen.availHeight)
-            console.log(imgRatio+' '+displayRatio)
-            if( imgRatio < displayRatio ) {
-                imgExpantionImage_2.css('height',`90vh`).css('width', 'auto');
-                console.log('一つ目だよ'+imgRatio+','+displayRatio)
-            }else {
-                imgExpantionImage_2.css('width',`90vw`).css('height', 'auto');
-                console.log('二つ目だよ'+imgRatio+','+displayRatio)
-            }
+        const imgId = $(this).attr("id").replace('img_', "");
+        const imgExpantion = $(`#img_expantion_${imgId}`);
+        const imgExpantionImage_2 = $(`#img_expantion_${imgId} > img`);
+        const imgExpantionImage = document.querySelector(`#img_expantion_${imgId} > img`);
+        imgExpantion.css('display', 'flex');
+        const imgRatio = imgExpantionImage.naturalWidth / imgExpantionImage.naturalHeight
+        const displayRatio = document.documentElement.clientWidth / (screen.availHeight)
+        console.log(imgRatio+' '+displayRatio)
+        if( imgRatio < displayRatio ) {
+            imgExpantionImage_2.css('height',`90vh`).css('width', 'auto');
+        }else {
+            imgExpantionImage_2.css('width',`90vw`).css('height', 'auto');
         }
     });
 
@@ -103,14 +102,15 @@ async function submitComment(submitId, commentValue){
             await contactData.contact.push(commentValue);
             await setStoreData(contactData,'contact','Contact');
         }else{
-            const crientsData = await getStoreData('crients',submitId);
-            var pushData ={};
+            imgData = await getStoreData('images','imgs');
+            const imgUid = submitId
+            var pushData = imgData[imgUid];
             var now = new Date();
             var date = `${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${now.getMinutes()}`;
-            pushData.commentNum = crientsData.commentNum + 1;
-            pushData[`comment${pushData.commentNum}`] = {comment: commentValue, date: date };
+            // pushData.commentNum = crientsData.commentNum + 1;
+            pushData.comment.push({text: commentValue, date: date });
             console.log('submit pushData',pushData);
-            await dataUpdate(pushData,'crients',submitId);
+            await dataUpdate({[imgUid]:pushData}, 'images','imgs');
         }
     }catch(err){
         console.log('err',err);
@@ -125,28 +125,28 @@ function timeoutFunction(thisElement, heartCheckId, heartChecked, timers){
 }
 
 async function addVote(imgUid, checked){
-    const crientsData = await getStoreData('crients',imgUid);
-    var pushData ={};
+    imgData = await getStoreData('images','imgs');
+    var pushData = imgData[imgUid];
     if(checked){
         console.log('add!')
-        pushData.vote = crientsData.vote + 1;
+        pushData.vote = pushData.vote + 1;
         const date = 24*60*60;
         document.cookie = `heart-check${imgUid}=checked; max-age=${date}`
     }else{
         console.log('decrease!')
-        pushData.vote = crientsData.vote - 1;
+        pushData.vote = pushData.vote - 1;
         document.cookie = `heart-check${imgUid}=checked; max-age=0`
     }
-    await dataUpdate(pushData,'crients',imgUid);
+    await dataUpdate({[imgUid]: pushData},'images','imgs');
 }
 
 async function displayWrite(ImgsData, Keys){
-    return await ImgsData.forEach((doc) => {
-        itemWrite(doc.data(), Keys);
+    return await ImgsData.forEach((data) => {
+        itemWrite(data, Keys);
     });
 }
 
-function itemWrite(data, Keys){
+async function itemWrite(data, Keys){
     const itemsContent = document.querySelector('#display-item-tem').content
     if(data.grade==""||!data.grade)data.grade=5; //何かしらの不具合でgradeの値が入っていない場合、その他に振り割る。
     const templeteContent = document.getElementById(`scroll-${data.grade}`);
@@ -170,8 +170,9 @@ function itemWrite(data, Keys){
     const textArea = clone.querySelector('textarea');
     const submitBtn = clone.querySelector('.crient-submit');
 
-    getAndReflectUserImg(data.id, image);
-    getAndReflectUserImg(data.id, image_expansion);
+    const url = await getImg(data.id);
+    await ReflectUserImg(url, image, 'on');
+    await ReflectUserImg(url, image_expansion, '');
     acdCheck.id = `acd-check${data.id}`;
 
     fragment.appendChild(clone);

@@ -30,10 +30,10 @@ function deleteStoreDocument(collection,imgUid){
 }
 
 //firestoreでfieldを削除する
-function deleteStoreField(collection, uid, value) {
-    var storeRef = db.collection(collection).doc(uid);
+function deleteStoreField(collection, doc, key) {
+    var storeRef = db.collection(collection).doc(doc);
     return storeRef.update({
-        [`img${value}`]: firebase.firestore.FieldValue.delete(),
+        [key]: firebase.firestore.FieldValue.delete(),
     });
 }
 
@@ -53,15 +53,25 @@ function deleteStorageFile(imgUid){
     return storageRef.child(`imgs/${imgUid}.jpg`).delete();
 }
 
-//画像のデータを全て取得する関数
-function getAllImgsData(){
-    const imgsRef = db.collection('imgs').orderBy("size").orderBy("grade");
-    return imgsRef.get();
+// 画像を回生→サイズ順に変更する(配列を返す。)
+function sortImgs(imgData){
+    return Object.keys(imgData).map(key =>{ return imgData[key];})
+    .sort((a, b)=>Number(a.size) < Number(b.size))
+    .sort((a, b)=>Number(a.grade) < Number(b.grade))
 }
 
-function getRankingData(){
-    const rankingRef = db.collection('crients').orderBy("vote", "desc").limit(20);
-    return rankingRef.get();
+// 画像URLを取得する。
+async function getImg(imgUid) {
+    // return
+    const storageRef = storage.ref();
+    return new Promise((resolve, reject) => {
+        storageRef.child("imgs/" + imgUid + ".jpg").getDownloadURL()
+            .then((url) => {
+                resolve(url);
+            }).catch((err) => {
+                reject("getAndReflectUserImgErr", err);
+        });
+    })
 }
 
 //firebase storage関連の関数--------------------------------------------------------------
@@ -69,28 +79,23 @@ function getRankingData(){
 //複合関数--------------------------------------------------------------------------------
 
 //画像の取得から反映まで行います。
-function getAndReflectUserImg(imgUid, element) {
-    const storageRef = storage.ref();
-    console.log("imgUid", imgUid);
-    storageRef.child("imgs/" + imgUid + ".jpg").getDownloadURL()
-    .then(function(url) {
-        //エレメントに画像を反映
-        element.src = url;
-    }).catch((err) => {
-        // Handle any errors
-        console.log("getAndReflectUserImgErr", err);
-    });
+
+async function ReflectUserImg(url, element, on) {
+    element.src = url;
+    // await wait(1) // 画像の幅の取得ミスを防ぐため
+    if(!on) return
+    const imgRatio = element.naturalWidth / element.naturalHeight;
+    console.log(imgRatio)
+    imgRatio < 1 ? element.classList.add("vertical") : element.classList.add("side");
 }
 
 //delete時
-async function deleteFunc(value, uid, goalURL) {
+async function deleteFunc(uid, imgUid, goalURL) {
     if (await window.confirm("一度削除したイラスト情報は元に戻りません。削除してもよろしいでしょうか？")) {
         try{
             await loading.classList.remove('loading-fadeaout');
-            const imgUid = `${uid}-${value}`;
-            await deleteStoreDocument('imgs',imgUid);
-            await deleteStoreDocument('crients',imgUid);
-            await deleteStoreField('users',uid,value);
+            await deleteStoreField('images','imgs',imgUid);
+            await deleteStoreField('users',uid,`img${imgUid.split('-')[1]}`);
             await deleteStorageFile(imgUid);
             console.log("delete function all complete!");
             location.href = goalURL;
@@ -100,23 +105,30 @@ async function deleteFunc(value, uid, goalURL) {
     }
 }
 
+// 画像を圧縮して保存
 async function fileCompressAndSave(file,child){
-    return await new Compressor(file,{
-        quality:judgeQuality(file.size),
-        success(result) {
-            console.log(result);
-            saveStorageData(result,child);
-        },
-        error(err){
-            console.log('Compressor ERR',err);
-        }
-    });
+    const result = await fileCompress(file);
+    await saveStorageData(result,child);
+}
+
+// 画像の圧縮
+async function fileCompress(file){
+    return await new Promise((resolve, reject) => {
+        new Compressor(file,{
+            quality:judgeQuality(file.size),
+            success(result) {
+                resolve(result);
+            },
+            error(err){
+                reject('Compressor ERR',err);
+            }
+        });
+    })
 }
 
 //データを書き換える際の関数。
 async function updateFunc(object, collection, imgUid, goalURL){
     try{
-        const imgUid = await `${uid}-${value}`;
         await dataUpdate(object,collection, imgUid)
         location.href= goalURL;
     }catch(err){

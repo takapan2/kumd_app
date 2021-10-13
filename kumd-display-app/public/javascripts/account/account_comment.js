@@ -6,13 +6,11 @@ async function thereUser(){
         uid = await firebase.auth().currentUser.uid;
         imgUid = `${uid}-${value}`;
 
-        const imgData = await getStoreData('imgs',imgUid);
-        await writeEditData(imgData);
-        await getAndReflectUserImg(imgUid,imageElement);
-        var crientsData = await getStoreData('crients',imgUid);
-        var crientsValData = await validateCrientsData(crientsData);
-        crientsData = await getDecSort(crientsValData);
-        await reflectCrientData(crientsData);
+        const imgData = await getStoreData('images','imgs');
+        await writeEditData(imgData[imgUid]);
+        const url = await getImg(imgUid);
+        await ReflectUserImg(url, imageElement, 'on');
+        await reflectCrientData(imgData[imgUid].comment);
         $("body,html").animate({scrollTop: 0}, 1);//トップに移動
         loading.classList.add('loading-fadeaout');
     } catch (err){
@@ -42,16 +40,14 @@ function validateCrientsData(crientsData){
 function reflectCrientData(data){
     const templeteContent = document.getElementById("comment-content");
     const itemsContent = document.querySelector("#comment-tem").content;
-    for (const property in data) {
-        console.log(data[property]);
+    data.map((cmt) => {
         const clone = document.importNode(itemsContent, true);
-
         const time = clone.querySelector("th");
         const comment = clone.querySelector("td");
 
-        time.innerText = data[property].date;
-        comment.innerText = data[property].comment;
+        time.innerText = cmt.date;
+        comment.innerText = cmt.text;
         fragment.appendChild(clone);
-    }
+    })
     templeteContent.appendChild(fragment);
 }
