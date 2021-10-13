@@ -165,7 +165,7 @@ async function itemWrite(data, Keys){
 
     const heartCheck = clone.querySelector('.heart-check');
     const content = clone.querySelector('.crient-content');
-    const faHeart = clone.querySelector('.fa-heart');
+    const faHeart = clone.querySelector('.far-heart');
     const faComment = clone.querySelector('.fa-comment');
     const textArea = clone.querySelector('textarea');
     const submitBtn = clone.querySelector('.crient-submit');

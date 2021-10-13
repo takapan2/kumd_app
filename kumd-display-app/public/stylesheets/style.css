@@ -468,7 +468,7 @@ body header .header-cover {
 }
 
 body header .header-cover .header-content {
-  margin-top: 45px;
+  margin-top: -20px;
   width: 100%;
   height: 100%;
   display: -webkit-box;
@@ -486,8 +486,8 @@ body header .header-cover .header-content {
 }
 
 body header .header-cover .header-content section {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   background-color: black;
   z-index: 15;
   display: -webkit-box;
@@ -499,8 +499,6 @@ body header .header-cover .header-content section {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
-          box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 body header .header-cover .header-content section label {
@@ -1313,21 +1311,19 @@ body .caption-content .caption-content-bottom {
 }
 
 body .display-container {
-  width: 95vw;
+  width: 100vw;
   margin-bottom: 2.5vw;
 }
 
 body .display-container .display-items-container .sticky {
   z-index: 5;
   height: 40px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: black;
+  color: white;
   position: -webkit-sticky;
   position: sticky;
   margin-bottom: 2.5vw;
-  border-radius: 5px;
-  -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
-          box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
-  top: 7.5px;
+  top: 0px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1376,8 +1372,6 @@ body .display-container .display-items-container .display-item-container {
       -ms-flex-align: center;
           align-items: center;
   border-radius: 5px;
-  -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
-          box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
   margin-bottom: 2.5vw;
 }
 
@@ -1434,12 +1428,12 @@ body .display-container .display-items-container .display-item-container .displa
   margin-bottom: 25px;
 }
 
-body .display-container .display-items-container .display-item-container .display-content .eval-items .fa-heart {
-  width: 60px;
-  height: 60px;
-  border-radius: 60px;
-  -webkit-box-shadow: 0 2.5px 5px 0 rgba(0, 0, 0, 0.3);
-          box-shadow: 0 2.5px 5px 0 rgba(0, 0, 0, 0.3);
+body .display-container .display-items-container .display-item-container .display-content .eval-items .far-heart {
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0.5px 2px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0.5px 2px 0 rgba(0, 0, 0, 0.3);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1449,20 +1443,20 @@ body .display-container .display-items-container .display-item-container .displa
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  font-size: 30px;
-  color: #d7d7d7;
+  font-size: 15px;
+  color: black;
 }
 
-body .display-container .display-items-container .display-item-container .display-content .eval-items .fa-heart::before {
+body .display-container .display-items-container .display-item-container .display-content .eval-items .far-heart::before {
   padding-top: 3px;
 }
 
 body .display-container .display-items-container .display-item-container .display-content .eval-items .fa-comment {
-  width: 60px;
-  height: 60px;
-  border-radius: 60px;
-  -webkit-box-shadow: 0 2.5px 5px 0 rgba(0, 0, 0, 0.3);
-          box-shadow: 0 2.5px 5px 0 rgba(0, 0, 0, 0.3);
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0.5px 2px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0.5px 2px 0 rgba(0, 0, 0, 0.3);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1472,8 +1466,8 @@ body .display-container .display-items-container .display-item-container .displa
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  font-size: 30px;
-  color: #d7d7d7;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.3);
 }
 
 body .display-container .display-items-container .display-item-container .display-content .eval-items .fa-comment::before {
@@ -1484,7 +1478,7 @@ body .display-container .display-items-container .display-item-container .displa
   display: none;
 }
 
-body .display-container .display-items-container .display-item-container .display-content .eval-items .heart-check:checked + .fa-heart {
+body .display-container .display-items-container .display-item-container .display-content .eval-items .heart-check:checked + .far-heart {
   color: white;
   background-color: black;
 }
@@ -1511,32 +1505,30 @@ body .display-container .display-items-container .display-item-container .displa
 
 body .display-container .display-items-container .display-item-container .display-content .comment-form p {
   width: 100%;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 body .display-container .display-items-container .display-item-container .display-content .comment-form .comment-area {
   width: 95%;
   height: 200px;
-  font-size: 18px;
+  font-size: 15px;
   padding: 10px;
   background-color: whitesmoke;
   outline: none;
   border-radius: 5px;
-  border-color: rgba(0, 0, 0, 0);
-  -webkit-box-shadow: 0px 0px 8px 2px #ccc inset;
-          box-shadow: 0px 0px 8px 2px #ccc inset;
+  border-color: rgba(0, 0, 0, 0.3);
 }
 
 body .display-container .display-items-container .display-item-container .display-content .comment-form button {
   margin-top: 20px;
   width: 200px;
-  padding: 10px 0px;
-  font-size: 18px;
+  padding: 9px 0px;
+  font-size: 15px;
   border-radius: 5px;
   border: initial;
-  height: 50px;
+  height: 40px;
   color: white;
-  background-color: #0073ff;
+  background-color: black;
 }
 
 body .display-container .display-items-container .display-item-container .display-content .comment-form button span {
@@ -1545,7 +1537,8 @@ body .display-container .display-items-container .display-item-container .displa
 }
 
 body .display-container .display-items-container .display-item-container .acd-check:checked + .display-content .eval-items .fa-comment {
-  color: #809dff;
+  background-color: black;
+  color: white;
 }
 
 body .display-container .display-items-container .display-item-container .acd-check:checked + .display-content .comment-form {
@@ -1578,38 +1571,36 @@ body .display-bottom .about-display-form {
 }
 
 body .display-bottom .about-display-form h4 {
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 50px;
   margin-bottom: 20px;
 }
 
 body .display-bottom .about-display-form p {
-  font-size: 18px;
+  font-size: 15px;
 }
 
 body .display-bottom .about-display-form .comment-area {
   width: 95%;
   height: 200px;
-  font-size: 18px;
+  font-size: 15px;
   padding: 10px;
   background-color: whitesmoke;
   outline: none;
   border-radius: 5px;
-  border-color: rgba(0, 0, 0, 0);
-  -webkit-box-shadow: 0px 0px 8px 2px #ccc inset;
-          box-shadow: 0px 0px 8px 2px #ccc inset;
+  border-color: rgba(0, 0, 0, 0.3);
 }
 
 body .display-bottom button {
   margin: 20px 15px;
   width: 200px;
-  padding: 10px 0px;
-  font-size: 18px;
+  padding: 9px 0px;
+  font-size: 15px;
   border-radius: 5px;
   border: initial;
-  height: 50px;
+  height: 40px;
   color: white;
-  background-color: #0073ff;
+  background-color: black;
 }
 
 body .display-bottom button span {
