@@ -540,8 +540,8 @@ body header .header-cover .header-content section label span:nth-of-type(3) {
 }
 
 body header .header-cover .head-animation {
-  -webkit-transform: translateX(25%);
-          transform: translateX(25%);
+  -webkit-transform: translateY(-40px);
+          transform: translateY(-40px);
 }
 
 body header .header-cover .ham-menu .ham-menu-contents {

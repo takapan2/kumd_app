@@ -82,9 +82,13 @@ async function getImg(imgUid) {
 
 async function ReflectUserImg(url, element, on) {
     element.src = url;
-    // await wait(1) // 画像の幅の取得ミスを防ぐため
     if(!on) return
-    const imgRatio = element.naturalWidth / element.naturalHeight;
+    const imgRatio = await new Promise((resolve, reject) => {
+        const ratio = element.naturalWidth / element.naturalHeight
+        console.log(ratio)
+        if(!isNaN(ratio))resolve(ratio)
+    })
+    // const imgRatio = element.naturalWidth / element.naturalHeight;
     console.log(imgRatio)
     imgRatio < 1 ? element.classList.add("vertical") : element.classList.add("side");
 }
