@@ -340,6 +340,16 @@ body {
                         }
                     }
                 }
+                p{
+                    font-size: 25px;
+                    color: white;
+                    background-color: black;
+                    width: 90px;
+                    height: 40px;
+                    display: flex;
+                    justify-content: right;
+                    align-items: center;
+                }
             }
             .head-animation{
                 transform: translateY(-40px);
@@ -374,7 +384,7 @@ body {
                                 p{
                                     padding-left: 5%;
                                     color: white;
-                                    font-size: 18px;
+                                    font-size: 15px;
                                     height: 40px;
                                     border-bottom: solid 1px white;
                                     display: flex;
@@ -397,7 +407,7 @@ body {
                                 p{
                                     padding-left: 5%;
                                     color: white;
-                                    font-size: 18px;
+                                    font-size: 15px;
                                     height: 40px;
                                     border-bottom: solid 1px white;
                                     display: flex;

@@ -539,6 +539,23 @@ body header .header-cover .header-content section label span:nth-of-type(3) {
   bottom: 0;
 }
 
+body header .header-cover .header-content p {
+  font-size: 25px;
+  color: white;
+  background-color: black;
+  width: 90px;
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 body header .header-cover .head-animation {
   -webkit-transform: translateY(-40px);
           transform: translateY(-40px);
@@ -598,7 +615,7 @@ body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .inde
 body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .index-btns label p {
   padding-left: 5%;
   color: white;
-  font-size: 18px;
+  font-size: 15px;
   height: 40px;
   border-bottom: solid 1px white;
   display: -webkit-box;
@@ -632,7 +649,7 @@ body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .othe
 body header .header-cover .ham-menu .ham-menu-contents .ham-menu-container .other-btns .other-btn p {
   padding-left: 5%;
   color: white;
-  font-size: 18px;
+  font-size: 15px;
   height: 40px;
   border-bottom: solid 1px white;
   display: -webkit-box;
