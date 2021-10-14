@@ -83,10 +83,10 @@ async function getImg(imgUid) {
 async function ReflectUserImg(url, element, on) {
     element.src = url;
     if(!on) return
-    const imgRatio = await new Promise((resolve, reject) => {
+    const imgRatio = await new Promise(async(resolve, reject) => {
         const ratio = element.naturalWidth / element.naturalHeight
         console.log(ratio)
-        if(!isNaN(ratio))resolve(ratio)
+        if(!isNaN(ratio))await resolve(ratio)
     })
     // const imgRatio = element.naturalWidth / element.naturalHeight;
     console.log(imgRatio)
