@@ -81,17 +81,22 @@ async function getImg(imgUid) {
 //画像の取得から反映まで行います。
 
 async function ReflectUserImg(url, element, on) {
-    element.src = await url;
-    if(!on) return
-    await wait(2)
-    // const imgRatio = await new Promise(async(resolve, reject) => {
-    //     const ratio = element.naturalWidth / element.naturalHeight
-    //     console.log(ratio)
-    //     if(!isNaN(ratio))resolve(ratio)
-    // })
-    const imgRatio = element.width / element.height;
-    console.log(imgRatio)
-    imgRatio < 1 ? element.classList.add("vertical") : element.classList.add("side");
+    return Promise.all[ 
+        new Promise( async (resolve, reject) => {
+            element.src = await url;
+            if(on != 'on') resolve();
+            await wait(2)
+            // const imgRatio = await new Promise(async(resolve, reject) => {
+            //     const ratio = element.naturalWidth / element.naturalHeight
+            //     console.log(ratio)
+            //     if(!isNaN(ratio))resolve(ratio)
+            // })
+            const imgRatio = element.width / element.height;
+            console.log(imgRatio)
+            imgRatio < 1 ? element.classList.add("vertical") : element.classList.add("side");
+            resolve()
+        })
+    ]
 }
 
 //delete時

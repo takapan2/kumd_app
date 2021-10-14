@@ -130,7 +130,7 @@ async function addVote(imgUid, checked){
     if(checked){
         console.log('add!')
         pushData.vote = pushData.vote + 1;
-        const date = 24*60*60;
+        const date = 7*24*60*60; //7日まつ
         document.cookie = `heart-check${imgUid}=checked; max-age=${date}`
     }else{
         console.log('decrease!')
