@@ -468,7 +468,7 @@ body header .header-cover {
 }
 
 body header .header-cover .header-content {
-  margin-top: -20px;
+  margin-top: -15px;
   width: 100%;
   height: 100%;
   display: -webkit-box;
@@ -486,8 +486,8 @@ body header .header-cover .header-content {
 }
 
 body header .header-cover .header-content section {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   background-color: black;
   z-index: 15;
   display: -webkit-box;
@@ -503,8 +503,8 @@ body header .header-cover .header-content section {
 
 body header .header-cover .header-content section label {
   position: relative;
-  width: 20.8px;
-  height: 18.4px;
+  width: 26px;
+  height: 23px;
   cursor: pointer;
   display: inline-block;
   -webkit-transition: all .5s;
@@ -532,7 +532,7 @@ body header .header-cover .header-content section label span:nth-of-type(1) {
 }
 
 body header .header-cover .header-content section label span:nth-of-type(2) {
-  top: 8px;
+  top: 10px;
 }
 
 body header .header-cover .header-content section label span:nth-of-type(3) {
@@ -541,24 +541,26 @@ body header .header-cover .header-content section label span:nth-of-type(3) {
 
 body header .header-cover .header-content p {
   font-size: 25px;
+  padding-left: 10px;
   color: white;
   background-color: black;
+  font-weight: bold;
   width: 90px;
-  height: 40px;
+  height: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: right;
-      -ms-flex-pack: right;
-          justify-content: right;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
 body header .header-cover .head-animation {
-  -webkit-transform: translateY(-40px);
-          transform: translateY(-40px);
+  -webkit-transform: translateY(-50px);
+          transform: translateY(-50px);
 }
 
 body header .header-cover .ham-menu .ham-menu-contents {
@@ -706,8 +708,8 @@ body header #ham-menu-on:checked + .header-cover .header-content section span {
 }
 
 body header #ham-menu-on:checked + .header-cover .header-content section span:nth-of-type(1) {
-  -webkit-transform: translateY(7.5px) rotate(-45deg);
-          transform: translateY(7.5px) rotate(-45deg);
+  -webkit-transform: translateY(10px) rotate(-45deg);
+          transform: translateY(10px) rotate(-45deg);
 }
 
 body header #ham-menu-on:checked + .header-cover .header-content section span:nth-of-type(2) {
@@ -715,8 +717,8 @@ body header #ham-menu-on:checked + .header-cover .header-content section span:nt
 }
 
 body header #ham-menu-on:checked + .header-cover .header-content section span:nth-of-type(3) {
-  -webkit-transform: translateY(-7.5px) rotate(45deg);
-          transform: translateY(-7.5px) rotate(45deg);
+  -webkit-transform: translateY(-10px) rotate(45deg);
+          transform: translateY(-10px) rotate(45deg);
 }
 
 body header #ham-menu-on:checked + .header-cover .head-animation {
@@ -775,8 +777,8 @@ body .caption-content {
 }
 
 body .caption-content .about-illust-display {
-  height: 40px;
-  width: 260px;
+  height: 50px;
+  width: 200px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1358,7 +1360,7 @@ body .display-container {
 
 body .display-container .display-items-container .sticky {
   z-index: 5;
-  height: 40px;
+  height: 50px;
   background-color: black;
   color: white;
   position: -webkit-sticky;
@@ -1373,8 +1375,9 @@ body .display-container .display-items-container .sticky {
           align-items: center;
 }
 
-body .display-container .display-items-container .sticky h3 {
-  font-size: 15px !important;
+body .display-container .display-items-container .sticky p {
+  font-weight: bold;
+  font-size: 20px !important;
   margin-left: 5%;
 }
 
@@ -1658,16 +1661,12 @@ body .login-container {
   transition: 0.1s;
   margin-top: 2.5vw;
   width: 95vw;
+  height: 100vh;
   background-color: white;
   border-radius: 5px;
-  -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
-          box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1680,8 +1679,21 @@ body .login-container {
 
 body .login-container .title {
   font-size: 24px;
-  margin-top: 50px;
-  margin-bottom: 20px;
+  width: 100%;
+  margin-top: 100px;
+  margin-bottom: 30px;
+}
+
+body .login-container .title p {
+  padding-left: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 50px;
+  color: black;
 }
 
 body .login-container .login-attention {
@@ -1708,11 +1720,6 @@ body .login-container .form {
   width: 80%;
 }
 
-body .login-container .form .sub-title {
-  margin-top: 20px;
-  width: 100%;
-}
-
 body .login-container .form .sep {
   width: 100%;
   color: gray;
@@ -1725,51 +1732,42 @@ body .login-container .form #mailAddress, body .login-container .form #password 
   background-color: whitesmoke;
   outline: none;
   border-radius: 5px;
-  border-color: rgba(0, 0, 0, 0);
-  -webkit-box-shadow: 0px 0px 8px 2px #ccc inset;
-          box-shadow: 0px 0px 8px 2px #ccc inset;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  margin-top: 50px;
 }
 
 body .login-container .form .btn-container {
   width: 100%;
-  margin-top: 30px;
+  margin-top: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 body .login-container .form .btn-container button {
-  width: 100%;
-  padding: 10px 20px;
-  background-color: #0073ff;
-  font-size: 16px;
+  width: 100px;
+  height: 50px;
+  background-color: black;
+  font-size: 15px;
   border-radius: 5px;
   border: initial;
   color: white;
-}
-
-body .login-container .err-msg {
-  width: 80%;
-}
-
-body .login-container .other-btn {
-  margin: 30px 0 0px 0;
-  width: 80%;
-  padding: 10px 0px;
-  background-color: white;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid black;
-  color: black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-body .login-container #return {
-  border: initial;
-  background-color: #7b7b7b;
-  color: white;
+body .login-container .err-msg {
+  width: 80%;
 }
 
 body .account-container .menu-contents {

@@ -11,24 +11,29 @@
     </head>
     <body class="container">
         <%- include('./../loading') %>
+        <%- include('./../display/header/header') %>
         <div class="login-contents">
             <div class="login-container content-width">
-                <h3 class="title">アカウントにログイン</h3>
-                <p class="login-attention">※漫画同好会サークル会員以外の方は行わないでください。</p>
+                <h3 class="title">
+                    <p>アカウントにログイン</p>
+                </h3>
+                <!-- <p class="login-attention">※漫画同好会サークル会員以外の方は行わないでください。</p> -->
                 <div class="form">
-                    <p class="sub-title">メールアドレス</p>
-                    <input id="mailAddress" type="mailAddress" name="mailAddress" placeholder="example@example.com" required/>
-                    <p class="sub-title">パスワード</p>
-                    <p class="sep">半角英数字を含めた6-16文字以内</p>
-                    <input id="password" type="password" name="password" placeholder="pass1234" required/>
+                    <!-- <p class="sub-title">メールアドレス</p> -->
+                    <input id="mailAddress" type="mailAddress" name="mailAddress" placeholder="メールアドレス" required/>
+                    <!-- <p class="sub-title">パスワード</p> -->
+                    <!-- <p class="sep">半角英数字を含めた6-16文字以内</p> -->
+                    <input id="password" type="password" name="password" placeholder="パスワード" required/>
+                    <p class="sep">※半角英数字を含めた6〜16文字以内</p>
                     <div class="btn-container">
                         <button id="login" class="btn">ログイン</button>
+                        <button id="register" class="other-btn btn" >新規登録</button>
                     </div>
                 </div>
                 <p id="login-err-msg" class="err-msg"></p>
-                <button id="register" class="other-btn btn" >新規登録</button>
+                <!-- <button id="register" class="other-btn btn" >新規登録</button> -->
                 <p id="new-err-msg" class="err-msg"></p>
-                <a id="return" class="other-btn btn" href="/display" >パネル展示会に戻る</a>
+                <!-- <a id="return" class="other-btn btn" href="/display" >パネル展示会に戻る</a> -->
             </div>
         </div>
         <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
