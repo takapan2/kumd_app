@@ -10,17 +10,17 @@ router.get('/account', function(req, res, next) {
     res.render('login/account_new_menu');
 });
 
-router.get('/account/new', function(req, res, next) {
-    res.render('login/account_new');
-});
+// router.get('/account/new', function(req, res, next) {
+//     res.render('login/account_new');
+// });
 
-router.get('/account/edit', function(req, res, next) {
-    res.render('login/account_edit');
-});
+// router.get('/account/edit', function(req, res, next) {
+//     res.render('login/account_edit');
+// });
 
-router.get('/account/comment', function(req, res, next) {
-    res.render('login/account_comment');
-});
+// router.get('/account/comment', function(req, res, next) {
+//     res.render('login/account_comment');
+// });
 
 router.get('/host',function(req,res,next){
     res.render('host/host_menu');
