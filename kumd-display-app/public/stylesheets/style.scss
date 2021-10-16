@@ -451,6 +451,7 @@ body {
             }
         }
         #ham-menu-on:checked + .header-cover{
+            pointer-events: initial;
             .header-content{
                 section{
                     background-color:rgba(50, 50, 50, 0.95);

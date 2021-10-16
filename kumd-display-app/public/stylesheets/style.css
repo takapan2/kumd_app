@@ -701,6 +701,10 @@ body header .header-cover .ham-menu .ham-menu-back {
   transition: 0.1s;
 }
 
+body header #ham-menu-on:checked + .header-cover {
+  pointer-events: initial;
+}
+
 body header #ham-menu-on:checked + .header-cover .header-content section {
   background-color: rgba(50, 50, 50, 0.95);
 }
