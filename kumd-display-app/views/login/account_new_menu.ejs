@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>2021年度春のパネル展示会</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/stylesheets/swiper-bundle.min.css" />
+    <script src="/javascripts/jquery-3.5.1.min.js"></script>
+</head>
+
+<body class="container account-new-menu">
+    <%- include('./../loading') %>
+    <%- include('./../display/header/header') %>
+    <div class="account-menu-container">
+      <p class="title">マイページ</p>
+      <div class="account-menu-contents" id="templete-content">
+      </div>
+    </div>
+    <!-- テンプレート -->
+    <template id="account-menu-register-tem">
+      <input class="accordion" type="checkbox" style="display:none;" id="">
+      <div class="account-menu-register-content">
+        <div class="account-header">
+          <p class="paint-title">タイトル</p>
+          <label class="accordion-btn" for="">
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+        <input class="tag" type="checkbox" style="display:none;" id="">
+        <div class="account-contents-wrapper">
+          <div class="tags">
+            <label class="comment-tag" for="">コメント</label>
+            <label class="edit-tag" for="">編集</label>
+          </div>
+          <div class="account-edit">
+            <div class="account-form">
+              <div class="account-img-content">
+                <img class="account-img" src="" />
+              </div>
+              <div class="select-contents">
+                <div class="grade-select-content">
+                  <p class="sub-title">回生</p>
+                  <select name="grade" id="">
+                    <option value="">選択して下さい</option>
+                    <option value="1">１回生</option>
+                    <option value="2">２回生</option>
+                    <option value="3">３回生</option>
+                    <option value="4">４回生</option>
+                    <option value="5">その他</option>
+                    <option value="6">合作</option>
+                  </select>
+                </div>
+                <div class="size-select=content">
+                  <p class="sub-title">サイズ</p>
+                  <select name="size" id="">
+                    <option value="">選択して下さい</option>
+                    <option value="1">B４</option>
+                    <option value="2">B５</option>
+                    <option value="3">その他</option>
+                  </select>
+                </div>
+              </div>
+              <p class="sub-title">作品名</p>
+              <input class="text-input" type="text" name="title" id="">
+              <p class="sub-title">ペンネーム</p>
+              <input class="text-input" type="text" name="penname" id="">
+              <p class="sub-title">説明文(150字以内)</p>
+              <textarea type="text" maxlength="150" name="caption" id=""></textarea>
+              <div class="join-ranking">
+                  <input type="checkbox" id="" checked>
+                  <label for="join-ranking">ランキング参加</label>
+              </div>
+              <p class="err-msg grade-err" id=""></p>
+              <p class="err-msg size-err" id=""></p>
+              <p class="err-msg title-err" id=""></p>
+              <p class="err-msg penname-err" id=""></p>
+              <p class="err-msg caption-err" id=""></p>
+              <div class="button-container">
+                <button class="btn submit-btn" id="">更新</button>
+                <button class="btn delete-btn" id="">削除</button>
+              </div>
+            </div>
+          </div>
+          <div class="account-comment">
+            <!-- 新規 -->
+            <div class="account-form">
+              <div class="account-comment-img-contents">
+                <div class="account-comment-img-content">
+                  <img class="account-img" src="" />
+                </div>
+                <div class="ranking-info">
+                  <p class="ranking-vote">55票</p>
+                  <p class="ranking-number">第10位</p>
+                </div>
+              </div>
+              <div class="comment-form">
+                <div class="comment-line post">
+                  <p class="time">時刻</p>
+                  <p class="crient-comment">コメント</p>
+                </div>
+                <div class="comment-contents"></div>
+              </div>
+            </div>
+            <!-- 新規 -->
+          </div>
+        </div>
+      </div>
+      <div class="white-content"></div>
+    </template>
+
+    <template id="comment-tem">
+      <div class="comment-line crient">
+        <p class="time"></p>
+        <p class="crient-comment"></p>
+      </div>
+    </template>
+
+    <template id="new-register-tem">
+      <input class="accordion" type="checkbox" style="display:none;" id="accordion">
+      <div class="account-menu-register-content" id="new-register">
+      <div class="account-header">
+        <p class="paint-title">新規作成</p>
+        <label class="accordion-btn" for="accordion">
+          <span></span>
+          <span></span>
+        </label>
+      </div>
+      <input class="tag" type="checkbox" style="display:none;" id="tag" checked>
+      <div class="account-contents-wrapper">
+        <div class="tags"></div>
+        <div class="account-edit">
+          <div class="account-form">
+            <p class="sub-title">イラスト</p>
+            <label class="file-content">
+              <input type="file" id="file" name="file" value="upload" accept="image/jpeg" >イラストを選択
+            </label>
+            <p class="file-comment">選択されていません(jpg、5GB以下)</p>
+            <div class="select-contents">
+              <div class="grade-select-content">
+                <p class="sub-title">回生</p>
+                <select name="grade" id="grade-select">
+                  <option value="">選択して下さい</option>
+                  <option value="1">１回生</option>
+                  <option value="2">２回生</option>
+                  <option value="3">３回生</option>
+                  <option value="4">４回生</option>
+                  <option value="5">その他</option>
+                  <option value="6">合作</option>
+                </select>
+              </div>
+              <div class="size-select=content">
+                <p class="sub-title">サイズ</p>
+                <select name="size" id="size-select">
+                  <option value="">選択して下さい</option>
+                  <option value="1">B４</option>
+                  <option value="2">B５</option>
+                  <option value="3">その他</option>
+                </select>
+              </div>
+            </div>
+            <p class="sub-title">作品名</p>
+            <input class="text-input" type="text" name="title" id="title">
+            <p class="sub-title">ペンネーム</p>
+            <input class="text-input" type="text" name="penname" id="penname">
+            <p class="sub-title">説明文(150字以内)</p>
+            <textarea type="text" maxlength="150" name="caption" id="caption"></textarea>
+            <div class="join-ranking">
+                <input type="checkbox" id="join-ranking" checked>
+                <label for="join-ranking">ランキング参加</label>
+            </div>
+            <p class="err-msg" id="file-err"></p>
+            <p class="err-msg grade-err" id="grade-err"></p>
+            <p class="err-msg size-err" id="size-err"></p>
+            <p class="err-msg title-err" id="title-err"></p>
+            <p class="err-msg penname-err" id="penname-err"></p>
+            <p class="err-msg caption-err" id="caption-err"></p>
+            <div class="button-container">
+              <button class="btn submit-btn" id="submit-btn" value="new" >保存して公開</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </template>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://cdn.jsdelivr.net/gh/fengyuanchen/compressorjs/dist/compressor.min.js"></script>
+    <script src='/javascripts/main.js'></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+    <script src="/javascripts/firebase_config.js"></script>
+    <script src="/javascripts/firebase_auth.js"></script>
+    <script src="/javascripts/account/account_new_menu.js"></script>
+    <script src="/javascripts/common_func.js"></script>
+</body>
+
+</html>

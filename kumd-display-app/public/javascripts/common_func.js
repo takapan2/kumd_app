@@ -20,6 +20,7 @@ function setStoreData(object, collection, doc){
 //firestoreでupdate処理をする。
 function dataUpdate(object,collection,document){
     const imgsRef = db.collection(collection).doc(document);
+    console.log('finish')
     return imgsRef.update(object);
 }
 
@@ -84,7 +85,7 @@ async function ReflectUserImg(url, element, on) {
     return Promise.all[ 
         new Promise( async (resolve, reject) => {
             element.src = await url;
-            if(on != 'on') resolve();
+            if(on != 'on') return
             await wait(2)
             // const imgRatio = await new Promise(async(resolve, reject) => {
             //     const ratio = element.naturalWidth / element.naturalHeight

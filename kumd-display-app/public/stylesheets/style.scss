@@ -284,6 +284,7 @@ body {
             display: none;
         }
         .header-cover{
+            pointer-events: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -299,6 +300,7 @@ body {
                 align-items: center;
                 transition:  0.5s;
                 section{
+                    pointer-events: initial;
                     width: 50px;
                     height: 50px;
                     background-color: rgba(0, 0, 0, 1); // background-color: rgba(255, 255, 255, 0.95);
@@ -1277,30 +1279,6 @@ body {
             width: 80%;
         }
     }
-    // .sign-in{
-    //     height: 500px;
-    //     opacity: 1;
-    //     visibility: initial;
-    // }
-    // .new{
-    //     height: 0px;
-    //     opacity: 0;
-    //     visibility: hidden;
-    // }
-    // #register-form:checked + .login-contents{
-    //     .sign-in{
-    //         height: 0px;
-    //         transition: 0.1s;
-    //         opacity: 0;
-    //         visibility: hidden;
-    //     }
-    //     .new{
-    //         height: 500px;
-    //         transition: 0.1s;
-    //         opacity: 1;
-    //         visibility: initial;
-    //     }
-    // }
     //login部分
 
     //account部分
@@ -1403,176 +1381,602 @@ body {
     //account部分
 
     //account_menu
-    .change-check{
-        display: none;
-    }
-    .account-menu-wrapper{
-        .account-menu-header{
-            width: 100vw;
-            height: 75px;
-            background-color: rgba(0, 0, 0, 0.8);
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 10;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            .header-content{
-                width: 95%;
+    // .change-check{
+    //     display: none;
+    // }
+    // .account-menu-wrapper{
+    //     .account-menu-header{
+    //         width: 100vw;
+    //         height: 75px;
+    //         background-color: rgba(0, 0, 0, 0.8);
+    //         position: fixed;
+    //         top: 0;
+    //         left: 0;
+    //         z-index: 10;
+    //         display: flex;
+    //         justify-content: center;
+    //         align-items: center;
+    //         .header-content{
+    //             width: 95%;
+    //             display: flex;
+    //             flex-direction: row-reverse;
+    //             align-items: center;
+    //             button{
+    //                 margin: 20px 15px;
+    //                 width: 120px;
+    //                 padding: 10px 0px;
+    //                 font-size: 18px;
+    //                 border-radius: 5px;
+    //                 border: initial;
+    //                 height: 50px;
+    //             }
+    //             #logout{
+    //                 background-color: rgb(0, 115, 255);
+    //                 color: white;
+    //                 opacity: 1;
+    //                 transition: 0.5s;
+    //             }
+    //             #change-comment{
+    //                 background-color: rgb(123, 123, 123);
+    //                 color: white;
+    //                 opacity: 1;
+    //                 transition: 0.1s;
+    //             }
+    //             #change-edit{
+    //                 background-color: white;
+    //                 color: rgb(0, 0, 0);
+    //                 opacity: 0;
+    //                 width: 0;
+    //                 margin: 0;
+    //                 transition: 0.1s;
+    //             }
+    //         }
+    //     }
+    //     .account-menu-container{
+    //         width: 95vw;
+    //         margin-top: calc(2.5vw + 75px);
+    //         display: flex;
+    //         flex-direction: column;
+    //         align-items: center;
+    //         .account-menu-contents{
+    //             width: 100%;
+    //             display: flex;
+    //             flex-wrap: wrap;
+    //             justify-content: space-around;
+    //             .content-no{
+    //                 width: 300px;
+    //                 height: 0px;
+    //             }
+    //             .register-content{
+    //                 width: 300px;
+    //                 overflow: hidden;
+    //                 background-color: white;
+    //                 display: flex;
+    //                 flex-direction: column;
+    //                 align-items: center;
+    //                 border-radius: 5px; //2.5vw
+    //                 box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
+    //                 margin-bottom: 2.5vw;
+    //                 .account-img-content{
+    //                     width: 100%;
+    //                     position: relative;
+    //                     overflow: hidden;
+    //                     height: 200px;
+    //                     .in-shadow{
+    //                         position: absolute;
+    //                         width: 100%;
+    //                         height: 100%;
+    //                         box-shadow: 0 -20px 25px 0 rgba(0, 0, 0, 0.1) inset;
+    //                     }
+    //                     .account-img{
+    //                         width: 100%;
+    //                         height: auto;
+    //                     }
+    //                     .fa{
+    //                         color:rgb(215, 215, 215);
+    //                         position: absolute;
+    //                         top: 50%;
+    //                         left: 50%;
+    //                         transform: translate(-50%, -50%);
+    //                         font-size: 70px;
+    //                     }
+    //                 }
+    //                 .account-contents{
+    //                     height: 100px;
+    //                     button{
+    //                         margin: 20px 15px;
+    //                         width: 100px;
+    //                         padding: 10px 0px;
+    //                         font-size: 18px;
+    //                         border-radius: 5px;
+    //                         border: initial;
+    //                         color: white;
+    //                     }
+    //                     #new-register{
+    //                         background-color: rgb(0, 115, 255);
+    //                         width: 150px;
+    //                     }
+    //                     .edit{
+    //                         background-color: white;
+    //                         border: solid black 1px;
+    //                         color: black;
+    //                         opacity: 1;
+    //                         transition: 0.5s;
+    //                     }
+    //                     .delete{
+    //                         background-color: rgb(255, 0, 25);
+    //                         opacity: 1;
+    //                         transition: 0.5s;
+    //                     }
+    //                     .comment{
+    //                         background-color: rgb(123, 123, 123);
+    //                         border: solid white 1px;
+    //                         color: white;
+    //                         display: none;
+    //                         opacity: 0;
+    //                         width: 150px;
+    //                         transition: 0.5s;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+    // #change:checked + .account-menu-wrapper{
+    //     #change-comment{
+    //         // display: none;
+    //         width: 0;
+    //         height: 50px;
+    //         margin: 0;
+    //         opacity: 0;
+    //     }
+    //     #change-edit{
+    //         display: block;
+    //         width: 120px;
+    //         height: 50px;
+    //         margin: 20px 15px;
+    //         opacity: 1;
+    //     }
+    //     .edit{
+    //         display: none;
+    //         opacity: 0;
+    //     }
+    //     .delete{
+    //         display: none;
+    //         opacity: 0;
+    //     }
+    //     .comment{
+    //         display: block;
+    //         opacity: 1;
+    //     }
+    // }
+    //account_menu
+
+    .account-menu-container{
+        background-color: white;
+        border-radius: 5px;
+        width: 100%;
+        padding-bottom: 200px;
+        .title{
+            font-size: 25px;
+            margin: 100px 0px 80px 20px;
+            font-weight: bold;
+        }
+        //ここはテンプレート部分
+        .account-menu-contents{
+            width: 100%;
+            .white-content{
+                width: 100%;
+                height: 30px;
+            }
+            .account-header{
+                width: 100%;
+                height: 50px;
                 display: flex;
-                flex-direction: row-reverse;
                 align-items: center;
-                button{
-                    margin: 20px 15px;
-                    width: 120px;
-                    padding: 10px 0px;
-                    font-size: 18px;
-                    border-radius: 5px;
-                    border: initial;
-                    height: 50px;
-                }
-                #logout{
-                    background-color: rgb(0, 115, 255);
+                justify-content: space-between;
+                background-color: black;
+                .paint-title{
+                    margin-left: 5vw;
                     color: white;
-                    opacity: 1;
-                    transition: 0.5s;
+                    font-size: 20px;
                 }
-                #change-comment{
-                    background-color: rgb(123, 123, 123);
-                    color: white;
-                    opacity: 1;
-                    transition: 0.1s;
-                }
-                #change-edit{
-                    background-color: white;
-                    color: rgb(0, 0, 0);
-                    opacity: 0;
-                    width: 0;
-                    margin: 0;
-                    transition: 0.1s;
+                .accordion-btn{
+                    pointer-events: initial;
+                    position: relative;
+                    margin-right: 5vw;
+                    width: 20px;
+                    height: 20px;
+                    cursor: pointer;
+                    display: inline-block;
+                    transition: all .5s;
+                    box-sizing: border-box;
+                    span {
+                        position: absolute;
+                        left: 0;
+                        width: 100%;
+                        height: 2px;
+                        background-color: white; //black;
+                        border-radius: 1px;
+                        display: inline-block;
+                        transition: all .5s;
+                        box-sizing: border-box;
+                    }
+                    span:nth-of-type(1) {
+                        transform: rotate(-180deg);
+                        top: 10px;
+                    }
+                    span:nth-of-type(2) {
+                        transform: rotate(-90deg);
+                        opacity: 1;
+                        top: 10px;
+                    }
                 }
             }
-        }
-        .account-menu-container{
-            width: 95vw;
-            margin-top: calc(2.5vw + 75px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            .account-menu-contents{
+            .account-contents-wrapper{
+                position: relative;
+                transition: all .5s;
+                opacity: 0;
+                height: 0px;
                 width: 100%;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-around;
-                .content-no{
-                    width: 300px;
-                    height: 0px;
-                }
-                .register-content{
-                    width: 300px;
-                    overflow: hidden;
-                    background-color: white;
+                background-color: #f0f0f0;
+                .tags{
+                    height: 50px;
                     display: flex;
-                    flex-direction: column;
+                    label{
+                        transition: all .2s;
+                        width: 100px;
+                        height: 40px;
+                        font-size: 15px;
+                        margin-top: 10px;
+                        background-color: white;
+                        border-radius: 5px 5px 0 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .edit-tag{
+                        pointer-events: initial;
+                        background-color: black;
+                        color: white;
+                    }
+                    .comment-tag{
+                        pointer-events: none;
+                        margin-left: 15px;
+                        margin-right: 10px;
+                    }
+                }
+                .account-edit{
+                    width: 100%;
+                    background-color: white;
+                    border-radius: 5px;
+                    display: flex;
                     align-items: center;
-                    border-radius: 5px; //2.5vw
-                    box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
-                    margin-bottom: 2.5vw;
-                    .account-img-content{
-                        width: 100%;
-                        position: relative;
-                        overflow: hidden;
-                        height: 200px;
-                        .in-shadow{
-                            position: absolute;
-                            width: 100%;
-                            height: 100%;
-                            box-shadow: 0 -20px 25px 0 rgba(0, 0, 0, 0.1) inset;
-                        }
-                        .account-img{
-                            width: 100%;
-                            height: auto;
-                        }
-                        .fa{
-                            color:rgb(215, 215, 215);
-                            position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            transform: translate(-50%, -50%);
-                            font-size: 70px;
+                    justify-content: center;
+                    transition: all .2s;
+                    pointer-events: none;
+                    opacity: 0;
+                    .account-form{
+                        width: 85%;
+                        margin: 50px 0;
+                        .account-img-content{
+                            width: 150px;
+                            height: 150px;
+                            background-color: #f0f0f0;
+                            overflow: hidden;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            border-radius: 5px;
+                            border: #f0f0f0 1px solid;
+                            img{
+                                width: 100%;
+                                height: auto;
+                            }
                         }
                     }
-                    .account-contents{
+                    .sub-title{
+                        margin-top: 20px;
+                        font-size: 15px;
+                    }
+                    .select-contents{
+                        width: 100%;
+                        display: flex;
+                        // justify-content: space-between;
+                        align-items: center;
+                        select{
+                            margin-right: 20px;
+                            padding:0 5px;
+                            width: 150px;
+                            height: 30px;
+                            background-color: white;
+                            font-size: 15px;
+                            border-radius: 5px;
+                            border: 1px solid black;
+                            display: flex;
+                            justify-content: center;
+                            outline: none;
+                        }
+                    }
+                    .text-input{
+                        outline: none;
+                        font-size: 15px;
+                        width: 200px;
+                        padding: 5px;
+                        background-color: rgb(245, 245, 245);
+                        border-radius: 5px;
+                        border: 1px solid  rgba(0, 0, 0, 0.3);
+                    }
+                    textarea{
+                        outline: none;
+                        font-size: 15px;
+                        padding: 5px;
+                        background-color: rgb(245, 245, 245);
+                        border-radius: 5px;
                         height: 100px;
+                        margin-bottom: 20px;
+                        width: calc(100% - 20px);
+                        border: 1px solid  rgba(0, 0, 0, 0.3);
+                    }
+                    .join-ranking{
+                        input[type=checkbox]{
+                            appearance: none;
+                            position: relative;
+                            right: 0;
+                            bottom: 0;
+                            left: 0;
+                            height: 20px;
+                            width: 20px;
+                            vertical-align: -0.8rem;
+                            transition:all .15s ease-out 0s;
+                            color: #fff;
+                            cursor: pointer;
+                            display: inline-block;
+                            margin: .4rem;
+                            outline: none;
+                            border-radius: 10%;
+                            border: 1px solid black;
+                        }
+                        input[type=checkbox]:before,input[type=checkbox]:after {
+                            position: absolute;
+                            content: "";
+                            background: #fff;
+                            transition: all .2s ease-in-out;
+                        }
+                        input[type=checkbox]:before {
+                            left: 2px;
+                            top: 6px;
+                            width: 0;
+                            height: 2px;
+                            transform: rotate(45deg);
+                        }
+                        input[type=checkbox]:after {
+                            right: 9px;
+                            bottom: 3px;
+                            width: 2px;
+                            height: 0;
+                            transform: rotate(40deg);
+                            transition-delay: .2s;
+                        }
+                        input[type=checkbox]:checked:before {
+                            left: 2px;
+                            top: 11px;
+                            width: 6px;
+                            height: 2px;
+                            background-color: white;
+                        }
+                        input[type=checkbox]:checked:after {
+                            right: 5px;
+                            bottom: 1px;
+                            width: 2px;
+                            height: 14px;
+                            background-color: white;
+
+                        }
+                        input[type=checkbox]:indeterminate:before,input[type=checkbox]:indeterminate:after {
+                            width: 7px;
+                            height: 2px;
+                            transform: rotate(0);
+                        }
+                        input[type=checkbox]:checked {
+                            background-color: black;
+                        }
+                        input[type=checkbox]:indeterminate:before {
+                            left: 1px;
+                            top: 7px;
+                        }
+                        input[type=checkbox]:indeterminate:after {
+                            right: 1px;
+                            bottom: 7px;
+                        }
+                    }
+                    .button-container{
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-top: 30px;
                         button{
-                            margin: 20px 15px;
                             width: 100px;
-                            padding: 10px 0px;
-                            font-size: 18px;
+                            height: 40px;
+                            background-color: rgb(0, 0, 0);
+                            font-size: 15px;
                             border-radius: 5px;
                             border: initial;
                             color: white;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
                         }
-                        #new-register{
-                            background-color: rgb(0, 115, 255);
-                            width: 150px;
+                    }
+                }
+                .account-comment{
+                    width: 100%;
+                    position: absolute;
+                    top: 50px;
+                    background-color: white;
+                    border-radius: 5px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all .2s;
+                    pointer-events: initial;
+                    opacity: 1;
+                    height: 760px;
+                    .account-form{
+                        height: 660px;
+                        width: 85%;
+                        margin: 50px 0;
+                        .account-comment-img-contents{
+                            display: flex;
+                            .account-comment-img-content{
+                                width: 150px;
+                                height: 150px;
+                                background-color: #f0f0f0;
+                                overflow: hidden;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                border-radius: 5px;
+                                border: #f0f0f0 1px solid;
+                                img{
+                                    width: 100%;
+                                    height: auto;
+                                }
+                            }
+                            .ranking-info{
+                                display: flex;
+                                font-size: 16px;
+                                margin: auto 0 0 20px;
+                                .ranking-vote{
+                                    margin-right: 10px;
+                                }
+                            }
                         }
-                        .edit{
-                            background-color: white;
-                            border: solid black 1px;
-                            color: black;
-                            opacity: 1;
-                            transition: 0.5s;
+                        .comment-form{
+                            margin-top: 50px;
+                            width: 100%;
+                            .comment-line{
+                                width: 100%;
+                                display: flex;
+                                .time{
+                                    width: 160px;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                }
+                                .crient-comment{
+                                    width: 100%;
+                                    display: flex;
+                                    align-items: center;
+                                    margin: 10px;
+                                    height: 100%;
+                                }
+                            }
+                            .post{
+                                background-color: black;
+                                color: white;
+                                // height: 40px;
+                            }
+                            .crient{
+                                border-bottom: rgba(0, 0, 0, 0.3) 1px solid;
+                            }
+                            .comment-contents{
+                                height: 410px;
+                                overflow-y: scroll;
+                            }
                         }
-                        .delete{
-                            background-color: rgb(255, 0, 25);
-                            opacity: 1;
-                            transition: 0.5s;
-                        }
-                        .comment{
-                            background-color: rgb(123, 123, 123);
-                            border: solid white 1px;
-                            color: white;
+                    }
+                }
+            }
+            .account-menu-register-content{
+                pointer-events: none;
+            }
+            .accordion:checked + .account-menu-register-content{
+                pointer-events: initial;
+                .accordion-btn{
+                    span:nth-of-type(1) {
+                        transform: rotate(-0deg);
+                    }
+                    span:nth-of-type(2) {
+                        transform: rotate(-0deg);
+                        opacity: 0;
+                    }
+                }
+                .account-contents-wrapper{
+                    opacity: 1;
+                    height: 900px;
+                }
+            }
+            .tag:checked + .account-contents-wrapper{
+                .tags{
+                    .edit-tag{
+                        pointer-events: none;
+                        background-color: white;
+                        color: black;
+                    }
+                    .comment-tag{
+                        pointer-events: initial;
+                        background-color: black;
+                        color: white;
+                    }
+                }
+                .account-edit{
+                    width: 100%;
+                    pointer-events: initial;
+                    opacity: 1;
+                }
+                .account-comment{
+                    width: 100%;
+                    pointer-events: none;
+                    opacity: 0;
+                }
+            }
+        }
+        #new-register{
+            .account-header{
+                border-top: 1px solid black;
+                border-bottom: 1px solid black;
+                background-color: white;
+                .paint-title{
+                    color: black;
+                }
+                .accordion-btn{
+                    span {
+                        background-color: black;
+                    }
+                }
+            }
+            .tags{
+                height: 10px;
+            }
+            .account-edit{
+                .account-form{
+                    .file-content{
+                        width: 140px;
+                        height: 30px;
+                        font-size: 15px;
+                        border-radius: 5px;
+                        color: #ffffff;
+                        background-color: black;
+                        display: flex;
+                        align-items: center;
+                        padding-left: 10px;
+                        margin-bottom: 10px;
+                        input[type="file"] {
                             display: none;
-                            opacity: 0;
-                            width: 150px;
-                            transition: 0.5s;
+                        }
+                    }
+                    .button-container{
+                        justify-content: center;
+                        #submit-btn{
+                            width: 200px;
                         }
                     }
                 }
             }
         }
     }
-    #change:checked + .account-menu-wrapper{
-        #change-comment{
-            // display: none;
-            width: 0;
-            height: 50px;
-            margin: 0;
-            opacity: 0;
-        }
-        #change-edit{
-            display: block;
-            width: 120px;
-            height: 50px;
-            margin: 20px 15px;
-            opacity: 1;
-        }
-        .edit{
-            display: none;
-            opacity: 0;
-        }
-        .delete{
-            display: none;
-            opacity: 0;
-        }
-        .comment{
-            display: block;
-            opacity: 1;
-        }
-    }
-    //account_menu
 
     //account_commnent
     .accountComment{

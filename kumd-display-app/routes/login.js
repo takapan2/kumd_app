@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/account', function(req, res, next) {
-    res.render('login/account_menu');
+    res.render('login/account_new_menu');
 });
 
 router.get('/account/new', function(req, res, next) {
