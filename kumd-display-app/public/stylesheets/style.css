@@ -1993,8 +1993,8 @@ body .account-menu-container .account-menu-contents .account-contents-wrapper {
   position: relative;
   -webkit-transition: all .5s;
   transition: all .5s;
-  opacity: 0;
-  height: 0px;
+  max-height: 0;
+  overflow-y: scroll;
   width: 100%;
   background-color: #f0f0f0;
 }
@@ -2401,7 +2401,7 @@ body .account-menu-container .account-menu-contents .accordion:checked + .accoun
 
 body .account-menu-container .account-menu-contents .accordion:checked + .account-menu-register-content .account-contents-wrapper {
   opacity: 1;
-  height: 900px;
+  max-height: 9999px;
 }
 
 body .account-menu-container .account-menu-contents .tag:checked + .account-contents-wrapper .tags .edit-tag {
@@ -3121,6 +3121,10 @@ body .ranking #ranking-container .penname {
   }
   body .content-width {
     width: 570px !important;
+  }
+  body .account-menu-container {
+    width: 570px !important;
+    margin-top: 2.5vw;
   }
 }
 /*# sourceMappingURL=style.css.map */
