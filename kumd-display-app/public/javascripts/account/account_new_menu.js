@@ -1,9 +1,12 @@
 var imgData;
+var rankingData;
+var img_order
 async function thereUser(){
     try {
         await displayAccess();
         uid = await firebase.auth().currentUser.uid;
         imgData = await getStoreData('images','imgs');
+        rankingData = await getRankingList(imgData)
         const userData = await getStoreData('users',uid);
         const userValData = await validateUsersData(userData);
         await madePaintItems(userValData);
@@ -104,6 +107,9 @@ async function madePaintItems(data) {
         caption.value = imgData[imageProp].caption;
         ranking.checked = imgData[imageProp].join_ranking
 
+        rankingVote.innerText = `${imgData[imageProp].join_ranking ? `${imgData[imageProp].vote }` : '×'}票`
+        rankingNumber.innerText = `第${imgData[imageProp].join_ranking ? await rankingData.find((imageElm) => imageElm.id == imageProp).rank : '×' }位`
+
 
 
         fragment.appendChild(clone);
@@ -200,6 +206,8 @@ async function submitFunc(value) {
     if(newJudge){
         const result = await fileCompress(file);
         const userData = await getStoreData('users',uid);
+        const imageOrderObj = await getStoreData('images', 'img_order')
+        img_order = imageOrderObj.img_order + 1 ;
         imgNum = userData.imgNum + 1;
         imgUid = `${uid}-${imgNum}`;
         imgChild = `imgs/${imgUid}.jpg`;
@@ -209,6 +217,7 @@ async function submitFunc(value) {
             [`img${imgNum}`]:imgUid,
         };
         await dataUpdate(UserObject,'users',uid);
+        await dataUpdate({ img_order: img_order }, 'images', 'img_order');
     }else{
         imgData = await getStoreData('images','imgs');
     }
@@ -224,6 +233,7 @@ async function submitFunc(value) {
             commentNum: newJudge ? 0 : imgData[imgUid].commentNum,
             comment: newJudge ? [] : imgData[imgUid].comment,
             vote: newJudge ? 0 : imgData[imgUid].vote,
+            img_order: newJudge ? img_order : imgData[imgUid].img_order,
         }
     };
     updateFunc(imgObject,'images','imgs','/login/account');

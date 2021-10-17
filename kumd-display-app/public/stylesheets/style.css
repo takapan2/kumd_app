@@ -2989,12 +2989,9 @@ body .ranking {
   background-color: white;
   padding: 60px 0 0 0;
   width: 95vw;
-  margin-top: calc(2.5vw + 75px);
   margin-bottom: 2.5vw;
   font-size: 18px;
   border-radius: 5px;
-  -webkit-box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
-          box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

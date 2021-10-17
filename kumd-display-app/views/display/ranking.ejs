@@ -4,18 +4,14 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <title>2021年度春のパネル展示会</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel='stylesheet' href='/stylesheets/style.css' />
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="/javascripts/jquery-3.5.1.min.js"></script>
     </head>
     <body class="container">
         <%- include('./../loading') %>
+        <%- include('./../display/header/header') %>
         <div class="ranking content-width">
-            <div class="ranking-header">
-                <h3>ランキング</h3>
-                <a class="btn return-btn" id="return" href="/display" >戻る</a>
-            </div>
             <div id="ranking-container">
                 <template id="ranking-tem">
                     <div class="vote-container">
@@ -29,6 +25,7 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/gh/fengyuanchen/compressorjs/dist/compressor.min.js"></script>
+        <script src='/javascripts/main.js'></script>
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-storage.js"></script>

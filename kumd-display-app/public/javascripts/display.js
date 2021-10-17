@@ -141,55 +141,51 @@ async function addVote(imgUid, checked){
 }
 
 async function displayWrite(ImgsData, Keys){
-    return await ImgsData.forEach((data) => {
-        itemWrite(data, Keys);
-    });
-}
+    for(var prop in ImgsData){
+        let data = ImgsData[prop];
+        const itemsContent = await document.querySelector('#display-item-tem').content
+        const templeteContent = document.getElementById(`scroll-${data.grade}`);
 
-async function itemWrite(data, Keys){
-    const itemsContent = document.querySelector('#display-item-tem').content
-    if(data.grade==""||!data.grade)data.grade=5; //何かしらの不具合でgradeの値が入っていない場合、その他に振り割る。
-    const templeteContent = document.getElementById(`scroll-${data.grade}`);
+        const clone = await document.importNode(itemsContent, true);
 
-    const clone = document.importNode(itemsContent, true);
+        const image = await clone.querySelector('.display-img');
+        const image_content = await clone.querySelector('.display-img-content');
+        const image_expansion = await clone.querySelector('.expansion-img');
+        const image_expansion_wrapper = await clone.querySelector('.expansion-img-wapper');
+        const acdCheck = await clone.querySelector('.acd-check');
 
-    const image = clone.querySelector('.display-img');
-    const image_content = clone.querySelector('.display-img-content');
-    const image_expansion = clone.querySelector('.expansion-img');
-    const image_expansion_wrapper = clone.querySelector('.expansion-img-wapper');
-    const acdCheck = clone.querySelector('.acd-check');
+        const title = await clone.querySelector('.title');
+        const penname = await clone.querySelector('.penname');
+        const caption = await clone.querySelector('.caption');
 
-    const title = clone.querySelector('.title');
-    const penname = clone.querySelector('.penname');
-    const caption = clone.querySelector('.caption');
+        const heartCheck = await clone.querySelector('.heart-check');
+        const content = await clone.querySelector('.crient-content');
+        const faHeart = await clone.querySelector('.far-heart');
+        const faComment = await clone.querySelector('.fa-comment');
+        const textArea = await clone.querySelector('textarea');
+        const submitBtn = await clone.querySelector('.crient-submit');
 
-    const heartCheck = clone.querySelector('.heart-check');
-    const content = clone.querySelector('.crient-content');
-    const faHeart = clone.querySelector('.far-heart');
-    const faComment = clone.querySelector('.fa-comment');
-    const textArea = clone.querySelector('textarea');
-    const submitBtn = clone.querySelector('.crient-submit');
+        const url = await getImg(data.id);
+        await ReflectUserImg(url, image, 'on');
+        await ReflectUserImg(url, image_expansion, '');
+        acdCheck.id = `acd-check${data.id}`;
 
-    const url = await getImg(data.id);
-    await ReflectUserImg(url, image, 'on');
-    await ReflectUserImg(url, image_expansion, '');
-    acdCheck.id = `acd-check${data.id}`;
+        await fragment.appendChild(clone);
+        await templeteContent.appendChild(fragment);
 
-    fragment.appendChild(clone);
-    templeteContent.appendChild(fragment);
+        title.innerHTML = await data.title;
+        penname.innerHTML = await data.penname;
+        caption.innerHTML = await data.caption;
 
-    title.innerHTML = data.title;
-    penname.innerHTML = data.penname;
-    caption.innerHTML = data.caption;
-
-    image_content.id = `img_${data.id}`;
-    // image_expansion.id = `img_expantion_${data.id}`;
-    image_expansion_wrapper.id = `img_expantion_${data.id}`;
-    heartCheck.id = `heart-check${data.id}`;
-    textArea.id = `textValue_${data.id}`;
-    submitBtn.id = `submit_${data.id}`
-    content.name = data.id;
-    faHeart.setAttribute("for",`heart-check${data.id}`);
-    faComment.setAttribute("for",`acd-check${data.id}`);
-    if(Keys.includes(`heart-check${data.id}`)) heartCheck.checked = true
+        image_content.id = `img_${data.id}`;
+        // image_expansion.id = `img_expantion_${data.id}`;
+        image_expansion_wrapper.id = `img_expantion_${data.id}`;
+        heartCheck.id = `heart-check${data.id}`;
+        textArea.id = `textValue_${data.id}`;
+        submitBtn.id = `submit_${data.id}`
+        content.name = await data.id;
+        await faHeart.setAttribute("for",`heart-check${data.id}`);
+        await faComment.setAttribute("for",`acd-check${data.id}`);
+        if(Keys.includes(`heart-check${data.id}`)) heartCheck.checked = true
+    }
 }

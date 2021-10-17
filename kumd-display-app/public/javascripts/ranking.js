@@ -4,7 +4,7 @@ async function thereUser(){
         await rankingAccess();
         await displayAccess();
         imgData = await getStoreData('images','imgs');
-        imgData = await SortRankingData(imgData);
+        imgData = getRankingList(imgData);
         await displayWrite(imgData);
         await wait(3);
         $("body,html").animate({scrollTop: 100000}, 1);//トップに移動
@@ -19,15 +19,38 @@ async function noUser(){
 
 function SortRankingData(imgData){
     return Object.keys(imgData).map(key =>{ return imgData[key];})
-    .sort((a, b)=>a.vote > b.size)
+    .sort((a, b)=>Number(b.vote) - Number(a.vote))
 }
 
 var i=1;
 var before_data;
 async function displayWrite(ImgsData){
-    return await ImgsData.forEach((data) => {
-        if(data.join_ranking)itemWrite(data);
-    });
+    for(var prop in ImgsData){
+        if(i<11){
+            let data = ImgsData[prop];
+            const itemsContent = document.querySelector('#ranking-tem').content;
+            const templeteContent = document.getElementById(`ranking-container`);
+
+            const clone = document.importNode(itemsContent, true);
+            const image = clone.querySelector('img');
+
+            const title = clone.querySelector('.title');
+            const vote = clone.querySelector('.vote');
+            const rank = clone.querySelector('.rank');
+            const penname = clone.querySelector('.penname');
+
+            const url = await getImg(data.id);
+            await ReflectUserImg(url, image, 'on');
+
+            fragment.appendChild(clone);
+            templeteContent.appendChild(fragment);
+
+            title.innerText = data.title;
+            vote.innerText = `${data.vote}票`;
+            rank.innerText = `第${data.rank}位`;
+            penname.innerText = data.penname;
+        }
+    }
 }
 
 async function itemWrite(data){
@@ -48,7 +71,7 @@ async function itemWrite(data){
             const penname = clone.querySelector('.penname');
 
             const url = await getImg(data.id);
-            await ReflectUserImg(url, image, 'on');
+            await ReflectUserImg(url, image, '');
 
             fragment.appendChild(clone);
             templeteContent.appendChild(fragment);

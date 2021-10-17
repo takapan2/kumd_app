@@ -57,8 +57,9 @@ function deleteStorageFile(imgUid){
 // 画像を回生→サイズ順に変更する(配列を返す。)
 function sortImgs(imgData){
     return Object.keys(imgData).map(key =>{ return imgData[key];})
-    .sort((a, b)=>Number(a.size) < Number(b.size))
-    .sort((a, b)=>Number(a.grade) < Number(b.grade))
+    .sort((a, b)=>Number(a.img_order) - Number(b.img_order))
+    .sort((a, b)=>Number(a.size) - Number(b.size))
+    .sort((a, b)=>Number(a.grade) - Number(b.grade))
 }
 
 // 画像URLを取得する。
@@ -252,6 +253,27 @@ function logout(){
     }).catch( (error)=>{
         console.log(`ログアウト時にエラーが発生しました (${error})`);
     });
+}
+
+function getRankingList(imgData){
+    let rank = 0;
+    let con_num = 0;
+    let befo_vote = 9999999;
+    return Object.keys(imgData).map(key =>{ return imgData[key];}) // 配列に変更
+    .filter(image => image.join_ranking) //ランキング参加するもののみに変更
+    .sort((a, b)=>Number(b.vote) - Number(a.vote)) // 多い順に並べ替え
+    .map( key => {
+        if(key.vote == befo_vote){
+            con_num++;
+            key.rank = rank;
+        }else{
+            rank++;
+            befo_vote = key.vote;
+            key.rank = rank + con_num;
+            con_num = 0;
+        }
+        return key;
+    })
 }
 
 //その他の関数-------------------------------------------------------------------------------
