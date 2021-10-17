@@ -10,7 +10,7 @@ async function thereUser(){
         $("body,html").animate({scrollTop: 100000}, 1);//トップに移動
         loading.classList.add('loading-fadeaout');
     }catch(err){
-        console.log("err",err);
+        location.href = `/display/sorry?err_param=3&err=${err}`
     }
 }
 async function noUser(){
@@ -82,6 +82,6 @@ async function itemWrite(data){
             penname.innerText = data.penname;
         }
     }catch(err){
-        console.log('err',err);
+        location.href = `/display/sorry?err_param=3&err=${err}`
     }
 }

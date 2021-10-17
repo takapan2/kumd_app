@@ -419,10 +419,7 @@ a {
 }
 
 .btn:hover {
-  opacity: 0.5;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 body {
@@ -1371,7 +1368,7 @@ body .display-container .display-items-container .sticky {
   color: white;
   position: -webkit-sticky;
   position: sticky;
-  margin-bottom: 2.5vw;
+  margin-bottom: 10px;
   top: 0px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1422,7 +1419,7 @@ body .display-container .display-items-container .display-item-container {
       -ms-flex-align: center;
           align-items: center;
   border-radius: 5px;
-  margin-bottom: 2.5vw;
+  margin-bottom: 7.5px;
 }
 
 body .display-container .display-items-container .display-item-container .display-img-content {
@@ -1924,7 +1921,7 @@ body .account-menu-container .account-menu-contents {
 
 body .account-menu-container .account-menu-contents .white-content {
   width: 100%;
-  height: 30px;
+  height: 1px;
 }
 
 body .account-menu-container .account-menu-contents .account-header {
@@ -2542,6 +2539,7 @@ body .thanks {
   background-color: white;
   padding: 60px 0;
   width: 95vw;
+  height: 90vh;
   margin-top: 2.5vw;
   margin-bottom: 2.5vw;
   font-size: 18px;
@@ -3097,7 +3095,24 @@ body .ranking #ranking-container .penname {
   margin-bottom: 80px;
 }
 
+body .header-ranking .ham-menu-contents .ham-menu-container {
+  height: 0px !important;
+}
+
+body .header-ranking .ham-menu-contents .ham-menu-container .other-btns .other-btn {
+  border-top: 1px solid white !important;
+}
+
 @media screen and (min-width: 600px) {
+  body .vertical {
+    height: 485px;
+  }
+  body header #ham-menu-on:checked + .header-cover .ham-menu .ham-menu-contents {
+    width: 480px !important;
+  }
+  body .display-container .display-items-container .sticky {
+    border-radius: 5px;
+  }
   body .caption-content .display-item-container {
     width: 570px !important;
   }

@@ -29,7 +29,7 @@ async function thereUser(){
         console.log("読み込み完了！");
         clickBtn();
     }catch(err){
-        console.log(err);
+        location.href = `/display/sorry?err_param=3&err=${err}`
     }
 }
 async function noUser(){
@@ -113,7 +113,7 @@ async function submitComment(submitId, commentValue){
             await dataUpdate({[imgUid]:pushData}, 'images','imgs');
         }
     }catch(err){
-        console.log('err',err);
+        location.href = `/display/sorry?err_param=3&err=${err}`
     }
 }
 

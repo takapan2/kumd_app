@@ -2,7 +2,7 @@
 <html lang="ja">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <title>送信完了</title>
+        <title>エラー</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel='stylesheet' href='/stylesheets/style.css' />
     </head>
@@ -10,9 +10,9 @@
         <%- include('./loading') %>
         <div class="thanks">
             <div class="thanks-container">
-                <h3>アクセス不可</h3>
-                <p>申し訳ございません。本サイトにアクセスすることができません。</p>
-                <p>パネル展示会の終了、あるいはホストによって制限されている可能性があります。</p>
+                <h3>エラー</h3>
+                <!-- <p>申し訳ございません。エラーが発生しました。<br>再度お試しいただきますようよろしくお願いいたします。</p> -->
+                <p class="errormessage"></p>
             </div>
         </div>
         <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>

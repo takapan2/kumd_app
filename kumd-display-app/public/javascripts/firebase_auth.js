@@ -44,6 +44,24 @@ const ERROR_DATA ={
     }
 }
 
+const ERROR = {
+    // hostError
+    '1': {
+        h3: 'アクセス拒否',
+        p: '申し訳ございません。'+`\n`+'当サイトはホストによって制限されております。',
+    },
+    // UserError
+    '2': {
+        h3: 'ユーザーエラー',
+        p: '申し訳ございません。予期せぬエラーが発生しました。'+`\n`+'URLをコピーしたのち担当者に連絡していただきますようお願い致します。',
+    },
+    // otherError
+    '3': {
+        h3: '予期せぬエラー',
+        p: '申し訳ございません。'+`\n`+'サイトが復旧するまでしばらくお待ちください。',
+    },
+}
+
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         console.log("There's a user");

@@ -258,9 +258,7 @@ a{
   }
 
 .btn:hover{
-    opacity: 0.5;
-    transition: 0.5s;
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 body {
@@ -974,7 +972,7 @@ body {
                 background-color: rgba(0, 0, 0, 1);
                 color: white;
                 position: sticky;
-                margin-bottom: 2.5vw;
+                margin-bottom: 10px;
                 // border-radius: 5px;
                 // box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
                 //top: 170px;  //ヘッダーに合わせるようにしたい。
@@ -1009,9 +1007,8 @@ body {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                border-radius: 5px; //2.5vw;
-                // box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
-                margin-bottom: 2.5vw;
+                border-radius: 5px;
+                margin-bottom: 7.5px;
                 .display-img-content{
                     width: 85%;
                     // height: 90.25vw;
@@ -1568,7 +1565,7 @@ body {
             width: 100%;
             .white-content{
                 width: 100%;
-                height: 30px;
+                height: 1px;
             }
             .account-header{
                 width: 100%;
@@ -2033,6 +2030,7 @@ body {
         background-color: white;
         padding: 60px 0;
         width: 95vw;
+        height: 90vh;
         margin-top: 2.5vw;
         margin-bottom: 2.5vw;
         font-size: 18px;
@@ -2447,12 +2445,46 @@ body {
         }
     }
 
+    .header-ranking{
+        .ham-menu-contents{
+            .ham-menu-container{
+                height: 0px !important;
+                .other-btns{
+                    .other-btn{
+                        border-top: 1px solid white !important;
+                    }
+                }
+            }
+        }
+    }
+
     //ランキング
 }
 
 @media screen and (min-width: 600px){
     body{
+        .vertical{
+            height: 485px;
+        }
+        //header
+        header{
+            #ham-menu-on:checked + .header-cover{
+                .ham-menu{
+                    .ham-menu-contents{
+                        width: 480px !important;
+                    }
+                }
+            }
+        }
+        //header
         //display
+        .display-container{
+            .display-items-container{
+                .sticky{
+                    border-radius: 5px;
+                }
+            }
+        }
         .caption-content{
             .display-item-container{
                 width: 570px !important;

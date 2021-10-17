@@ -339,7 +339,7 @@ async function displayAccess(){
     try{
         const hostData = await getStoreData('host','Host');
         const displaySwitch = hostData.switch.display;
-        if(displaySwitch)location.href = '/display/sorry';
+        if(displaySwitch)location.href = '/display/sorry?err_param=1';
     }catch(err){
         console.log('err',err);
     }
@@ -349,7 +349,7 @@ async function rankingAccess(){
     try{
         const hostData = await getStoreData('host','Host');
         const rankingSwitch = hostData.switch.ranking;
-        if(rankingSwitch)location.href = '/display/sorry';
+        if(rankingSwitch)location.href = '/display/sorry?err_param=1';
     }catch(err){
         console.log('err',err);
     }

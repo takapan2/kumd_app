@@ -3,7 +3,6 @@ var rankingData;
 var img_order
 async function thereUser(){
     try {
-        await displayAccess();
         uid = await firebase.auth().currentUser.uid;
         imgData = await getStoreData('images','imgs');
         rankingData = await getRankingList(imgData)
@@ -14,7 +13,7 @@ async function thereUser(){
         $("body,html").animate({scrollTop: 0}, 1);//トップに移動
         loading.classList.add('loading-fadeaout');
     } catch (err){
-        console.log(err);
+        location.href = `/display/sorry?err_param=2&err=${err}&uid=${uid}`;
     }
 }
 async function noUser(){
@@ -122,6 +121,7 @@ async function madePaintItems(data) {
 function clickBtn() {
     const submitButton = $(".submit-btn");
     const deleteButton = $(".delete-btn");
+    const logoutButton = document.getElementById('logout');
     const fileContent = document.getElementById('file');
     const fileComment = document.querySelector('.file-comment');
 
@@ -134,17 +134,15 @@ function clickBtn() {
     submitButton.on("click", function() {
         const submitValue = $(this).attr("value");
         if(window.confirm(submitValue == "new" ? 'イラスト情報を保存し、展示会サイトに公開してもよろしいでしょうか？' : '変更を保存し、展示会サイト上で公開してもよろしいでしょうか？')){
-            submitFunc(submitValue)
-            // location.href = `/login/account`;
+            submitFunc(submitValue);
         }
     });
 
-    // logoutButton.addEventListener("click", () => {
-    //     console.log("logout!");
-    //     if (window.confirm("ログアウトしてもよろしいでしょうか？")) {
-    //         logout();
-    //     }
-    // });
+    logoutButton.addEventListener("click", () => {
+        if (window.confirm("ログアウトしてもよろしいでしょうか？")) {
+            logout();
+        }
+    });
 
     fileContent.addEventListener('change',function(e){
         file = e.target.files[0];
@@ -154,90 +152,94 @@ function clickBtn() {
 }
 
 async function submitFunc(value) {
-    loading.classList.remove('loading-fadeaout');
+    try {
+        loading.classList.remove('loading-fadeaout');
 
-    imgUid = `${uid}-${value}`
-    const newJudge = await value == "new";
-    console.log(value)
+        imgUid = `${uid}-${value}`
+        const newJudge = await value == "new";
+        console.log(value)
 
-    const gradeElement = document.getElementById(`grade-select${newJudge ? '': `_${value}`}`);
-    const sizeElement = document.getElementById(`size-select${newJudge ? '': `_${value}`}`);
-    const pennameElement = document.getElementById(`penname${newJudge ? '': `_${value}`}`);
-    const titleElement = document.getElementById(`title${newJudge ? '': `_${value}`}`);
-    const captionElement = document.getElementById(`caption${newJudge ? '': `_${value}`}`);
-    const JoinRankingElement = document.getElementById(`join-ranking${newJudge ? '': `_${value}`}`);
+        const gradeElement = document.getElementById(`grade-select${newJudge ? '': `_${value}`}`);
+        const sizeElement = document.getElementById(`size-select${newJudge ? '': `_${value}`}`);
+        const pennameElement = document.getElementById(`penname${newJudge ? '': `_${value}`}`);
+        const titleElement = document.getElementById(`title${newJudge ? '': `_${value}`}`);
+        const captionElement = document.getElementById(`caption${newJudge ? '': `_${value}`}`);
+        const JoinRankingElement = document.getElementById(`join-ranking${newJudge ? '': `_${value}`}`);
 
-    const fileErrMsg = document.querySelector(`#file-err${newJudge ? '': `_${value}`}`);
-    const gradeErrMsg = document.querySelector(`#grade-err${newJudge ? '': `_${value}`}`);
-    const sizeErrMsg = document.querySelector(`#size-err${newJudge ? '': `_${value}`}`);
-    const pennameErrMsg = document.querySelector(`#penname-err${newJudge ? '': `_${value}`}`);
-    const titleErrMsg = document.querySelector(`#title-err${newJudge ? '': `_${value}`}`);
-    const captionErrMsg = document.querySelector(`#caption-err${newJudge ? '': `_${value}`}`);
+        const fileErrMsg = document.querySelector(`#file-err${newJudge ? '': `_${value}`}`);
+        const gradeErrMsg = document.querySelector(`#grade-err${newJudge ? '': `_${value}`}`);
+        const sizeErrMsg = document.querySelector(`#size-err${newJudge ? '': `_${value}`}`);
+        const pennameErrMsg = document.querySelector(`#penname-err${newJudge ? '': `_${value}`}`);
+        const titleErrMsg = document.querySelector(`#title-err${newJudge ? '': `_${value}`}`);
+        const captionErrMsg = document.querySelector(`#caption-err${newJudge ? '': `_${value}`}`);
 
-    // エラーメッセージを一度非表示
-    if(newJudge) fileErrMsg.innerText = "";
-    gradeErrMsg.innerText = "";
-    sizeErrMsg.innerText = "";
-    pennameErrMsg.innerText = "";
-    titleErrMsg.innerText = "";
-    captionErrMsg.innerText = "";
+        // エラーメッセージを一度非表示
+        if(newJudge) fileErrMsg.innerText = "";
+        gradeErrMsg.innerText = "";
+        sizeErrMsg.innerText = "";
+        pennameErrMsg.innerText = "";
+        titleErrMsg.innerText = "";
+        captionErrMsg.innerText = "";
 
-    const gradeValue =  await gradeElement.value;
-    const sizeValue = await sizeElement.value;
-    const pennameValue = await pennameElement.value;
-    const titleValue = await titleElement.value;
-    const captionValue = await captionElement.value;
-    const JoinRankingValue = await JoinRankingElement.checked;
+        const gradeValue =  await gradeElement.value;
+        const sizeValue = await sizeElement.value;
+        const pennameValue = await pennameElement.value;
+        const titleValue = await titleElement.value;
+        const captionValue = await captionElement.value;
+        const JoinRankingValue = await JoinRankingElement.checked;
 
-    // validation
-    let judge = 0;
-    console.log(newJudge)
-    if(newJudge){
-        if(!file){ fileErrMsg.innerText = VALIDATION.FILE.VAL; judge++; }
-        else if(file.size>5*1024*1024){ fileErrMsg.innerText = VALIDATION.FILE.SIZE; judge++; };
-    }
-    if(!gradeValue){ gradeErrMsg.innerText = VALIDATION.GRADE; judge++; };
-    if(!sizeValue){ sizeErrMsg.innerText = VALIDATION.SIZE; judge++; };
-    if(!pennameValue){ pennameErrMsg.innerText = VALIDATION.PENNAME; judge++; };
-    if(!titleValue){ titleErrMsg.innerText = VALIDATION.TITLE; judge++; }
-    if(!captionValue){ captionErrMsg.innerText = VALIDATION.CAPTION; judge++; }
-    if(judge!=0){ loading.classList.add('loading-fadeaout'); throw Error("Validation!!"); }
-
-    if(newJudge){
-        const result = await fileCompress(file);
-        const userData = await getStoreData('users',uid);
-        const imageOrderObj = await getStoreData('images', 'img_order')
-        img_order = imageOrderObj.img_order + 1 ;
-        imgNum = userData.imgNum + 1;
-        imgUid = `${uid}-${imgNum}`;
-        imgChild = `imgs/${imgUid}.jpg`;
-        await saveStorageData(result,imgChild);
-        const UserObject = {
-            imgNum: imgNum,
-            [`img${imgNum}`]:imgUid,
-        };
-        await dataUpdate(UserObject,'users',uid);
-        await dataUpdate({ img_order: img_order }, 'images', 'img_order');
-    }else{
-        imgData = await getStoreData('images','imgs');
-    }
-    const imgObject = {
-        [imgUid]:{
-            id: imgUid,
-            grade: gradeValue,
-            size: sizeValue,
-            penname: pennameValue,
-            title: titleValue,
-            caption: captionValue,
-            join_ranking: JoinRankingValue,
-            commentNum: newJudge ? 0 : imgData[imgUid].commentNum,
-            comment: newJudge ? [] : imgData[imgUid].comment,
-            vote: newJudge ? 0 : imgData[imgUid].vote,
-            img_order: newJudge ? img_order : imgData[imgUid].img_order,
+        // validation
+        let judge = 0;
+        console.log(newJudge)
+        if(newJudge){
+            if(!file){ fileErrMsg.innerText = VALIDATION.FILE.VAL; judge++; }
+            else if(file.size>5*1024*1024){ fileErrMsg.innerText = VALIDATION.FILE.SIZE; judge++; };
         }
-    };
-    updateFunc(imgObject,'images','imgs','/login/account');
-    console.log("save finish!!");
-    await wait(2); //5MB近いファイルだと何故か反映されないことがあるため。
-    location.href = "/login/account";
+        if(!gradeValue){ gradeErrMsg.innerText = VALIDATION.GRADE; judge++; };
+        if(!sizeValue){ sizeErrMsg.innerText = VALIDATION.SIZE; judge++; };
+        if(!pennameValue){ pennameErrMsg.innerText = VALIDATION.PENNAME; judge++; };
+        if(!titleValue){ titleErrMsg.innerText = VALIDATION.TITLE; judge++; }
+        if(!captionValue){ captionErrMsg.innerText = VALIDATION.CAPTION; judge++; }
+        if(judge!=0){ loading.classList.add('loading-fadeaout'); throw Error("Validation!!"); }
+
+        if(newJudge){
+            const result = await fileCompress(file);
+            const userData = await getStoreData('users',uid);
+            const imageOrderObj = await getStoreData('images', 'img_order')
+            img_order = imageOrderObj.img_order + 1 ;
+            imgNum = userData.imgNum + 1;
+            imgUid = `${uid}-${imgNum}`;
+            imgChild = `imgs/${imgUid}.jpg`;
+            await saveStorageData(result,imgChild);
+            const UserObject = {
+                imgNum: imgNum,
+                [`img${imgNum}`]:imgUid,
+            };
+            await dataUpdate(UserObject,'users',uid);
+            await dataUpdate({ img_order: img_order }, 'images', 'img_order');
+        }else{
+            imgData = await getStoreData('images','imgs');
+        }
+        const imgObject = {
+            [imgUid]:{
+                id: imgUid,
+                grade: gradeValue,
+                size: sizeValue,
+                penname: pennameValue,
+                title: titleValue,
+                caption: captionValue,
+                join_ranking: JoinRankingValue,
+                commentNum: newJudge ? 0 : imgData[imgUid].commentNum,
+                comment: newJudge ? [] : imgData[imgUid].comment,
+                vote: newJudge ? 0 : imgData[imgUid].vote,
+                img_order: newJudge ? img_order : imgData[imgUid].img_order,
+            }
+        };
+        updateFunc(imgObject,'images','imgs','/login/account');
+        console.log("save finish!!");
+        await wait(2); //5MB近いファイルだと何故か反映されないことがあるため。
+        location.href = "/login/account";
+    } catch (err) {
+        location.href = `/display/sorry?err_param=2&err=${err}&uid=${uid}&imgUid=${imgUid}`;
+    }
 }

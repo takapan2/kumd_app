@@ -13,7 +13,7 @@
 
 <body class="container account-new-menu">
     <%- include('./../loading') %>
-    <%- include('./../display/header/header') %>
+    <%- include('./../display/header/header-account') %>
     <div class="account-menu-container">
       <p class="title">マイページ</p>
       <div class="account-menu-contents" id="templete-content">
@@ -65,9 +65,9 @@
                 </div>
               </div>
               <p class="sub-title">作品名</p>
-              <input class="text-input" type="text" name="title" id="">
+              <input class="text-input" maxlength="20" type="text" name="title" id="">
               <p class="sub-title">ペンネーム</p>
-              <input class="text-input" type="text" name="penname" id="">
+              <input class="text-input" maxlength="20" type="text" name="penname" id="">
               <p class="sub-title">説明文(150字以内)</p>
               <textarea type="text" maxlength="150" name="caption" id=""></textarea>
               <div class="join-ranking">
@@ -120,7 +120,7 @@
     </template>
 
     <template id="new-register-tem">
-      <input class="accordion" type="checkbox" style="display:none;" id="accordion">
+      <input class="accordion" type="checkbox" style="display:none;" id="accordion" checked>
       <div class="account-menu-register-content" id="new-register">
       <div class="account-header">
         <p class="paint-title">新規作成</p>
@@ -131,14 +131,13 @@
       </div>
       <input class="tag" type="checkbox" style="display:none;" id="tag" checked>
       <div class="account-contents-wrapper">
-        <div class="tags"></div>
         <div class="account-edit">
           <div class="account-form">
             <p class="sub-title">イラスト</p>
             <label class="file-content">
               <input type="file" id="file" name="file" value="upload" accept="image/jpeg" >イラストを選択
             </label>
-            <p class="file-comment">選択されていません(jpg、5GB以下)</p>
+            <p class="file-comment">選択されていません(jpg、5MB以下)</p>
             <div class="select-contents">
               <div class="grade-select-content">
                 <p class="sub-title">回生</p>
@@ -163,9 +162,9 @@
               </div>
             </div>
             <p class="sub-title">作品名</p>
-            <input class="text-input" type="text" name="title" id="title">
+            <input class="text-input" type="text" maxlength="20" name="title" id="title">
             <p class="sub-title">ペンネーム</p>
-            <input class="text-input" type="text" name="penname" id="penname">
+            <input class="text-input" type="text" maxlength="20" name="penname" id="penname">
             <p class="sub-title">説明文(150字以内)</p>
             <textarea type="text" maxlength="150" name="caption" id="caption"></textarea>
             <div class="join-ranking">
