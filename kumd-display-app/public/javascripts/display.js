@@ -1,6 +1,8 @@
 var imgData
+var meter_count
 async function thereUser(){
     try{
+        meter_count = 0
         await displayAccess();
         await getAndReflectHostImg('title', document.querySelector(`.title-img`));
         const hostData = await getStoreData('host','Host');
@@ -166,8 +168,8 @@ async function displayWrite(ImgsData, Keys){
         const submitBtn = await clone.querySelector('.crient-submit');
 
         const url = await getImg(data.id);
-        await ReflectUserImg(url, image, 'on');
-        await ReflectUserImg(url, image_expansion, '');
+        await ReflectDisplayUserImg(url, image, 'on');
+        await ReflectDisplayUserImg(url, image_expansion, '');
         acdCheck.id = `acd-check${data.id}`;
 
         await fragment.appendChild(clone);

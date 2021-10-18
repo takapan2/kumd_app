@@ -72,10 +72,10 @@ async function madePaintItems(data) {
         commentTempleteContent.appendChild(newFragment);
 
 
-        //ファイアーベースから画像を取得また要素に反映。
-        // const url = await getImg(data[property]);
-        // await ReflectUserImg(url, commentImage, '');
-        // await ReflectUserImg(url, image, '');
+        // ファイアーベースから画像を取得また要素に反映。
+        const url = await getImg(data[property]);
+        await ReflectUserImg(url, commentImage, '');
+        await ReflectUserImg(url, image, '');
 
         paintTitle.innerText = imgData[imageProp].title
 
