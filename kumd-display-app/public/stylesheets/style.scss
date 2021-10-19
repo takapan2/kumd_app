@@ -563,6 +563,7 @@ body {
         font-size: 16px;
         text-shadow:1px 0 5px black;
         .title-img{
+            margin: 0 !important;
             width: 100%;
             height: auto;
         }
@@ -608,6 +609,15 @@ body {
                 .swiper-wrapper{
                     width: 100%;
                     height: 100%;
+                    .slide-title{
+                        font-size: 20px;
+                        text-align: initial;
+                        width: 80%;
+                        margin-bottom: 10px;
+                    }
+                    .title_4{
+                        transform:translate(0, -50%);
+                    }
                     .swiper-slide {
                         width: 100%;
                         text-align: center;
@@ -620,27 +630,28 @@ body {
                         align-items: center;
                         flex-direction: column;
                         padding-top: 0 !important;
-                        .display-item-container{ //ここからデモ
-                            overflow: hidden;
+                        .display-item-container{ //ここからがデモ
+                            pointer-events: none !important;
+                            border: solid  rgba(0, 0, 0, 0.1) 1px;
+                            transform:scale(60%) translate(0, -33%);
+                            text-align: initial !important;
+                            // overflow: hidden;
                             background-color: white;
                             display: flex;
                             flex-direction: column;
                             align-items: center;
-                            border-radius: 5px; //2.5vw
-                            margin-bottom: 2.5vw;
-                            width: 80%;
-                            text-align: initial;
+                            border-radius: 5px;
+                            margin-bottom: 7.5px;
                             .display-img-content{
-                                width: 100%;
+                                width: 85%;
+                                // height: 90.25vw;
                                 position: relative;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
                                 .display-img{
-                                    width: 100%;
-                                    height: auto;
-                                }
-                                .in-shadow{
-                                    position: absolute;
-                                    width: 100%;
-                                    height: 100%;
+                                    border: solid  rgba(0, 0, 0, 0.1) 1px;
+                                    border-radius: 5px;
                                 }
                             }
                             .acd-check{
@@ -648,85 +659,99 @@ body {
                             }
                             .display-content{
                                 width: 85%;
-                                .relative{
-                                    position: relative;
-                                }
+                                padding-bottom: 50px;
                                 .title{
-                                    font-size: 20px;
-                                    margin: 15px 0px 9px 0px;
-                                    position: relative;
+                                    font-size: 16px;
+                                    margin: 15px 0px 5px 0px;
                                 }
                                 .penname{
-                                    font-size: 18px;
+                                    font-size: 15px;
                                     color: rgba(0, 0, 0, 0.5);
-                                    margin-bottom: 15px;
-                                    position: relative;
+                                    margin-bottom: 5px;
                                 }
                                 .caption{
-                                    font-size: 18px;
-                                    margin-bottom: 25px;
-                                    line-height: 1.8em;
+                                    font-size: 15px;
+                                    margin-bottom: 10px;
+                                    // line-height: 1.6em;
+                                }
+                                .title-wrapper{
                                     position: relative;
+                                    .pointer{
+                                        width: 100px;
+                                        position: absolute;
+                                        font-size: 25px;
+                                        font-weight: bold;
+                                        top: -20%;
+                                        left: 101%;
+                                        color: red;
+                                        span{
+                                            margin-right: 5px;
+                                        }
+                                    }
                                 }
-                                .caption-msg{
-                                    color:rgb(255, 0, 25);
-                                    position: absolute;
-                                    top: 50%;
-                                    left: 50%;
-                                    margin-right: -50%;
-                                    transform: translate(-50%, -50%);
-                                    font-size: 18px;
-                                    font-weight: bold;
-                                    display: flex;
-                                    justify-content: center;
-                                    align-items: center;
-                                    width: 100%;
-                                    height: 100%;
-                                    border: rgb(255, 132, 132) solid 3px;
-                                    //border:rgb(255, 0, 25) solid 3px;
+                                .penname-wrapper{
+                                    position: relative;
+                                    .pointer{
+                                        width: 100px;
+                                        position: absolute;
+                                        font-size: 25px;
+                                        font-weight: bold;
+                                        top: -20%;
+                                        left: 101%;
+                                        color: red;
+                                        span{
+                                            margin-right: 5px;
+                                        }
+                                    }
+                                }
+                                .title1,.penname1,.caption1{
+                                    border: red 3px solid;
                                     border-radius: 5px;
-                                    padding: 0 10px;
-                                    background-color: rgba(255, 255, 255, 0.7);
-                                    //background-color:rgba(255, 132, 132,0.5);
-                                    // animation: msg-on-off 5s ease 0s infinite normal none running;
                                 }
-                                .msg1{
-                                    animation: msg-on-off1 6s ease 0s infinite normal none running;
-                                }
-                                .msg2{
-                                    animation: msg-on-off2 6s ease 0s infinite normal none running;
-                                }
-                                .msg3{
-                                    animation: msg-on-off3 6s ease 0s infinite normal none running;
+                                .caption-wrapper{
+                                    border-radius: 5px;
+                                    position: relative;
+                                    .pointer{
+                                        width: 100px;
+                                        position: absolute;
+                                        font-size: 25px;
+                                        font-weight: bold;
+                                        top: 10%;
+                                        left: 101%;
+                                        color: red;
+                                        span{
+                                            margin-right: 5px;
+                                        }
+                                    }
                                 }
                                 .eval-items{
                                     display: flex;
                                     justify-content: space-between;
                                     margin-bottom: 25px;
-                                    .fa-heart{
-                                        width: 60px;
-                                        height: 60px;
-                                        border-radius: 60px;
-                                        box-shadow: 0 2.5px 5px 0 rgba(0, 0, 0, 0.3);
+                                    .far-heart{
+                                        width: 100px;
+                                        height: 40px;
+                                        border-radius: 5px;
+                                        box-shadow: 0 0.5px 2px 0 rgba(0, 0, 0, 0.3);
                                         display: flex;
                                         align-items: center;
                                         justify-content: center;
-                                        font-size: 30px;//100
-                                        color: rgb(215, 215, 215);
+                                        font-size: 15px;
+                                        color: black;
                                     }
-                                    .fa-heart::before{
+                                    .far-heart::before{
                                         padding-top: 3px;
                                     }
                                     .fa-comment{
-                                        width: 60px;
-                                        height: 60px;
-                                        border-radius: 60px;
-                                        box-shadow: 0 2.5px 5px 0 rgba(0, 0, 0, 0.3);
+                                        width: 40px;
+                                        height: 40px;
+                                        border-radius: 5px;
+                                        box-shadow: 0 0.5px 2px 0 rgba(0, 0, 0, 0.3);
                                         display: flex;
                                         align-items: center;
                                         justify-content: center;
-                                        font-size: 30px;//98
-                                        color: rgb(215, 215, 215);
+                                        font-size: 20px;
+                                        color: rgba(0, 0, 0, 0.3);
                                     }
                                     .fa-comment::before{
                                         padding-bottom: 2px;
@@ -734,48 +759,148 @@ body {
                                     .heart-check{
                                         display: none;
                                     }
-                                    .heart-check:checked + .fa-heart{
-                                        color: rgb(255, 132, 132);
+                                    .heart-check:checked + .far-heart{
+                                        color: rgb(255, 255, 255);
+                                        background-color: black;
+                                    }
+                                    .heart-wrapper{
+                                        position: relative;
+                                        .heart-pointer{
+                                            width: 100px;
+                                            position: absolute;
+                                            font-size: 25px;
+                                            font-weight: bold;
+                                            top: 2%;
+                                            left: 105%;
+                                            color: red;
+                                            span{
+                                                margin-right: 5px;
+                                            }
+                                        }
+                                    }
+                                    .commentBtn-wrapper{
+                                        position: relative;
+                                        .commentBtn-pointer{
+                                            width: 100px;
+                                            position: absolute;
+                                            font-size: 25px;
+                                            font-weight: bold;
+                                            top: 0%;
+                                            left: 101%;
+                                            color: red;
+                                            p{
+                                                font-size: 25px;
+                                                span{
+                                                    margin-right: 5px;
+                                                    font-size: 25px;
+                                                }
+                                            };
+                                        }
                                     }
                                 }
                                 .comment-form{
                                     width: 100%;
                                     height: 0px;
-                                    display: block;
+                                    display: flex;
+                                    align-items: center;
+                                    flex-direction: column;
                                     opacity: 0;
                                     transition: 0.5s;
                                     visibility: hidden;
+                                    position: relative;
                                     p{
-                                        font-size: 18px;
+                                        width: 100%;
+                                        font-size: 15px;
                                     }
                                     .comment-area{
                                         width: 95%;
                                         height: 200px;
-                                        font-size: 18px;
+                                        font-size: 15px;
                                         padding: 10px;
                                         background-color: rgb(245, 245, 245);
                                         outline: none;
                                         border-radius: 5px;
-                                        border-color: rgba(0, 0, 0, 0);
-                                        box-shadow:0px 0px 8px 2px #ccc inset;
+                                        border-color: rgba(0, 0, 0, 0.3);
+                                    }
+                                    .comment-wrapper{
+                                        position: relative;
+                                        width: 100%;
+                                        .comment-pointer{
+                                            width: 100px;
+                                            position: absolute;
+                                            font-size: 25px;
+                                            font-weight: bold;
+                                            top: 33%;
+                                            left: 101%;
+                                            color: red;
+                                            p{
+                                                font-size: 25px;
+                                                span{
+                                                    margin-right: 5px;
+                                                    font-size: 25px;
+                                                }
+                                            };
+                                        }
+                                    }
+
+                                    button{
+                                        margin-top: 20px;
+                                        width: 200px;
+                                        padding: 9px 0px;
+                                        font-size: 15px;
+                                        border-radius: 5px;
+                                        border: initial;
+                                        height: 40px;
+                                        color: white;
+                                        background-color: rgb(0, 0, 0);
+                                        span{
+                                            color: white;
+                                            margin-right: 10px;
+                                        }
+                                    }
+                                    .button-wrapper{
+                                        position: relative;
+                                        .button-pointer{
+                                            width: 100px;
+                                            position: absolute;
+                                            font-size: 25px;
+                                            font-weight: bold;
+                                            top: 30%;
+                                            left: 101%;
+                                            color: red;
+                                            p{
+                                                font-size: 25px;
+                                                span{
+                                                    margin-right: 5px;
+                                                    font-size: 25px;
+                                                }
+                                            };
+                                        }
                                     }
                                 }
                             }
                             .acd-check:checked + .display-content{
                                 .eval-items{
                                     .fa-comment{
-                                        // font-size: 98px;
-                                        color: rgb(128, 157, 255);
+                                        background-color: black;
+                                        color: white;
                                     }
                                 }
                                 .comment-form{
-                                    height: 130px;
+                                    height: 230px;
                                     opacity: 1;
                                     visibility: visible;
-                                    display: block;
+                                    display: flex;
                                     padding: 5px 0 50px 0;
                                 }
                             }
+                        }
+                        .slide-caption{
+                            position: absolute;
+                            top: 62%;
+                            width: 80%;
+                            font-size: 15px;
+                            text-align: initial;
                         }
                         .slide1-content{
                             width: 80%;
@@ -794,127 +919,13 @@ body {
                                 padding: 0px 30px;
                             }
                         }
-                        .slide2-content{
-                            position: relative;
-                            .flip-hand-content{
-                                position: absolute;
-                                top: 50%;
-                                left: 50%;
-                                margin-right: -50%;
-                                transform: translate(-50%, -50%)
-                            }
-                        }
-                        .slide3-content{
-                            position: relative;
-                            .flip-hand-content{
-                                position: absolute;
-                                top: 50%;
-                                left: 50%;
-                                margin-right: -50%;
-                                transform: translate(-50%, -50%);
-                            }
-                            .heart-check{
-                                display: none;
-                            }
-                            .display-content{
-                                .flip-hand-content{
-                                    opacity: 0;
-                                    transition: 1.0s;
-                                }
-                                .fa-hand-o-down-cover{
-                                    opacity: 1;
-                                    transition: 0.5s;
-                                }
-                                .eval-items{
-                                    position: relative;
-                                }
-                                .open-massage{
-                                    color: rgb(255, 0, 25);
-                                    font-size: 18px;
-                                    text-shadow:2px 2px 0 #FFF, -2px -2px 0 #FFF,-2px 2px 0 #FFF, 2px -2px 0 #FFF, 0px 2px 0 #FFF,  0 -2px 0 #FFF, -2px 0 0 #FFF, 2px 0 0 #FFF;
-                                    position: absolute;
-                                    opacity: 0;
-                                    transition: 0.5s;
-                                    //text-align: center;
-                                    top: -80px;
-                                    width: 95%;
-                                    background-color: rgba(255, 255, 255, 0.8);
-                                }
-                            }
-                            .heart-check:checked + .display-content{
-                                .flip-hand-content{
-                                    opacity: 1;
-                                    transition: 1.0s;
-                                }
-                                .fa-heart{
-                                    color: rgb(255, 132, 132);
-                                }
-                                .fa-hand-o-down-cover{
-                                    opacity: 0;
-                                    transition: 0.5s;
-                                }
-                                .open-massage{
-                                    opacity: 1;
-                                    transition: 0.5s;
-                                }
-                            }
-                        }
                         .slide4-content{
-                            position: relative;
-                            .flip-hand-content{
-                                position: absolute;
-                                top: 50%;
-                                left: 50%;
-                                margin-right: -50%;
-                                transform: translate(-50%, -50%);
-                            }
-                            .display-content{
-                                .flip-hand-content{
-                                    opacity: 0;
-                                    transition: 1.0s;
-                                }
-                                .fa-hand-o-down-cover{
-                                    opacity: 1;
-                                    transition: 0.5s;
-                                }
-                                .eval-items{
-                                    position: relative;
-                                }
-                                .open-massage{
-                                    color: rgb(255, 0, 25);
-                                    font-size: 18px;
-                                    text-shadow:2px 2px 0 #FFF, -2px -2px 0 #FFF,-2px 2px 0 #FFF, 2px -2px 0 #FFF, 0px 2px 0 #FFF,  0 -2px 0 #FFF, -2px 0 0 #FFF, 2px 0 0 #FFF;
-                                    position: absolute;
-                                    opacity: 0;
-                                    //transition: 1s;
-                                    top: 125px;
-                                    width: 100%;
-                                    margin-left: 5px;
-                                }
-                                .comment-area{
-                                    height: 100px !important;
-                                }
-                            }
-                            .acd-check:checked + .display-content{
-                                .flip-hand-content{
-                                    opacity: 1;
-                                    transition: 1.0s;
-                                }
-                                .fa-hand-o-down-cover{
-                                    opacity: 0;
-                                    transition: 0.5s;
-                                }
-                                .open-massage{
-                                    opacity: 1;
-                                    transition: 1.5s;
-                                }
-                            }
+                            // height: inherit !important;
                         }
                         .slide5-content{
                             width: 80%;
                             height: 90%;
                             border-radius: 5px;//2.5vw;
-                            box-shadow: 0 1.75vw 1.75vw 0 rgba(0, 0, 0, 0.1);
                             display: flex;
                             flex-direction: column;
                             align-items: center;
@@ -986,6 +997,7 @@ body {
                     height: 32px;
                     top: initial;
                     bottom: 0;
+                    margin-bottom: 150px;
                     .swiper-pagination-bullet{
                         background-color: white;
                         border: solid 1px rgb(187, 187, 187);
@@ -1080,12 +1092,6 @@ body {
                         border: solid  rgba(0, 0, 0, 0.1) 1px;
                         border-radius: 5px;
                     }
-                    // .in-shadow{
-                    //     position: absolute;
-                    //     width: 100%;
-                    //     height: 100%;
-                    //     box-shadow: 0 -20px 25px 0 rgba(0, 0, 0, 0.1) inset;
-                    // }
                 }
                 .acd-check{
                     display: none;
@@ -2537,6 +2543,26 @@ body {
             }
         }
         //header
+
+        //caption
+        .caption-content{
+            .caption-swiper{
+                .swiper-container {
+                    .swiper-wrapper{
+                        .slide-title{
+                            width: 343px;
+                        }
+                        .swiper-slide {
+                            .slide-caption{
+                                width: 343px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //caption
+
         //display
         .display-container{
             .display-items-container{

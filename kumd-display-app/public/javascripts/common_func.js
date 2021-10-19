@@ -103,7 +103,6 @@ async function ReflectDisplayUserImg(url, element, on) {
             await wait(2)
             meter_count++
             const imgRatio = element.width / element.height;
-            console.log(meter_count, Number(meter_count))
             document.querySelector('.reading_mater_content').style.width = await `${Number(meter_count)*100/Number(Object.keys(imgData).length)}%`;
             imgRatio < 1 ? element.classList.add("vertical") : element.classList.add("side");
             resolve()
@@ -325,6 +324,8 @@ function getAndReflectHostImg(imgUid, element) {
     .then(function(url) {
         //エレメントに画像を反映
         element.src = url;
+        // const imgRatio = element.width / element.height;
+        element.classList.add("side");
     }).catch((err) => {
         // Handle any errors
         console.log("getAndReflectUserImgErr", err);
