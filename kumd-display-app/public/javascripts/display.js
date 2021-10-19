@@ -21,14 +21,12 @@ async function thereUser(){
         const sortImgData = await sortImgs(imgData)
         var allCookies = document.cookie;
         var cookieKey = allCookies.split('; ').map(x => x.split('=')[0])
-        console.log(sortImgData)
         await displayWrite(sortImgData, cookieKey);
         textValidation('.paint-comment',100);
         textValidation('.contact-comment',200);
         await wait(2);
         $("body,html").animate({scrollTop: 0}, 1);//トップに移動
         loading.classList.add('loading-fadeaout');
-        console.log("読み込み完了！");
         clickBtn();
     }catch(err){
         location.href = `/display/sorry?err_param=3&err=${err}`
@@ -53,11 +51,9 @@ function clickBtn(){
             $(this).addClass('goodJudge');
             timer = window.setTimeout(timeoutFunction, 7000, $(this), heartCheckId, heartChecked, timers);
             timers[heartCheckId] = timer;
-            console.log('timer', timer)
         }else{
             $(this).removeClass('goodJudge');
             window.clearTimeout(timers[heartCheckId]);
-            console.log('処理の取り消し',timers[heartCheckId]);
         }
     });
 
@@ -65,7 +61,6 @@ function clickBtn(){
         if(window.confirm("提出は一回までとなっております。提出してもよろしいでしょうか")){
             const submitId = $(this).attr("id").split('_')[1];
             const commentValue = document.querySelector(`#textValue_${submitId}`).value;
-            console.log('commentValue',commentValue)
             if(commentValue != '' || commentValue)submitComment(submitId, commentValue);
             // ボタンのセレクタとバリューを変更するような処理
             $(this).css('height','0px');
@@ -83,7 +78,6 @@ function clickBtn(){
         imgExpantion.css('display', 'flex');
         const imgRatio = imgExpantionImage.naturalWidth / imgExpantionImage.naturalHeight
         const displayRatio = document.documentElement.clientWidth / (screen.availHeight)
-        console.log(imgRatio+' '+displayRatio)
         if( imgRatio < displayRatio ) {
             imgExpantionImage_2.css('height',`90vh`).css('width', 'auto');
         }else {
@@ -99,7 +93,6 @@ function clickBtn(){
 async function submitComment(submitId, commentValue){
     try{
         if(submitId == 'bottom'){
-            console.log(commentValue);
             var contactData = await getStoreData('contact','Contact');
             await contactData.contact.push(commentValue);
             await setStoreData(contactData,'contact','Contact');
@@ -111,7 +104,6 @@ async function submitComment(submitId, commentValue){
             var date = `${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${now.getMinutes()}`;
             // pushData.commentNum = crientsData.commentNum + 1;
             pushData.comment.push({text: commentValue, date: date });
-            console.log('submit pushData',pushData);
             await dataUpdate({[imgUid]:pushData}, 'images','imgs');
         }
     }catch(err){
@@ -121,7 +113,6 @@ async function submitComment(submitId, commentValue){
 
 function timeoutFunction(thisElement, heartCheckId, heartChecked, timers){
     addVote(heartCheckId, heartChecked)
-    console.log('表を変化済み', thisElement)
     thisElement.removeClass('goodJudge');
     delete timers[heartCheckId];
 }
@@ -130,12 +121,10 @@ async function addVote(imgUid, checked){
     imgData = await getStoreData('images','imgs');
     var pushData = imgData[imgUid];
     if(checked){
-        console.log('add!')
         pushData.vote = pushData.vote + 1;
         const date = 7*24*60*60; //7日まつ
         document.cookie = `heart-check${imgUid}=checked; max-age=${date}`
     }else{
-        console.log('decrease!')
         pushData.vote = pushData.vote - 1;
         document.cookie = `heart-check${imgUid}=checked; max-age=0`
     }
