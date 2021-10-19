@@ -156,9 +156,9 @@ async function displayWrite(ImgsData, Keys){
         const textArea = await clone.querySelector('textarea');
         const submitBtn = await clone.querySelector('.crient-submit');
 
-        // const url = await getImg(data.id);
-        // await ReflectDisplayUserImg(url, image, 'on');
-        // await ReflectDisplayUserImg(url, image_expansion, '');
+        const url = await getImg(data.id);
+        await ReflectDisplayUserImg(url, image, 'on');
+        await ReflectDisplayUserImg(url, image_expansion, '');
         acdCheck.id = `acd-check${data.id}`;
 
         await fragment.appendChild(clone);
