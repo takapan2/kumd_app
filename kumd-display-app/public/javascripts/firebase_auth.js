@@ -64,10 +64,8 @@ const ERROR = {
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-        console.log("There's a user");
         thereUser();
     } else {
-        console.log("No user");
         noUser();
     }
 });

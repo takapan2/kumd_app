@@ -29,7 +29,6 @@ async function madePaintItems(data) {
     for (const property in data) {
         const imageValue = property.replace('img','');
         const imageProp = `${uid}-${imageValue}`
-        console.log(imageProp)
         const clone = document.importNode(itemsContent, true);
 
         const paintTitle = clone.querySelector('.paint-title');
@@ -147,7 +146,6 @@ function clickBtn() {
     fileContent.addEventListener('change',function(e){
         file = e.target.files[0];
         fileComment.innerText = file.name;
-        console.log(file.size);
     });
 }
 
@@ -157,7 +155,6 @@ async function submitFunc(value) {
 
         imgUid = `${uid}-${value}`
         const newJudge = await value == "new";
-        console.log(value)
 
         const gradeElement = document.getElementById(`grade-select${newJudge ? '': `_${value}`}`);
         const sizeElement = document.getElementById(`size-select${newJudge ? '': `_${value}`}`);
@@ -190,7 +187,6 @@ async function submitFunc(value) {
 
         // validation
         let judge = 0;
-        console.log(newJudge)
         if(newJudge){
             if(!file){ fileErrMsg.innerText = VALIDATION.FILE.VAL; judge++; }
             else if(file.size>5*1024*1024){ fileErrMsg.innerText = VALIDATION.FILE.SIZE; judge++; };
@@ -236,7 +232,6 @@ async function submitFunc(value) {
             }
         };
         updateFunc(imgObject,'images','imgs','/login/account');
-        console.log("save finish!!");
         await wait(2); //5MB近いファイルだと何故か反映されないことがあるため。
         location.href = "/login/account";
     } catch (err) {

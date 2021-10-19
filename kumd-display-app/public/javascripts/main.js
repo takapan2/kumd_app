@@ -27,7 +27,6 @@ $(()=>{
   let ticking = false;
 
   function onScroll(){
-    //console.log(lastPosition+' '+" "+offset);
     if(Math.abs(lastPosition - offset) > height){
       if(lastPosition > offset){
         $('.header-content').addClass('head-animation');

@@ -28,13 +28,11 @@ const captionErrMsg = document.querySelector('#caption-err');
 //ファイルが変更された際の処理
 fileContent.addEventListener('change',function(e){
     file = e.target.files[0];
-    console.log(file.size);
 });
 
 submitButton.addEventListener("click",()=>{
     if(window.confirm("変更を反映し、展示会サイト上で公開してよろしいでしょうか？")){
         loading.classList.remove('loading-fadeaout');
-        console.log("click fileButton");
         //validationのメッセージを一度非表示にする。
         fileErrMsg.innerText = "";
         pennameErrMsg.innerText = "";
@@ -71,7 +69,6 @@ async function submitBtnFunc(uid, demo, file ){
     try{
         await fileHostCompressAndSave(file,'demo');
         await dataUpdate({demo},'host','Host');
-        console.log("save finish!!");
         await wait(2);
         location.href = "/login/host";
     }catch(err){

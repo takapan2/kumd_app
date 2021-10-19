@@ -20,7 +20,6 @@ function setStoreData(object, collection, doc){
 //firestoreでupdate処理をする。
 function dataUpdate(object,collection,document){
     const imgsRef = db.collection(collection).doc(document);
-    console.log('finish')
     return imgsRef.update(object);
 }
 
@@ -113,16 +112,11 @@ async function ReflectDisplayUserImg(url, element, on) {
 //delete時
 async function deleteFunc(uid, imgUid, goalURL) {
     if (await window.confirm("一度削除したイラスト情報は元に戻りません。削除してもよろしいでしょうか？")) {
-        try{
-            await loading.classList.remove('loading-fadeaout');
-            await deleteStoreField('images','imgs',imgUid);
-            await deleteStoreField('users',uid,`img${imgUid.split('-')[1]}`);
-            await deleteStorageFile(imgUid);
-            console.log("delete function all complete!");
-            location.href = goalURL;
-        }catch(err){
-            console.log('deleteFunc Err',err);
-        }
+        await loading.classList.remove('loading-fadeaout');
+        await deleteStoreField('images','imgs',imgUid);
+        await deleteStoreField('users',uid,`img${imgUid.split('-')[1]}`);
+        await deleteStorageFile(imgUid);
+        location.href = goalURL;
     }
 }
 
@@ -149,12 +143,8 @@ async function fileCompress(file){
 
 //データを書き換える際の関数。
 async function updateFunc(object, collection, imgUid, goalURL){
-    try{
-        await dataUpdate(object,collection, imgUid)
-        location.href= goalURL;
-    }catch(err){
-        console.log('updateFunc Err',err);
-    }
+    await dataUpdate(object,collection, imgUid)
+    location.href= goalURL;
 }
 
 //複合関数--------------------------------------------------------------------------------
@@ -205,7 +195,6 @@ function getQueryValue( queryObject, key, loseURL){
     if(queryObject[key]){
         return queryObject[key];
     }else{
-        console.log(`No ${key}`);
         location.href=loseURL;
     }
 }
@@ -216,16 +205,12 @@ function judgeQuality(fileSize){
     if(fileSize<M*0.3){
         return 0.8;
     }else if(fileSize<M*0.5){
-        console.log(0.8);
         return 0.6;
     }else if(fileSize<M*M){
-        console.log(0.6);
         return 0.4;
     }else if(fileSize<2*M*M){
-        console.log(0.4);
         return 0.2;
     }else{
-        console.log(0.2);
         return 0.15;
     }
 }
@@ -257,10 +242,9 @@ const wait = (sec) => {
 //logout用の関数
 function logout(){
     firebase.auth().signOut().then(()=>{
-        console.log("ログアウトしました");
         location.href = `/login`;
     }).catch( (error)=>{
-        console.log(`ログアウト時にエラーが発生しました (${error})`);
+        location.href = `/display/sorry?err_param=2&msg=${error}&uid=${uid}`;
     });
 }
 
@@ -291,29 +275,21 @@ function getRankingList(imgData){
 
 //ログイン時にuserIdがhostがどうか判別する。hostの場合hostURLに遷移。
 async function checkHostLogin(uid){
-    try{
-        const hostData = await getStoreData('host','Host');
-        if(hostData.id == uid ){
-            location.href = hostData.url;
-        }else{
-            location.href='/login/account';
-        }
-    }catch(err){
-        console.log('err',err);
+    const hostData = await getStoreData('host','Host');
+    if(hostData.id == uid ){
+        location.href = hostData.url;
+    }else{
+        location.href='/login/account';
     }
 }
 
 //hostかどうか判別する。hostでない場合はログイン画面まで遷移する。
 async function checkHost(uid){
-    try{
-        const hostData = await getStoreData('host','Host');
-        if(hostData.id != uid ){
-            location.href='/login';
-        }else{
-            return hostData;
-        }
-    }catch(err){
-        console.log('err',err);
+    const hostData = await getStoreData('host','Host');
+    if(hostData.id != uid ){
+        location.href='/login';
+    }else{
+        return hostData;
     }
 }
 
@@ -328,7 +304,7 @@ function getAndReflectHostImg(imgUid, element) {
         element.classList.add("side");
     }).catch((err) => {
         // Handle any errors
-        console.log("getAndReflectUserImgErr", err);
+        location.href = `/display/sorry?err_param=3&msg=${err}`;
     });
 }
 
@@ -340,30 +316,22 @@ async function fileHostCompressAndSave(file,child){
             saveStorageData(result,valChild);
         },
         error(err){
-            console.log('Compressor ERR',err);
+            location.href = `/display/sorry?err_param=2&msg=${error}&uid=${uid}`;
         }
     });
 }
 
 //host-check,サイトのアクセス制限の関数
 async function displayAccess(){
-    try{
-        const hostData = await getStoreData('host','Host');
-        const displaySwitch = hostData.switch.display;
-        if(displaySwitch)location.href = '/display/sorry?err_param=1';
-    }catch(err){
-        console.log('err',err);
-    }
+    const hostData = await getStoreData('host','Host');
+    const displaySwitch = hostData.switch.display;
+    if(displaySwitch)location.href = '/display/sorry?err_param=1';
 }
 
 async function rankingAccess(){
-    try{
-        const hostData = await getStoreData('host','Host');
-        const rankingSwitch = hostData.switch.ranking;
-        if(rankingSwitch)location.href = '/display/sorry?err_param=1';
-    }catch(err){
-        console.log('err',err);
-    }
+    const hostData = await getStoreData('host','Host');
+    const rankingSwitch = hostData.switch.ranking;
+    if(rankingSwitch)location.href = '/display/sorry?err_param=1';
 }
 
 //hostの関数-------------------------------------------------------------------------------
