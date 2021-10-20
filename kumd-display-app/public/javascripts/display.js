@@ -181,6 +181,8 @@ async function displayWrite(ImgsData, Keys){
         if(Keys.includes(`heart-check${data.id}`)) heartCheck.checked = true
     }
 
+    await wait(3)
+
     for(var prop in ImgsData){
         let data = ImgsData[prop];
         const image = await document.querySelector(`#img_${data.id} > .display-img`);
