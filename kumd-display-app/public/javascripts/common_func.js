@@ -95,18 +95,15 @@ async function ReflectUserImg(url, element, on) {
 }
 
 async function ReflectDisplayUserImg(url, element, on) {
-    return Promise.all[ 
-        new Promise( async (resolve, reject) => {
-            element.src = await url;
-            if(on != 'on') return await
-            await wait(2)
-            meter_count++
-            const imgRatio = element.width / element.height;
-            document.querySelector('.reading_mater_content').style.width = await `${Number(meter_count)*100/Number(Object.keys(imgData).length)}%`;
-            imgRatio < 1 ? element.classList.add("vertical") : element.classList.add("side");
-            resolve()
-        })
-    ]
+    element.src = await url;
+    if(on != 'on') return await
+    await new Promise( async (resolve, reject) => {
+        if(!isNaN(element.width / element.height))resolve()
+    })
+    meter_count++
+    const imgRatio = element.width / element.height;
+    document.querySelector('.reading_mater_content').style.width = await `${Number(meter_count)*100/Number(Object.keys(imgData).length)}%`;
+    imgRatio < 1 ? element.classList.add("vertical") : element.classList.add("side");
 }
 
 //delete時
