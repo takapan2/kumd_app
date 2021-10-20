@@ -29,6 +29,7 @@ async function thereUser(){
         loading.classList.add('loading-fadeaout');
         clickBtn();
     }catch(err){
+        // console.log(err)
         location.href = `/display/sorry?err_param=3&err=${err}`
     }
 }
@@ -178,5 +179,13 @@ async function displayWrite(ImgsData, Keys){
         await faHeart.setAttribute("for",`heart-check${data.id}`);
         await faComment.setAttribute("for",`acd-check${data.id}`);
         if(Keys.includes(`heart-check${data.id}`)) heartCheck.checked = true
+    }
+
+    for(var prop in ImgsData){
+        let data = ImgsData[prop];
+        const image = await document.querySelector(`#img_${data.id} > .display-img`);
+        const imgRatio = await image.width / image.height;
+        await image.classList.remove("side");
+        imgRatio < 1 ? await image.classList.add("vertical") : await image.classList.add("side");
     }
 }
