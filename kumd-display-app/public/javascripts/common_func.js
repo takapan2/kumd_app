@@ -98,7 +98,11 @@ async function ReflectDisplayUserImg(url, element, on) {
     element.src = await url;
     if(on != 'on') return await
     await new Promise( async (resolve, reject) => {
-        if(!isNaN(element.width / element.height))resolve()
+        if(!isNaN(element.width / element.height)){
+            resolve();
+        }else{
+            reject();
+        }
     })
     meter_count++
     const imgRatio = element.width / element.height;
