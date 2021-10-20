@@ -100,6 +100,9 @@ async function ReflectDisplayUserImg(url, element, on) {
     meter_count++
     document.querySelector('.reading_mater_content').style.width = await `${(Number(meter_count)+1)*100/Number(Object.keys(imgData).length)}%`;
     await element.classList.add("side");
+    await new Promise( async (resolve, reject) => {
+        if(!isNaN(element.width / element.height)) resolve()
+    })
     const imgRatio = await element.width / element.height;
     await element.classList.remove("side");
     imgRatio < 1 ? element.classList.add("vertical") : element.classList.add("side");
