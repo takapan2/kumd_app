@@ -97,17 +97,19 @@ async function ReflectUserImg(url, element, on) {
 async function ReflectDisplayUserImg(url, element, on) {
     element.src = await url;
     if(on != 'on') return await
-    await new Promise( async (resolve, reject) => {
-        if(!isNaN(element.width / element.height)){
-            resolve();
-        }else{
-            await wait(2);
-            resolve();
-        }
-    })
+    // await new Promise( async (resolve, reject) => {
+    //     if(!isNaN(element.width / element.height)){
+    //         resolve();
+    //     }else{
+    //         await wait(2);
+    //         resolve();
+    //     }
+    // })
     meter_count++
-    const imgRatio = element.width / element.height;
     document.querySelector('.reading_mater_content').style.width = await `${Number(meter_count)*100/Number(Object.keys(imgData).length)}%`;
+    await element.classList.add("side");
+    const imgRatio = element.width / element.height;
+    await element.classList.remove("side");
     imgRatio < 1 ? element.classList.add("vertical") : element.classList.add("side");
 }
 
