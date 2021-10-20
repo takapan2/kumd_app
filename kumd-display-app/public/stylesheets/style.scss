@@ -633,7 +633,8 @@ body {
                         .display-item-container{ //ここからがデモ
                             pointer-events: none !important;
                             border: solid  rgba(0, 0, 0, 0.1) 1px;
-                            transform:scale(60%) translate(0, -33%);
+                            transform:scale(0.6) translate(0, -33%);
+                            -webkit-transform:scale(0.6) translate(0, -33%);
                             text-align: initial !important;
                             // overflow: hidden;
                             background-color: white;
@@ -2355,6 +2356,7 @@ body {
                 margin: 0 10px;
                 width: initial;
                 transform: scale(1.5);
+                -webkit-transform:scale(1.5);
             }
             .text-input{
                 outline: none;

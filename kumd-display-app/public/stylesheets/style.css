@@ -912,8 +912,8 @@ body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-
 body .caption-content .caption-swiper .swiper-container .swiper-wrapper .swiper-slide .display-item-container {
   pointer-events: none !important;
   border: solid rgba(0, 0, 0, 0.1) 1px;
-  -webkit-transform: scale(60%) translate(0, -33%);
-          transform: scale(60%) translate(0, -33%);
+  transform: scale(0.6) translate(0, -33%);
+  -webkit-transform: scale(0.6) translate(0, -33%);
   text-align: initial !important;
   background-color: white;
   display: -webkit-box;
@@ -2965,8 +2965,8 @@ body .host .host-other input {
 body .host .host-other .check {
   margin: 0 10px;
   width: initial;
+  transform: scale(1.5);
   -webkit-transform: scale(1.5);
-          transform: scale(1.5);
 }
 
 body .host .host-other .text-input {
