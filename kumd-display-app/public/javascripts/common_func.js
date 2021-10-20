@@ -101,7 +101,8 @@ async function ReflectDisplayUserImg(url, element, on) {
         if(!isNaN(element.width / element.height)){
             resolve();
         }else{
-            reject();
+            await wait(2);
+            resolve();
         }
     })
     meter_count++
