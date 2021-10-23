@@ -199,15 +199,15 @@ function getQueryValue( queryObject, key, loseURL){
 function judgeQuality(fileSize){
     const M = 1024;
     if(fileSize<M*0.3){
-        return 0.8;
+        return 0.9;
     }else if(fileSize<M*0.5){
-        return 0.6;
+        return 0.7;
     }else if(fileSize<M*M){
-        return 0.4;
+        return 0.5;
     }else if(fileSize<2*M*M){
-        return 0.2;
+        return 0.3;
     }else{
-        return 0.15;
+        return 0.25;
     }
 }
 
