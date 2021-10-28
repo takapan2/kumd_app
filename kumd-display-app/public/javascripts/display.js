@@ -108,7 +108,7 @@ async function submitComment(submitId, commentValue){
             await dataUpdate({[imgUid]:pushData}, 'images','imgs');
         }
     }catch(err){
-        location.href = `/display/sorry?err_param=3&err=${err}`
+        // location.href = `/display/sorry?err_param=3&err=${err}`
     }
 }
 
