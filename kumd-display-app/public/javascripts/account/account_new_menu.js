@@ -235,6 +235,7 @@ async function submitFunc(value) {
         await wait(2); //5MB近いファイルだと何故か反映されないことがあるため。
         location.href = "/login/account";
     } catch (err) {
-        location.href = `/display/sorry?err_param=2&err=${err}&uid=${uid}&imgUid=${imgUid}`;
+        console.log(err.message)
+        if(err.message != 'Validation!!')location.href = `/display/sorry?err_param=2&err=${err}&uid=${uid}&imgUid=${imgUid}`;
     }
 }
