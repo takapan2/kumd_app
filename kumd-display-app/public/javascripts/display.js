@@ -62,7 +62,7 @@ function clickBtn(){
     });
 
     submitButton.on("click", function() {
-        if(window.confirm("提出は一回までとなっております。提出してもよろしいでしょうか")){
+        if(window.confirm("送信してもよろしいでしょうか?")){
             const submitId = $(this).attr("id").split('_')[1];
             const commentValue = document.querySelector(`#textValue_${submitId}`).value;
             if(commentValue != '' || commentValue)submitComment(submitId, commentValue);
