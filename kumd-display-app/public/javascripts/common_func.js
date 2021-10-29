@@ -259,6 +259,7 @@ function getRankingList(imgData){
             rank++;
             befo_vote = key.vote;
             key.rank = rank + con_num;
+            rank = rank + con_num
             con_num = 0;
         }
         return key;

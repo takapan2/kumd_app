@@ -26,7 +26,7 @@ var i=1;
 var before_data;
 async function displayWrite(ImgsData){
     for(var prop in ImgsData){
-        if(i<11){
+        if(ImgsData[prop].rank<11){
             let data = ImgsData[prop];
             const itemsContent = document.querySelector('#ranking-tem').content;
             const templeteContent = document.getElementById(`ranking-container`);
