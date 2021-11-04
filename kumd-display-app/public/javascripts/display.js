@@ -45,20 +45,26 @@ function clickBtn(){
 
     let timers = {};
     goodButton.on("click", function() {
+        alert('申し訳ございません。投票期間は終了したため変更することができません。');
+
         const heartCheckId = $(this).attr("id").replace('heart-check', "");
         const heartChecked = $(this)[0].checked;
         const heartText = document.querySelector(`label[for="heart-check${heartCheckId}"]`);
 
-        if($(this)[0].className !== 'heart-check goodJudge'){
-            $(this).addClass('goodJudge');
-            heartText.innerHTML = '投票済み'
-            timer = window.setTimeout(timeoutFunction, 7000, $(this), heartCheckId, heartChecked, timers);
-            timers[heartCheckId] = timer;
-        }else{
-            $(this).removeClass('goodJudge');
-            heartText.innerHTML = '投票する'
-            window.clearTimeout(timers[heartCheckId]);
-        }
+        // const heartCheckId = $(this).attr("id").replace('heart-check', "");
+        // const heartChecked = $(this)[0].checked;
+        // const heartText = document.querySelector(`label[for="heart-check${heartCheckId}"]`);
+
+        // if($(this)[0].className !== 'heart-check goodJudge'){
+        //     $(this).addClass('goodJudge');
+        //     heartText.innerHTML = '投票済み'
+        //     timer = window.setTimeout(timeoutFunction, 7000, $(this), heartCheckId, heartChecked, timers);
+        //     timers[heartCheckId] = timer;
+        // }else{
+        //     $(this).removeClass('goodJudge');
+        //     heartText.innerHTML = '投票する'
+        //     window.clearTimeout(timers[heartCheckId]);
+        // }
     });
 
     submitButton.on("click", function() {

@@ -1599,11 +1599,6 @@ body .display-container .display-items-container .display-item-container .displa
   display: none;
 }
 
-body .display-container .display-items-container .display-item-container .display-content .eval-items .heart-check:checked + .far-heart {
-  color: white;
-  background-color: black;
-}
-
 body .display-container .display-items-container .display-item-container .display-content .comment-form {
   width: 100%;
   height: 0px;
